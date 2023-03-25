@@ -24,26 +24,8 @@ namespace AgroSistema.Persistence
             DynamicParameters parameters = new();
             parameters.Add("@aplicacionGuid", aplicacionGuid);
 
-            //using var reader = await cnn.ExecuteReaderAsync(
-            //    "sp_MensajeUsuario_GetListaError",
-            //    param: parameters,
-            //    commandType: CommandType.StoredProcedure);
-
-            //var result = new List<MensajeUsuarioEntity>();
-
-            //while (reader.Read())
-            //{
-            //    var entity = new MensajeUsuarioEntity
-            //    {
-            //        Id = reader.IsDBNull(reader.GetOrdinal("MensajeUsuarioID")) ? default : reader.GetInt32(reader.GetOrdinal("MensajeUsuarioID")).ToString(),
-            //        Codigo = reader.IsDBNull(reader.GetOrdinal("Codigo")) ? default : reader.GetString(reader.GetOrdinal("Codigo")),
-            //        AplicacionGuid = reader.IsDBNull(reader.GetOrdinal("AplicacionGuid")) ? default : reader.GetGuid(reader.GetOrdinal("AplicacionGuid")),
-            //        Descripcion = reader.IsDBNull(reader.GetOrdinal("Descripcion")) ? default : reader.GetString(reader.GetOrdinal("Descripcion")),
-            //    };
-            //    result.Add(entity);
-            //}
-
-            var result = await cnn.QueryAsync<MensajeUsuarioEntity>("sp_MensajeUsuario_GetListaError", param: parameters, 
+            var result = await cnn.QueryAsync<MensajeUsuarioEntity>("sp_ObtenerMensajesError", 
+                                                                    param: parameters, 
                                                                     commandType: CommandType.StoredProcedure);
             return result;
         }

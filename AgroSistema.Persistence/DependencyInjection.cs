@@ -16,7 +16,7 @@ namespace AgroSistema.Persistence
         {
             services.AddSingleton<IDataBase>(sp => new SqlDataBase(connectionString));
             services.AddTransient<IMensajeUsuarioRepository, MensajeUsuarioRepository>();
-            //services.AddTransient<IListasRepository, ListasRepository>();
+            services.AddTransient<ICultivoRepository, CultivoRepository>();
 
             return services;
         }

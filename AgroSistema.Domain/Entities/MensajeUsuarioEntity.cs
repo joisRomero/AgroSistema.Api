@@ -9,8 +9,8 @@ namespace AgroSistema.Domain.Entities
 {
     public class MensajeUsuarioEntity : BaseEntity
     {
-        public string Codigo { get; set; }
+        public string? Codigo { get; set; }
         public Guid AplicacionGuid { get; set; }
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
     }
 }

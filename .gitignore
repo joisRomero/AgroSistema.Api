@@ -361,3 +361,20 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+
+/AgroSistema.Api/AgroSistema.Api/Logs/AgroSistema.Api.Log-20221115.log
+/AgroSistema.Api/AgroSistema.Api/obj
+/AgroSistema.Api/AgroSistema.Application/obj
+/AgroSistema.Api/AgroSistema.Domain/obj
+/AgroSistema.Api/AgroSistema.Infrastructure/obj
+/AgroSistema.Api/AgroSistema.Persistence/obj
+/AgroSistema.Api/.vs/AgroSistema.Api/FileContentIndex/3cb5a850-2932-4ad3-8437-f55cd43dae76.vsidx
+/AgroSistema.Api/AgroSistema.Api/bin/Debug/net6.0
+/AgroSistema.Api/AgroSistema.Application/bin/Debug/net6.0
+/AgroSistema.Api/AgroSistema.Domain/bin/Debug/net6.0
+/AgroSistema.Api/AgroSistema.Infrastructure/bin/Debug/net6.0
+/AgroSistema.Api/AgroSistema.Persistence/bin/Debug/net6.0
+/AgroSistema.Api/AgroSistema.Api/Logs
+/.vs/API/v17
+/AgroSistema.Api/.vs
