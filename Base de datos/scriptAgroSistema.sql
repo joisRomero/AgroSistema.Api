@@ -437,7 +437,7 @@ CREATE TABLE ALMACEN_ABONO(
 	CONSTRAINT fk_almaAbono_agroqui FOREIGN KEY (id_abono) REFERENCES ABONO(id_abono),
 )
 
-CREATE TABLE TABLA_MENSAJE_ERROR (
+CREATE TABLE MENSAJE_ERROR (
 	id_tabMenError int identity (1,1) not null, 
 	codigo_tabMenError varchar (300) null, 
 	aplicacionGuid_tabMenError uniqueidentifier null, 

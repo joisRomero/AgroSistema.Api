@@ -7,7 +7,7 @@ namespace AgroSistema.Api.Controllers
     [Route("api/v1/[controller]")]
     [ApiController]
     [AllowAnonymous]
-    public class MensajesUsuarioController : AbstractController
+    public class MensajeUsuarioController : AbstractController
     {
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]

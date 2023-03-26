@@ -4,7 +4,6 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
-using AgroSistema.Api.Extensions;
 
 namespace AgroSistema.Api
 {

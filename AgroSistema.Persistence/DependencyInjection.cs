@@ -1,12 +1,7 @@
-﻿using AgroSistema.Application.Common.Interface.Repositories;
-using AgroSistema.Application.Common.Interface;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AgroSistema.Application.Common.Interface;
+using AgroSistema.Application.Common.Interface.Repositories;
 using AgroSistema.Persistence.DataBase;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AgroSistema.Persistence
 {
@@ -17,6 +12,7 @@ namespace AgroSistema.Persistence
             services.AddSingleton<IDataBase>(sp => new SqlDataBase(connectionString));
             services.AddTransient<IMensajeUsuarioRepository, MensajeUsuarioRepository>();
             services.AddTransient<ICultivoRepository, CultivoRepository>();
+            services.AddTransient<ILoginRepository, LoginRepository>();
 
             return services;
         }
