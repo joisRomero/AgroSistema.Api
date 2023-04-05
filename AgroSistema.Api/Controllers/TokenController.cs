@@ -11,6 +11,7 @@ namespace AgroSistema.Api.Controllers
     public class TokenController : AbstractController
     {
         [HttpPost]
+        [Route("tokenUsuario")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

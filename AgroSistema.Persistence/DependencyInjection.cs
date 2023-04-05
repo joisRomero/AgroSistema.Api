@@ -13,6 +13,8 @@ namespace AgroSistema.Persistence
             services.AddTransient<IMensajeUsuarioRepository, MensajeUsuarioRepository>();
             services.AddTransient<ICultivoRepository, CultivoRepository>();
             services.AddTransient<ILoginRepository, LoginRepository>();
+            services.AddTransient<ITokenRepository, TokenRepository>();
+            services.AddTransient<ISociedadRepository, SociedadRepository>();
 
             return services;
         }

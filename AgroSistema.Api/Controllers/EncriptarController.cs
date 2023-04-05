@@ -1,4 +1,5 @@
 ﻿using AgroSistema.Application.Common.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgroSistema.Api.Controllers

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AgroSistema.Domain.Entities.CrearTokenUsuarioAsync
 {
-    public class CrearTokenUsuarioEntity : BaseEntity
+    public class TokenUsuarioEntity : BaseEntity
     {
         public Guid Identificador { get; set; }
         public string Tipo { get; set; }

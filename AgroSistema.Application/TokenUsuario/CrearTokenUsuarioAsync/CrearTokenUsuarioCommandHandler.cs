@@ -55,7 +55,7 @@ namespace AgroSistema.Application.TokenUsuario.CrearTokenUsuarioAsync
                 sClave = _cryptography.Encrypt(claveString);
             }
 
-            int respuesta = await _loginRepository.ValidarUsuarioAsync(request.Usuario, sClave);
+            int respuesta = await _loginRepository.ValidarUsuarioAsync(usuarioString, sClave);
 
             if (respuesta == 1)
             {
@@ -96,7 +96,7 @@ namespace AgroSistema.Application.TokenUsuario.CrearTokenUsuarioAsync
 
             var token = _jwtService.Generate(claims.ToArray(), expiresUtc);
 
-             var crearTokenUsuarioEntity = new CrearTokenUsuarioEntity
+             var crearTokenUsuarioEntity = new TokenUsuarioEntity
             {
                 Identificador = Guid.NewGuid(),
                 Owner = loginEntity.IdUsuario,

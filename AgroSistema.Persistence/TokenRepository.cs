@@ -17,7 +17,7 @@ namespace AgroSistema.Persistence
             _dateTimeService = dateTimeService;
         }
 
-        public async Task CrearTokenUsuarioAsync(CrearTokenUsuarioEntity crearTokenUsuarioEntity)
+        public async Task CrearTokenUsuarioAsync(TokenUsuarioEntity crearTokenUsuarioEntity)
         {
             using (var cnx = _database.GetConnection())
             {

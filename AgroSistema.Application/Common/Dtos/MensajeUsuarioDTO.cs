@@ -11,8 +11,8 @@ namespace AgroSistema.Application.Common.Dtos
 {
     public class MensajeUsuarioDTO : IMapFrom<MensajeUsuarioEntity>
     {
-        public string Codigo { get; set; }
-        public string Descripcion { get; set; }
+        public string? Codigo { get; set; }
+        public string? Descripcion { get; set; }
 
         public void Mapping(Profile profile)
         {

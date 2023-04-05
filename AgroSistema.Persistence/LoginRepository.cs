@@ -26,7 +26,7 @@ namespace AgroSistema.Persistence
             LoginEntity result = new();
             var response = await cnn.QueryAsync<LoginEntity>("sp_ObtenerUsuarioLogin", parameters, 
                                                               commandTimeout: 0, commandType: CommandType.StoredProcedure);
-            result = (LoginEntity)response;
+            result = response.First();
             return result;
         }
 

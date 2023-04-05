@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace AgroSistema.Application.TokenUsuario.CrearTokenUsuarioAsync
 {
-    public class CrearTokenUsuarioDTO : IMapFrom<CrearTokenUsuarioEntity>
+    public class CrearTokenUsuarioDTO : IMapFrom<TokenUsuarioEntity>
     {
         [JsonProperty(PropertyName = "access_token")]
         public string AccessToken { get; set; }
@@ -13,9 +13,10 @@ namespace AgroSistema.Application.TokenUsuario.CrearTokenUsuarioAsync
         public string TokenType { get; set; }
         [JsonProperty(PropertyName = "expires_in")]
         public long ExpiresIn { get; set; }
+
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CrearTokenUsuarioEntity, CrearTokenUsuarioDTO>();
+            profile.CreateMap<TokenUsuarioEntity, CrearTokenUsuarioDTO>();
         }
     }
 }
