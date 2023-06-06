@@ -1,12 +1,14 @@
-﻿using System;
+﻿using AgroSistema.Application.Common.Dtos;
+using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync
+namespace AgroSistema.Application.Sociedad.GetListaPaginadaCampaniasSocidad
 {
-    public class ListaPaginadaCampaniasSociedadEntity
+    public class ListaPaginaCampaniasSocidadCommand : IRequest<PaginatedDTO<IEnumerable<CampaniasSocidadPaginadaDTO>>>
     {
         public int IdSociedad { get; set; }
         public string? Nombre { get; set; }

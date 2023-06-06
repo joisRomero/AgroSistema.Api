@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgroSistema.Application.Sociedad.GetListaPaginaCampaniasSocidad
+namespace AgroSistema.Application.Cosecha.GetListaPaginadaCosechas
 {
-    public class ListaPaginaCampaniasSocidadCommand : IRequest<PaginatedDTO<IEnumerable<CampaniasSocidadPaginadaDTO>>>
+    public class ListaPaginadaCosechasCommand : IRequest<PaginatedDTO<IEnumerable<CosechasPaginadaDTO>>>
     {
-        public int IdSociedad { get; set; }
+        public int IdCampania { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
     }

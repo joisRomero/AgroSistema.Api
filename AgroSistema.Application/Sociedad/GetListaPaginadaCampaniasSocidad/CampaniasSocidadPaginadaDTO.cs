@@ -2,7 +2,7 @@
 using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync;
 using AutoMapper;
 
-namespace AgroSistema.Application.Sociedad.GetListaPaginaCampaniasSocidad
+namespace AgroSistema.Application.Sociedad.GetListaPaginadaCampaniasSocidad
 {
     public class CampaniasSocidadPaginadaDTO : IMapFrom<CampaniasSociedadPaginadaEntity>
     {

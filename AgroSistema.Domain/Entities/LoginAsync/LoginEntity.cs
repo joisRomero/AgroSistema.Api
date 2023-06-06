@@ -4,5 +4,6 @@
     {
         public string? IdUsuario { get; set; }
         public string? NombreUsuario { get; set; }
+        public string? NombreCompleto { get; set; }
     }
 }

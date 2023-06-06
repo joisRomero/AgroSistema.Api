@@ -1,4 +1,4 @@
-﻿using AgroSistema.Application.Sociedad.GetListaPaginaCampaniasSocidad;
+﻿using AgroSistema.Application.Sociedad.GetListaPaginadaCampaniasSocidad;
 using AgroSistema.Application.Sociedad.GetListaPaginadaSociedades;
 using AgroSistema.Application.Sociedad.ObtenerIntegrantesSociedad;
 using Microsoft.AspNetCore.Authorization;

@@ -3,7 +3,6 @@ using AgroSistema.Application.Common.Interface.Repositories;
 using AgroSistema.Domain.Common;
 using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaSociedades;
-using AgroSistema.Domain.Entities.LoginAsync;
 using AgroSistema.Domain.Entities.ObtenerIntegrantesSociedadAsync;
 using AgroSistema.Persistence.DataBase;
 using Dapper;
@@ -35,6 +34,7 @@ namespace AgroSistema.Persistence
             parameters.Add("@pPageNumber", pageNumber);
             parameters.Add("@pPageSize", pageSize);
             parameters.Add("@pIdSociedad", listaPaginadaCampaniasSociedadEntity.IdSociedad);
+            parameters.Add("@pNombre", listaPaginadaCampaniasSociedadEntity.Nombre);
 
             var response = await cnn.QueryAsync<CampaniasSociedadPaginadaEntity>("sp_ObtenerListaPaginaCampaniasSocidad", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
 
@@ -50,7 +50,7 @@ namespace AgroSistema.Persistence
             parameters.Add("@pNombre", listaPaginadaSociedadEntity.Nombre);
             parameters.Add("@pPageNumber", pageNumber);
             parameters.Add("@pPageSize", pageSize);
-            parameters.Add("@@pIdUsuario", listaPaginadaSociedadEntity.IdUsuario);
+            parameters.Add("@pIdUsuario", listaPaginadaSociedadEntity.IdUsuario);
 
             var response = await cnn.QueryAsync<SociedadPaginadaEntity>("sp_ObtenerListaPaginadaSociedades", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
 

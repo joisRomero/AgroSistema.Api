@@ -16,11 +16,6 @@ namespace AgroSistema.Persistence.DataBase
 
         public IDbConnection GetConnection()
         {
-            //if (_connection == null || string.IsNullOrWhiteSpace(_connection.ConnectionString))
-            //{
-            //    _connection = new SqlConnection(_connectionString);
-            //}
-
             _connection = new SqlConnection(_connectionString);
             return _connection;
         }

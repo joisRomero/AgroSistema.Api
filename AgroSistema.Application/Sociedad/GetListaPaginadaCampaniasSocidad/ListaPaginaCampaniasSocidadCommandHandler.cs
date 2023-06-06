@@ -4,7 +4,7 @@ using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync;
 using AutoMapper;
 using MediatR;
 
-namespace AgroSistema.Application.Sociedad.GetListaPaginaCampaniasSocidad
+namespace AgroSistema.Application.Sociedad.GetListaPaginadaCampaniasSocidad
 {
     public class ListaPaginaCampaniasSocidadCommandHandler : IRequestHandler<ListaPaginaCampaniasSocidadCommand, PaginatedDTO<IEnumerable<CampaniasSocidadPaginadaDTO>>>
     {
@@ -22,7 +22,8 @@ namespace AgroSistema.Application.Sociedad.GetListaPaginaCampaniasSocidad
             {
                 PageNumber = request.PageNumber,
                 PageSize = request.PageSize,
-                IdSociedad = request.IdSociedad
+                IdSociedad = request.IdSociedad,
+                Nombre = request.Nombre
             };
 
             var result = await _sociedadRepository.GetListaPaginaCampaniasSocidadAsync(entity);

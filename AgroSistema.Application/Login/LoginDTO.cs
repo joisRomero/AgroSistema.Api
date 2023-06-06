@@ -13,6 +13,7 @@ namespace AgroSistema.Application.Login
     {
         public string? IdUsuario { get; set; }
         public string? NombreUsuario { get; set; }
+        public string? NombreCompleto { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<LoginEntity, LoginDTO>();

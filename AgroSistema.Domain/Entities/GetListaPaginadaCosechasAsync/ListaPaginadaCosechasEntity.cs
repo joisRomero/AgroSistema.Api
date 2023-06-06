@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync
+namespace AgroSistema.Domain.Entities.GetListaPaginadaCosechasAsync
 {
-    public class ListaPaginadaCampaniasSociedadEntity
+    public class ListaPaginadaCosechasEntity
     {
-        public int IdSociedad { get; set; }
-        public string? Nombre { get; set; }
+        public int IdCampania { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
     }

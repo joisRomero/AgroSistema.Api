@@ -39,8 +39,6 @@ namespace AgroSistema.Application.Sociedad.ObtenerIntegrantesSociedad
                 var resultado = await _sociedadRepository.ObtenerIntegrantesSociedadAsync(request.IdSociedad);
                 return _mapper.Map<IEnumerable<IntegrantesSociedadDTO>>(resultado);
             }
-
-            throw new NotImplementedException();
         }
     }
 }
