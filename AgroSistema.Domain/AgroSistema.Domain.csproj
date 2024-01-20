@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\EditarCultivoAsync\" />
-    <Folder Include="Entities\ObtenerCultivoAsync\" />
+    <Compile Remove="Entities\EditarCultivoAsync\**" />
+    <Compile Remove="Entities\ObtenerCultivoAsync\**" />
+    <EmbeddedResource Remove="Entities\EditarCultivoAsync\**" />
+    <EmbeddedResource Remove="Entities\ObtenerCultivoAsync\**" />
+    <None Remove="Entities\EditarCultivoAsync\**" />
+    <None Remove="Entities\ObtenerCultivoAsync\**" />
   </ItemGroup>
 
 </Project>

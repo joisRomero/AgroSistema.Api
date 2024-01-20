@@ -18,6 +18,7 @@ namespace AgroSistema.Persistence
             services.AddTransient<ICampaniaRepository, CampaniaRepository>();
             services.AddTransient<ICosechaRepository, CosechaRepository>();
             services.AddTransient<ICombosRepository, CombosRepository>();
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             return services;
         }
     }

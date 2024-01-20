@@ -20,4 +20,8 @@
     <ProjectReference Include="..\AgroSistema.Domain\AgroSistema.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Usuario\Query\" />
+  </ItemGroup>
+
 </Project>
