@@ -24,17 +24,15 @@ namespace AgroSistema.Persistence
         }
         public async Task<PaginatedEntity<IEnumerable<CosechaPaginadaEntity>>> GetListaPaginadaCosechasAsync(ListaPaginadaCosechasEntity listaPaginadaCosechasEntity)
         {
-            int pageNumber = listaPaginadaCosechasEntity.PageNumber;
-            int pageSize = listaPaginadaCosechasEntity.PageSize;
             using var cnn = _database.GetConnection();
             DynamicParameters parameters = new();
             parameters.Add("@pIdCampania", listaPaginadaCosechasEntity.IdCampania);
-            parameters.Add("@pPageNumber", pageNumber);
-            parameters.Add("@pPageSize", pageSize);
+            parameters.Add("@pPageNumber", listaPaginadaCosechasEntity.PageNumber);
+            parameters.Add("@pPageSize", listaPaginadaCosechasEntity.PageSize);
 
             var response = await cnn.QueryAsync<CosechaPaginadaEntity>("sp_ObtenerListaPaginadaCosechas", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
-
-            return new PaginatedEntity<IEnumerable<CosechaPaginadaEntity>>(pageNumber, pageSize, response.Count(), response);
+            int totalRows = response.Any() ? response.First().TotalRows : 0;
+            return new PaginatedEntity<IEnumerable<CosechaPaginadaEntity>>(listaPaginadaCosechasEntity.PageNumber, listaPaginadaCosechasEntity.PageSize, totalRows, response);
         }
     }
 }

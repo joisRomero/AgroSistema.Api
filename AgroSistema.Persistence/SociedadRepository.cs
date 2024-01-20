@@ -27,34 +27,30 @@ namespace AgroSistema.Persistence
 
         public async Task<PaginatedEntity<IEnumerable<CampaniasSociedadPaginadaEntity>>> GetListaPaginaCampaniasSocidadAsync(ListaPaginadaCampaniasSociedadEntity listaPaginadaCampaniasSociedadEntity)
         {
-            int pageNumber = listaPaginadaCampaniasSociedadEntity.PageNumber;
-            int pageSize = listaPaginadaCampaniasSociedadEntity.PageSize;
             using var cnn = _database.GetConnection();
             DynamicParameters parameters = new();
-            parameters.Add("@pPageNumber", pageNumber);
-            parameters.Add("@pPageSize", pageSize);
+            parameters.Add("@pPageNumber", listaPaginadaCampaniasSociedadEntity.PageNumber);
+            parameters.Add("@pPageSize", listaPaginadaCampaniasSociedadEntity.PageSize);
             parameters.Add("@pIdSociedad", listaPaginadaCampaniasSociedadEntity.IdSociedad);
             parameters.Add("@pNombre", listaPaginadaCampaniasSociedadEntity.Nombre);
 
             var response = await cnn.QueryAsync<CampaniasSociedadPaginadaEntity>("sp_ObtenerListaPaginaCampaniasSocidad", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
-
-            return new PaginatedEntity<IEnumerable<CampaniasSociedadPaginadaEntity>>(pageNumber, pageSize, response.Count(), response);
+            int totalRows = response.Any() ? response.First().TotalRows : 0;
+            return new PaginatedEntity<IEnumerable<CampaniasSociedadPaginadaEntity>>(listaPaginadaCampaniasSociedadEntity.PageNumber, listaPaginadaCampaniasSociedadEntity.PageSize, totalRows, response);
         }
 
         public async Task<PaginatedEntity<IEnumerable<SociedadPaginadaEntity>>> GetListaPaginadaSociedadesAsync(ListaPaginadaSociedadEntity listaPaginadaSociedadEntity)
         {
-            int pageNumber = listaPaginadaSociedadEntity.PageNumber;
-            int pageSize = listaPaginadaSociedadEntity.PageSize;
             using var cnn = _database.GetConnection();
             DynamicParameters parameters= new();
             parameters.Add("@pNombre", listaPaginadaSociedadEntity.Nombre);
-            parameters.Add("@pPageNumber", pageNumber);
-            parameters.Add("@pPageSize", pageSize);
+            parameters.Add("@pPageNumber", listaPaginadaSociedadEntity.PageNumber);
+            parameters.Add("@pPageSize", listaPaginadaSociedadEntity.PageSize);
             parameters.Add("@pIdUsuario", listaPaginadaSociedadEntity.IdUsuario);
 
             var response = await cnn.QueryAsync<SociedadPaginadaEntity>("sp_ObtenerListaPaginadaSociedades", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
-
-            return new PaginatedEntity<IEnumerable<SociedadPaginadaEntity>>(pageNumber, pageSize, response.Count(), response);
+            int totalRows = response.Any() ? response.First().TotalRows : 0;
+            return new PaginatedEntity<IEnumerable<SociedadPaginadaEntity>>(listaPaginadaSociedadEntity.PageNumber, listaPaginadaSociedadEntity.PageSize, totalRows, response);
         }
 
         public async Task<IEnumerable<IntegrantesSociedadEntity>> ObtenerIntegrantesSociedadAsync(int idSociedad)

@@ -10,6 +10,7 @@ namespace AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync
     {
         public int IdCampania { get; set; }
         public int Numero { get; set; }
+        public int TotalRows { get; set; }
         public string? Nombre { get; set; }
         public string? Terreno { get; set; }
         public string? Cultivo { get; set; }
