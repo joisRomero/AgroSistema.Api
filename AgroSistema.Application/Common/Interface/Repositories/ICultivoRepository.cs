@@ -1,4 +1,7 @@
-﻿using AgroSistema.Domain.Entities.AgregarCultivoAsync;
+﻿using AgroSistema.Application.Cultivo.ListarCultivosAsync;
+using AgroSistema.Domain.Common;
+using AgroSistema.Domain.Entities.AgregarCultivoAsync;
+using AgroSistema.Domain.Entities.GetListaPaginadaCultivosAsync;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +13,6 @@ namespace AgroSistema.Application.Common.Interface.Repositories
     public interface ICultivoRepository
     {
         Task AgregarCultivo(AgregarCultivoEntity agregarCultivoEntity);
+        Task<PaginatedEntity<IEnumerable<ListaPaginadaCultivoEntity>>> ListarCultivosAsync(RequestListaPaginadaCultivoEntity requestListaPaginadaCultivoEntity);
     }
 }
