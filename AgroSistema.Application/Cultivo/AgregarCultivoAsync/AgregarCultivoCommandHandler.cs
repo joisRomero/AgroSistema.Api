@@ -27,9 +27,9 @@ namespace AgroSistema.Application.Cultivo.AgregarCultivoAsync
         {
             AgregarCultivoEntity agregarCultivoEntity = new()
             {
-                Nombre = request.Nombre,
-                Estado = request.Estado,
-                CodUsuario = request.CodUsuario
+                NombreCultivo = request.NombreCultivo,
+                IdUsuario = request.IdUsuario,
+                UsuarioInserta = request.UsuarioInserta
             };
 
             await _cultivoRepository.AgregarCultivo(agregarCultivoEntity);

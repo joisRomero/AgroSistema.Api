@@ -1,14 +1,15 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgroSistema.Domain.Entities.AgregarCultivoAsync
+namespace AgroSistema.Application.Sociedad.AgregarSociedad
 {
-    public class AgregarCultivoEntity
+    public class AgregarSociedadCommand : IRequest
     {
-        public string? NombreCultivo { get; set; }
+        public string? NombreSociedad { get; set; }
         public int IdUsuario { get; set; }
         public string? UsuarioInserta { get; set; }
     }
