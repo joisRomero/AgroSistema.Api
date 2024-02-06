@@ -33,16 +33,14 @@ namespace AgroSistema.Application.Login
             }
 
             int respuesta = await _loginRepository.ValidarUsuarioAsync(request.Usuario, sClave);
-            if (respuesta == 1)
+            if (respuesta == 0)
             {
-                var result = await _loginRepository.ObtenerUsuarioAsync(request.Usuario, sClave);
+                throw new BadRequestException(_mensajesUsuario.FirstOrDefault(m => m.Codigo == "000007"));                
+            }
 
-                return _mapper.Map<LoginDTO>(result);
-            }
-            else
-            {
-                throw new BadRequestException(_mensajesUsuario.FirstOrDefault(m => m.Codigo == "000007"));
-            }
+            var result = await _loginRepository.ObtenerUsuarioAsync(request.Usuario, sClave);
+
+            return _mapper.Map<LoginDTO>(result);
 
         }
     }

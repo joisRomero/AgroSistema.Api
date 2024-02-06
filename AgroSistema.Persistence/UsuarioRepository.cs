@@ -1,6 +1,9 @@
 ﻿using AgroSistema.Application.Common.Interface;
 using AgroSistema.Application.Common.Interface.Repositories;
+using AgroSistema.Domain.Entities.ActualizarDatosUsuario;
+using AgroSistema.Domain.Entities.AgregarCultivoAsync;
 using AgroSistema.Domain.Entities.CrearUsuarioAsync;
+using AgroSistema.Domain.Entities.ObtenerDatosUsuarioAsync;
 using AgroSistema.Persistence.DataBase;
 using Dapper;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +25,34 @@ namespace AgroSistema.Persistence
             var services = serviceprovider.GetServices<IDataBase>();
             _database = services.First(s => s.GetType() == typeof(SqlDataBase));
         }
+
+        public async Task<int> ActualizarClavesUsuario(string claveNueva, int idUsuario)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@pClave", claveNueva);
+            parameters.Add("@pIdUsuario", idUsuario);
+
+            var response = await cnn.QueryAsync<int>("sp_ActualizarClavesUsuario", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+
+            return response.First();
+        }
+
+        public async Task<ResponseDatosUsuarioEntity> ActualizarDatosUsuario(ActualizarDatosUsuarioEntity actualizarDatosUsuarioEntity)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@pIdUsuario", actualizarDatosUsuarioEntity.Id);
+            parameters.Add("@pNombre", actualizarDatosUsuarioEntity.Nombre);
+            parameters.Add("@pApellidoPaterno", actualizarDatosUsuarioEntity.ApellidoPaterno);
+            parameters.Add("@pApellidoMaterno", actualizarDatosUsuarioEntity.ApellidoMaterno);
+            parameters.Add("@pCorreo", actualizarDatosUsuarioEntity.Correo);
+
+            var response = await cnn.QueryAsync<ResponseDatosUsuarioEntity>("sp_ActualizarUsuario", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+
+            return response.First();
+        }
+
         public async Task<ResponseCrearUsuarioEntity> CrearUsuario(CrearUsuarioEntity crearUsuarioEntity)
         {
             using var cnn = _database.GetConnection();
@@ -34,6 +65,39 @@ namespace AgroSistema.Persistence
             parameters.Add("@pCorreo", crearUsuarioEntity.Correo);
 
             var response = await cnn.QueryAsync<ResponseCrearUsuarioEntity>("sp_CrearUsuario", parameters, commandTimeout: 0,commandType: CommandType.StoredProcedure);
+
+            return response.First();
+        }
+
+        public async Task EliminarCuentaUsuario(int idUsuario)
+        {
+            using var cnn = _database.GetConnection();
+
+            DynamicParameters parameters = new();
+            parameters.Add("@pIdUsuario", idUsuario);
+
+            _ = await cnn.ExecuteAsync("sp_EliminarUsuario", parameters, commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<ObtenerDatosUsuarioEntity> ObtenerDatosUsuario(int idUsuario)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@pIdUsuario", idUsuario);
+
+            var response = await cnn.QueryAsync<ObtenerDatosUsuarioEntity>("sp_ObtenerDatosUsuario", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+
+            return response.FirstOrDefault();
+        }
+
+        public async Task<int> ValidarClaveActual(string claveActual, int idUsuario)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@pClave", claveActual);
+            parameters.Add("@pIdUsuario", idUsuario);
+
+            var response = await cnn.QueryAsync<int>("sp_ValidarClavesUsuario", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
 
             return response.First();
         }
