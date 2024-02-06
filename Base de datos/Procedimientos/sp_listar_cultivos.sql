@@ -39,6 +39,7 @@ BEGIN
 	AS(
 		SELECT 
 			ROW_NUMBER() OVER( ORDER BY c.id_culti DESC) AS Correlativo
+			,c.id_culti AS IdCultivo
 			,c.nombre_culti AS NombreCultivo
 			,CASE WHEN c.estado_culti = 1 THEN 'Activo'
 				WHEN c.estado_culti = 0 THEN 'Inactivo'

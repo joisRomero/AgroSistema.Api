@@ -14,6 +14,7 @@ namespace AgroSistema.Application.Cultivo.ListarCultivosAsync
     public class ListarCultivosDTO :IMapFrom<ListaPaginadaCultivoEntity>
     {
         public int Correlativo { get; set; }
+        public int IdCultivo { get; set; }
         public string? NombreCultivo { get; set; }
         public string? Estado { get; set; }
         public string? NombreUsuario { get; set; }
