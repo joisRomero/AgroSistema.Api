@@ -11,6 +11,7 @@ using AgroSistema.Domain.Entities.GetListaPaginadaSociedades;
 using AgroSistema.Domain.Entities.ListaPaginadaSociedadAsync;
 using AgroSistema.Domain.Entities.ModificarCultivoAsync;
 using AgroSistema.Domain.Entities.ObtenerIntegrantesSociedadAsync;
+using AgroSistema.Domain.Entities.ValidarPertenenciaSociedadAsync;
 using AgroSistema.Persistence.DataBase;
 using Dapper;
 using Microsoft.Extensions.DependencyInjection;
@@ -120,26 +121,30 @@ namespace AgroSistema.Persistence
             return new PaginatedEntity<IEnumerable<ListaPaginadaSociedadesEntity>>(requestListaPaginadaSociedadesEntity.PageNumber, requestListaPaginadaSociedadesEntity.PageSize, totalRows, response);
         }
 
-        public async Task<IEnumerable<IntegrantesSociedadEntity>> ObtenerIntegrantesSociedadAsync(int idSociedad)
+        public async Task<PaginatedEntity<IEnumerable<IntegrantesSociedadEntity>>> ObtenerIntegrantesSociedadAsync(ListaPaginadaIntegrantesSociedadEntity listaPaginadaIntegrantesSociedad)
         {
             using var cnn = _database.GetConnection();
             DynamicParameters parameters = new();
-            parameters.Add("@pIdSociedad", idSociedad);
+            parameters.Add("@pIdSociedad", listaPaginadaIntegrantesSociedad.IdSociedad);
+            parameters.Add("@pNombre", listaPaginadaIntegrantesSociedad.Nombre);
+            parameters.Add("@pPageNumber", listaPaginadaIntegrantesSociedad.PageNumber);
+            parameters.Add("@pPageSize", listaPaginadaIntegrantesSociedad.PageSize);
 
             var response = await cnn.QueryAsync<IntegrantesSociedadEntity>("sp_ObtenerIntegrantesSociedad", parameters,
                                                               commandTimeout: 0, commandType: CommandType.StoredProcedure);
-            return response;
+            int totalRows = response.Any() ? response.First().TotalRows : 0;
+            return new PaginatedEntity<IEnumerable<IntegrantesSociedadEntity>>(listaPaginadaIntegrantesSociedad.PageNumber, listaPaginadaIntegrantesSociedad.PageSize, totalRows, response);
         }
 
-        public async Task<int> ValidarPertenenciaSociedad(int idUsuario, int idSociedad)
+        public async Task<ValidarPertenenciaSociedadEntity> ValidarPertenenciaSociedad(int idUsuario, int idSociedad)
         {
             using var cnn = _database.GetConnection();
             DynamicParameters parameters = new();
             parameters.Add("@pIdUsuario", idUsuario);
             parameters.Add("@pIdSociedad", idSociedad);
 
-            int result = 0;
-            var response = await cnn.QueryAsync<int>("sp_ValidarPertenenciaSociedad", parameters,
+            ValidarPertenenciaSociedadEntity result = new();
+            var response = await cnn.QueryAsync<ValidarPertenenciaSociedadEntity>("sp_ValidarPertenenciaSociedad", parameters,
                                                  commandTimeout: 0, commandType: CommandType.StoredProcedure);
             result = response.First();
             return result;

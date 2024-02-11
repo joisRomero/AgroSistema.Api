@@ -6,6 +6,7 @@ using AgroSistema.Application.Sociedad.GetListaPaginadaCampaniasSocidad;
 using AgroSistema.Application.Sociedad.GetListaPaginadaSociedades;
 using AgroSistema.Application.Sociedad.ListarSociedad;
 using AgroSistema.Application.Sociedad.ObtenerIntegrantesSociedad;
+using AgroSistema.Application.Sociedad.ValidarPertenenciaSociendad;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,7 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GeListaPaginadaSociedadesAsync([FromBody] ListaPaginadaSociedadesCommand command)
+        public async Task<IActionResult> GetListaPaginadaSociedadesAsync([FromBody] ListaPaginadaSociedadesCommand command)
         {
             var response = await Mediator.Send(command);
 
@@ -33,7 +34,7 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GeIntegrantesSociedadAsync([FromBody] ObtenerIntegrantesSociedadCommand command)
+        public async Task<IActionResult> GetIntegrantesSociedadAsync([FromBody] ObtenerIntegrantesSociedadCommand command)
         {
             var response = await Mediator.Send(command);
 
@@ -97,6 +98,18 @@ namespace AgroSistema.Api.Controllers
         public async Task<IActionResult> ListarSociedadAsync([FromQuery] ListarSociedadQuery query)
         {
             var response = await Mediator.Send(query);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("validarPertenenciaSociedad")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> ValidarPertenenciaSociendadAsync([FromBody] ValidarPertenenciaSociendadCommand command)
+        {
+            var response = await Mediator.Send(command);
 
             return Ok(response);
         }

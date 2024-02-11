@@ -27,7 +27,10 @@ namespace AgroSistema.Application.Sociedad.GetListaPaginadaCampaniasSocidad
             };
 
             var result = await _sociedadRepository.GetListaPaginaCampaniasSocidadAsync(entity);
-            var response = new PaginatedDTO<IEnumerable<CampaniasSocidadPaginadaDTO>>(result.PageNumber, result.PageSize, result.TotalRows, _mapper.Map<IEnumerable<CampaniasSocidadPaginadaDTO>>(result.Data));
+            var response = new PaginatedDTO<IEnumerable<CampaniasSocidadPaginadaDTO>>(result.PageNumber, 
+                result.PageSize, 
+                result.TotalRows, 
+                _mapper.Map<IEnumerable<CampaniasSocidadPaginadaDTO>>(result.Data));
             
             return response;
         }

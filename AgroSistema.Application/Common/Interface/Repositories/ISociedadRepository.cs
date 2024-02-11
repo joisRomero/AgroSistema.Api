@@ -9,14 +9,15 @@ using AgroSistema.Domain.Entities.GetListaPaginadaCultivosAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaSociedades;
 using AgroSistema.Domain.Entities.ListaPaginadaSociedadAsync;
 using AgroSistema.Domain.Entities.ObtenerIntegrantesSociedadAsync;
+using AgroSistema.Domain.Entities.ValidarPertenenciaSociedadAsync;
 
 namespace AgroSistema.Application.Common.Interface.Repositories
 {
     public interface ISociedadRepository
     {
         Task<PaginatedEntity<IEnumerable<SociedadPaginadaEntity>>> GetListaPaginadaSociedadesAsync(ListaPaginadaSociedadEntity listaPaginadaSociedadEntity);
-        Task<IEnumerable<IntegrantesSociedadEntity>> ObtenerIntegrantesSociedadAsync(int idSociedad);
-        Task<int> ValidarPertenenciaSociedad(int idUsuario, int idSociedad);
+        Task<PaginatedEntity<IEnumerable<IntegrantesSociedadEntity>>> ObtenerIntegrantesSociedadAsync(ListaPaginadaIntegrantesSociedadEntity listaPaginadaIntegrantesSociedad);
+        Task<ValidarPertenenciaSociedadEntity> ValidarPertenenciaSociedad(int idUsuario, int idSociedad);
         Task EliminarSociedad(EliminarSociedadEntity eliminarSociedadEntity);
         Task AgregarSociedad(AgregarSociedadEntity agregarSociedadEntity);
         Task EditarSociedad(EditarSociedadEntity editarSociedadEntity);
