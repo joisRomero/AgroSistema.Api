@@ -24,7 +24,9 @@ namespace AgroSistema.Application.Sociedad.ListaBusquedaIntegrante
             BusquedaIntegranteEntity entity = new()
             {
                 Nombre = request.Nombre,
-                IdUsuario = request.IdUsuario
+                IdUsuario = request.IdUsuario,
+                IdSociedad = request.IdSociedad
+
             };
 
             var result = await _sociedadRepository.ListaBusquedaIntegranteAsync(entity);

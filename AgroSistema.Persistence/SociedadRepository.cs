@@ -113,6 +113,7 @@ namespace AgroSistema.Persistence
             DynamicParameters parameters = new();
             parameters.Add("@p_nombreUsuario", busquedaIntegranteEntity.Nombre);
             parameters.Add("@p_idUsuario", busquedaIntegranteEntity.IdUsuario);
+            parameters.Add("@p_id_soc", busquedaIntegranteEntity.IdSociedad);
             
             var result = await cnn.QueryAsync<ListaBusquedaIntegranteEntity>("sp_busqueda_integrantes", parameters,
                                                  commandTimeout: 0, commandType: CommandType.StoredProcedure);
