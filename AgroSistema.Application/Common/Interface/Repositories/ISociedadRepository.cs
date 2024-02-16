@@ -4,6 +4,7 @@ using AgroSistema.Domain.Entities.AgregarCultivoAsync;
 using AgroSistema.Domain.Entities.AgregarSociedadAsync;
 using AgroSistema.Domain.Entities.EditarSociedadAsync;
 using AgroSistema.Domain.Entities.EliminarSociedadAsync;
+using AgroSistema.Domain.Entities.GetListaBusquedaIntegranteAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCultivosAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaSociedades;
@@ -23,5 +24,6 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task EditarSociedad(EditarSociedadEntity editarSociedadEntity);
         Task<PaginatedEntity<IEnumerable<ListaPaginadaSociedadesEntity>>> ListarSociedades(RequestListaPaginadaSociedadesEntity requestListaPaginadaSociedadesEntity);
         Task<PaginatedEntity<IEnumerable<CampaniasSociedadPaginadaEntity>>> GetListaPaginaCampaniasSocidadAsync(ListaPaginadaCampaniasSociedadEntity listaPaginadaCampaniasSociedadEntity);
+        Task<IEnumerable<ListaBusquedaIntegranteEntity>> ListaBusquedaIntegranteAsync(BusquedaIntegranteEntity busquedaIntegranteEntity);
     }
 }
