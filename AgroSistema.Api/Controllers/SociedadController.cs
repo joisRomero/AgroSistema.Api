@@ -91,7 +91,6 @@ namespace AgroSistema.Api.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("listarSociedad")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -115,7 +114,6 @@ namespace AgroSistema.Api.Controllers
             return Ok(response);
         }
         [HttpPost]
-        [AllowAnonymous]
         [Route("busquedaIntegrante")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

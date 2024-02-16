@@ -13,7 +13,6 @@ namespace AgroSistema.Api.Controllers
     public class InvitacionController : AbstractController
     {
         [HttpGet]
-        [AllowAnonymous]
         [Route("listarInvitacionesSociedades")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -24,8 +23,8 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
-        [AllowAnonymous]
         [Route("registrarInvitacionSociedad")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -36,8 +35,8 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
-        [AllowAnonymous]
         [Route("cambiarEstadoInvitacion")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

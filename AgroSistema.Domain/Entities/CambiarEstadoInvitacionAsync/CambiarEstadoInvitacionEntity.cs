@@ -9,7 +9,7 @@ namespace AgroSistema.Domain.Entities.CambiarEstadoInvitacionAsync
     public class CambiarEstadoInvitacionEntity
     {
         public int IdInvitacion { get; set; }
-        public char Accion { get; set; }
+        public string? Accion { get; set; }
         public string? UsuarioModifica { get; set; }
     }
 }

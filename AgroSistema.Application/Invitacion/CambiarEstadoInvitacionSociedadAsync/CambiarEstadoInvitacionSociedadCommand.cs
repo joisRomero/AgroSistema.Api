@@ -10,7 +10,7 @@ namespace AgroSistema.Application.Invitacion.CambiarEstadoInvitacionSociedadAsyn
     public class CambiarEstadoInvitacionSociedadCommand : IRequest
     {
         public int IdInvitacion { get; set; }
-        public char Accion { get; set; }
+        public string? Accion { get; set; }
         public string? UsuarioModifica { get; set; }
     }
 }
