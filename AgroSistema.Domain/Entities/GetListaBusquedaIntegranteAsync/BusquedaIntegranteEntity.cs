@@ -10,5 +10,6 @@ namespace AgroSistema.Domain.Entities.GetListaBusquedaIntegranteAsync
     {
         public string? Nombre { get; set; }
         public int IdUsuario { get; set; }
+        public int IdSociedad { get; set; }
     }
 }
