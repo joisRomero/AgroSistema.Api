@@ -5,6 +5,7 @@ using AgroSistema.Domain.Entities.AgregarCultivoAsync;
 using AgroSistema.Domain.Entities.AgregarSociedadAsync;
 using AgroSistema.Domain.Entities.EditarSociedadAsync;
 using AgroSistema.Domain.Entities.EliminarSociedadAsync;
+using AgroSistema.Domain.Entities.GetListaBusquedaIntegranteAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCultivosAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaSociedades;
@@ -104,6 +105,19 @@ namespace AgroSistema.Persistence
             var response = await cnn.QueryAsync<SociedadPaginadaEntity>("sp_ObtenerListaPaginadaSociedades", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
             int totalRows = response.Any() ? response.First().TotalRows : 0;
             return new PaginatedEntity<IEnumerable<SociedadPaginadaEntity>>(listaPaginadaSociedadEntity.PageNumber, listaPaginadaSociedadEntity.PageSize, totalRows, response);
+        }
+
+        public async Task<IEnumerable<ListaBusquedaIntegranteEntity>> ListaBusquedaIntegranteAsync(BusquedaIntegranteEntity busquedaIntegranteEntity)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@p_nombreUsuario", busquedaIntegranteEntity.Nombre);
+            parameters.Add("@p_idUsuario", busquedaIntegranteEntity.IdUsuario);
+            
+            var result = await cnn.QueryAsync<ListaBusquedaIntegranteEntity>("sp_busqueda_integrantes", parameters,
+                                                 commandTimeout: 0, commandType: CommandType.StoredProcedure);
+            
+            return result;
         }
 
         public async Task<PaginatedEntity<IEnumerable<ListaPaginadaSociedadesEntity>>> ListarSociedades(RequestListaPaginadaSociedadesEntity requestListaPaginadaSociedadesEntity)

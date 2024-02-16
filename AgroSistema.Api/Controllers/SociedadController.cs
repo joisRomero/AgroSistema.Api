@@ -4,6 +4,7 @@ using AgroSistema.Application.Sociedad.EditarSociedad;
 using AgroSistema.Application.Sociedad.EliminarSociedad;
 using AgroSistema.Application.Sociedad.GetListaPaginadaCampaniasSocidad;
 using AgroSistema.Application.Sociedad.GetListaPaginadaSociedades;
+using AgroSistema.Application.Sociedad.ListaBusquedaIntegrante;
 using AgroSistema.Application.Sociedad.ListarSociedad;
 using AgroSistema.Application.Sociedad.ObtenerIntegrantesSociedad;
 using AgroSistema.Application.Sociedad.ValidarPertenenciaSociendad;
@@ -113,6 +114,17 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("busquedaIntegrante")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetListaBusquedaIntegranteAsync([FromBody] ListaBusquedaIntegranteCommand command)
+        {
+            var response = await Mediator.Send(command);
 
+            return Ok(response);
+        }
     }
 }
