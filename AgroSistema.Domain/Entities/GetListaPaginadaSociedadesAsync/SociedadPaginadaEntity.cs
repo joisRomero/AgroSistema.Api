@@ -12,5 +12,6 @@ namespace AgroSistema.Domain.Entities.GetListaPaginadaSociedades
         public int TotalRows { get; set; }
         public int IdSociedad { get; set; }
         public string? Nombre { get; set; }
+        public bool EsAdministrador { get; set; }
     }
 }
