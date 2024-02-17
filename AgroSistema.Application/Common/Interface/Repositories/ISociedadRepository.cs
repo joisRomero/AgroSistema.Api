@@ -11,6 +11,7 @@ using AgroSistema.Domain.Entities.GetListaPaginadaCultivosAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaSociedades;
 using AgroSistema.Domain.Entities.ListaPaginadaSociedadAsync;
 using AgroSistema.Domain.Entities.ObtenerIntegrantesSociedadAsync;
+using AgroSistema.Domain.Entities.RetirarseUsuarioSociedadAsync;
 using AgroSistema.Domain.Entities.ValidarPertenenciaSociedadAsync;
 
 namespace AgroSistema.Application.Common.Interface.Repositories
@@ -27,5 +28,6 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task<PaginatedEntity<IEnumerable<CampaniasSociedadPaginadaEntity>>> GetListaPaginaCampaniasSocidadAsync(ListaPaginadaCampaniasSociedadEntity listaPaginadaCampaniasSociedadEntity);
         Task<IEnumerable<ListaBusquedaIntegranteEntity>> ListaBusquedaIntegranteAsync(BusquedaIntegranteEntity busquedaIntegranteEntity);
         Task AsignarAdministradorSociedadAsync(AsignarAdministradorSociedadEntity asignarAdministradorSociedadEntity);
+        Task RetirarseUsuarioSociedadAsync(RetirarseUsuarioSociedadEntity retirarseUsuarioSociedadEntity);
     }
 }

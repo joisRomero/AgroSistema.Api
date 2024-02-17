@@ -13,6 +13,7 @@ using AgroSistema.Domain.Entities.GetListaPaginadaSociedades;
 using AgroSistema.Domain.Entities.ListaPaginadaSociedadAsync;
 using AgroSistema.Domain.Entities.ModificarCultivoAsync;
 using AgroSistema.Domain.Entities.ObtenerIntegrantesSociedadAsync;
+using AgroSistema.Domain.Entities.RetirarseUsuarioSociedadAsync;
 using AgroSistema.Domain.Entities.ValidarPertenenciaSociedadAsync;
 using AgroSistema.Persistence.DataBase;
 using Dapper;
@@ -177,6 +178,21 @@ namespace AgroSistema.Persistence
 
             await cnn.ExecuteAsync(
                 "sp_asignar_designar_administrador",
+                param: parameters,
+                commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task RetirarseUsuarioSociedadAsync(RetirarseUsuarioSociedadEntity retirarseUsuarioSociedadEntity)
+        {
+            using var cnn = _database.GetConnection();
+
+            DynamicParameters parameters = new();
+            parameters.Add("@p_id_usu", retirarseUsuarioSociedadEntity.IdUsuario);
+            parameters.Add("@p_id_soc", retirarseUsuarioSociedadEntity.IdSociedad);
+            parameters.Add("@p_usuarioModifica_usuSoc", retirarseUsuarioSociedadEntity.UsuarioModifica);
+
+            await cnn.ExecuteAsync(
+                "sp_retirar_usuario_sociedad",
                 param: parameters,
                 commandType: CommandType.StoredProcedure);
         }
