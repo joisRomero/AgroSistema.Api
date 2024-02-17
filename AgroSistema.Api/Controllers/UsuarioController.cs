@@ -3,6 +3,7 @@ using AgroSistema.Application.Usuario.Command.ActualizarDatosUsuario;
 using AgroSistema.Application.Usuario.Command.CrearUsuario;
 using AgroSistema.Application.Usuario.Command.EliminarCuentaUsuario;
 using AgroSistema.Application.Usuario.Command.GenerarCodigoRecuperacionCuenta;
+using AgroSistema.Application.Usuario.Command.ValidarCodigoRecuperacionCuenta;
 using AgroSistema.Application.Usuario.Command.ValidarUsuario;
 using AgroSistema.Application.Usuario.Query.ObtenerDatosUsuario;
 using Microsoft.AspNetCore.Authorization;
@@ -94,6 +95,18 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GenerarCodigoRecuperacionCuentaAsync([FromBody] GenerarCodigoRecuperacionCuentaCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("validarCodigoRecuperacionCuenta")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> ValidarCodigoRecuperacionCuentaAsync([FromBody] ValidarCodigoRecuperacionCuentaCommand command)
         {
             var response = await Mediator.Send(command);
 

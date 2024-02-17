@@ -1,6 +1,8 @@
 ﻿using AgroSistema.Domain.Entities.ActualizarDatosUsuario;
 using AgroSistema.Domain.Entities.CrearUsuarioAsync;
+using AgroSistema.Domain.Entities.GuardarTokenRecuperacion;
 using AgroSistema.Domain.Entities.ObtenerDatosUsuarioAsync;
+using AgroSistema.Domain.Entities.ValidarCodigoRecuperacionCuentaAsync;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +20,9 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task<int> ActualizarClavesUsuario(string claveNueva, int idUsuario);
         Task<int> ValidarClaveActual(string claveActual, int idUsuario);
         Task EliminarCuentaUsuario(int idUsuario);
+        Task<bool> ValidateExistsCorreoAsync(string correo);
+        Task<string> ObtenerNombreCompletoCorreoAsync(string correo);
+        Task GuardarTokenRecuperacionAsync(GuardarTokenRecuperacionEntity guardarTokenRecuperacionEntity);
+        Task<bool> ValidarCodigoRecuperacionCuenta(ValidarTokenRecoveryAcountEntity validarTokenRecoveryAcountEntity);
     }
 }

@@ -3,7 +3,9 @@ using AgroSistema.Application.Common.Interface.Repositories;
 using AgroSistema.Domain.Entities.ActualizarDatosUsuario;
 using AgroSistema.Domain.Entities.AgregarCultivoAsync;
 using AgroSistema.Domain.Entities.CrearUsuarioAsync;
+using AgroSistema.Domain.Entities.GuardarTokenRecuperacion;
 using AgroSistema.Domain.Entities.ObtenerDatosUsuarioAsync;
+using AgroSistema.Domain.Entities.ValidarCodigoRecuperacionCuentaAsync;
 using AgroSistema.Persistence.DataBase;
 using Dapper;
 using Microsoft.Extensions.DependencyInjection;
@@ -109,6 +111,50 @@ namespace AgroSistema.Persistence
             parameters.Add("@pNombreUsuario", nombreUsuario);
 
             var response = await cnn.QueryAsync<bool>("sp_ValidarNombreUsuario", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+
+            return response.First();
+        }
+
+        public async Task<bool> ValidateExistsCorreoAsync(string correo)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@p_correo_usu", correo);
+
+            var response = await cnn.QueryAsync<bool>("sp_validate_exits_correo", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+
+            return response.First();
+        }
+        public async Task<string> ObtenerNombreCompletoCorreoAsync(string correo)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@p_correo_usu", correo);
+
+            var response = await cnn.QueryAsync<string>("sp_obtener_nombreCorreo", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+
+            return response.First();
+        }
+
+        public async Task GuardarTokenRecuperacionAsync(GuardarTokenRecuperacionEntity guardarTokenRecuperacionEntity)
+        {
+            using var cnn = _database.GetConnection();
+
+            DynamicParameters parameters = new();
+            parameters.Add("@p_correo_usu", guardarTokenRecuperacionEntity.Correo);
+            parameters.Add("@p_TokenRecoveryPsw", guardarTokenRecuperacionEntity.Token);
+
+            _ = await cnn.ExecuteAsync("sp_guardar_token_recuperacion", parameters, commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<bool> ValidarCodigoRecuperacionCuenta(ValidarTokenRecoveryAcountEntity validarTokenRecoveryAcountEntity)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@p_correo_usu", validarTokenRecoveryAcountEntity.Correo);
+            parameters.Add("@p_TokenRecoveryPsw", validarTokenRecoveryAcountEntity.Token);
+
+            var response = await cnn.QueryAsync<bool>("sp_validate_exists_tokenRecovery", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
 
             return response.First();
         }
