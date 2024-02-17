@@ -1,5 +1,6 @@
 ﻿using AgroSistema.Application.Cultivo.ListarCultivosAsync;
 using AgroSistema.Application.Sociedad.AgregarSociedad;
+using AgroSistema.Application.Sociedad.AsignarAdministradorSociedad;
 using AgroSistema.Application.Sociedad.EditarSociedad;
 using AgroSistema.Application.Sociedad.EliminarSociedad;
 using AgroSistema.Application.Sociedad.GetListaPaginadaCampaniasSocidad;
@@ -119,6 +120,17 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetListaBusquedaIntegranteAsync([FromBody] ListaBusquedaIntegranteCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+        [HttpPost]
+        [Route("asignarAdministrador")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> AsignarAdministradorAsync([FromBody] AsignarAdministradorSociedadCommand command)
         {
             var response = await Mediator.Send(command);
 

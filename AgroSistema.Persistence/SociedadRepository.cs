@@ -3,6 +3,7 @@ using AgroSistema.Application.Common.Interface.Repositories;
 using AgroSistema.Domain.Common;
 using AgroSistema.Domain.Entities.AgregarCultivoAsync;
 using AgroSistema.Domain.Entities.AgregarSociedadAsync;
+using AgroSistema.Domain.Entities.AsignarAdministradorAsync;
 using AgroSistema.Domain.Entities.EditarSociedadAsync;
 using AgroSistema.Domain.Entities.EliminarSociedadAsync;
 using AgroSistema.Domain.Entities.GetListaBusquedaIntegranteAsync;
@@ -163,6 +164,21 @@ namespace AgroSistema.Persistence
                                                  commandTimeout: 0, commandType: CommandType.StoredProcedure);
             result = response.First();
             return result;
+        }
+        public async Task AsignarAdministradorSociedadAsync(AsignarAdministradorSociedadEntity asignarAdministradorSociedadEntity)
+        {
+            using var cnn = _database.GetConnection();
+
+            DynamicParameters parameters = new();
+            parameters.Add("@p_id_usu", asignarAdministradorSociedadEntity.IdUsuario);
+            parameters.Add("@p_id_soc", asignarAdministradorSociedadEntity.IdSociedad);
+            parameters.Add("@p_usuarioModifica_usuSoc", asignarAdministradorSociedadEntity.UsuarioModifica);
+            parameters.Add("@p_accion", asignarAdministradorSociedadEntity.Accion);
+
+            await cnn.ExecuteAsync(
+                "sp_asignar_designar_administrador",
+                param: parameters,
+                commandType: CommandType.StoredProcedure);
         }
     }
 }
