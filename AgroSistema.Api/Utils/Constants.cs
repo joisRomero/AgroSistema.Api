@@ -20,5 +20,6 @@
         public const string JwtSettings = "JwtSettings";
         public const string GlobalOAuthPolicyName = "GlobalOAuthPolicy";
         public const string ApplicationDisplayName = "ApplicationDisplayName";
+        public const string CredencialesCorreo = "CredencialesCorreo";
     }
 }

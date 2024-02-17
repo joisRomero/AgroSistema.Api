@@ -116,6 +116,7 @@ namespace AgroSistema.Api.Extensions
         {
             services.Configure<AppSettings>(configuration);
             services.Configure<JwtSettings>(configuration.GetSection(Constants.JwtSettings));
+            services.Configure<CredencialesCorreo>(configuration.GetSection(Constants.CredencialesCorreo));
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;

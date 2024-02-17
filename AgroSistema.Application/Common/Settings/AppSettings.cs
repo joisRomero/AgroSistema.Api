@@ -15,7 +15,6 @@ namespace AgroSistema.Application.Common.Settings
         public long LongRequestTimeMilliseconds { get; set; }
         public long SlidingExpirationCacheTimeSeconds { get; set; }
         public MensajeUsuarioDTO GeneralErrorMessage { get; set; }
-
         public string Titulo { get; set; }
     }
 }
