@@ -29,7 +29,6 @@ namespace AgroSistema.Application.Sociedad.AgregarSociedad
                 UsuarioInserta = request.UsuarioInserta
             };
 
-
             await _sociedadRepository.AgregarSociedad(agregarSociedadEntity);
             return Unit.Value;
         }

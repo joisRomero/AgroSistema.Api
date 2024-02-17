@@ -1,5 +1,6 @@
 ﻿using AgroSistema.Application.Cultivo.ListarCultivosAsync;
 using AgroSistema.Application.Sociedad.AgregarSociedad;
+using AgroSistema.Application.Sociedad.AsignarAdministradorSociedad;
 using AgroSistema.Application.Sociedad.EditarSociedad;
 using AgroSistema.Application.Sociedad.EliminarSociedad;
 using AgroSistema.Application.Sociedad.GetListaPaginadaCampaniasSocidad;
@@ -7,6 +8,7 @@ using AgroSistema.Application.Sociedad.GetListaPaginadaSociedades;
 using AgroSistema.Application.Sociedad.ListaBusquedaIntegrante;
 using AgroSistema.Application.Sociedad.ListarSociedad;
 using AgroSistema.Application.Sociedad.ObtenerIntegrantesSociedad;
+using AgroSistema.Application.Sociedad.RetirarseUsuarioSociedad;
 using AgroSistema.Application.Sociedad.ValidarPertenenciaSociendad;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -119,6 +121,28 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetListaBusquedaIntegranteAsync([FromBody] ListaBusquedaIntegranteCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+        [HttpPost]
+        [Route("asignarAdministrador")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> AsignarAdministradorAsync([FromBody] AsignarAdministradorSociedadCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+        [HttpPost]
+        [Route("retirarseUsuarioSociedad")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> RetirarseUsuarioSociedadAsync([FromBody] RetirarseUsuarioSociedadCommand command)
         {
             var response = await Mediator.Send(command);
 
