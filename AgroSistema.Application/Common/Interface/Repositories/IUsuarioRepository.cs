@@ -1,4 +1,5 @@
 ﻿using AgroSistema.Domain.Entities.ActualizarDatosUsuario;
+using AgroSistema.Domain.Entities.CambiarClaveRecuperacionCuentaAsync;
 using AgroSistema.Domain.Entities.CrearUsuarioAsync;
 using AgroSistema.Domain.Entities.ObtenerDatosUsuarioAsync;
 using System;
@@ -18,5 +19,6 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task<int> ActualizarClavesUsuario(string claveNueva, int idUsuario);
         Task<int> ValidarClaveActual(string claveActual, int idUsuario);
         Task EliminarCuentaUsuario(int idUsuario);
+        Task<CambiarClaveRecuperacionCuentaEntity> CambiarClaveRecuperacionCuenta(string? clave, string? correo);
     }
 }
