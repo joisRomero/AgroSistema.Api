@@ -5,6 +5,7 @@ using AgroSistema.Application.Usuario.Command.EliminarCuentaUsuario;
 using AgroSistema.Application.Usuario.Command.GenerarCodigoRecuperacionCuenta;
 using AgroSistema.Application.Usuario.Command.ValidarCodigoRecuperacionCuenta;
 using AgroSistema.Application.Usuario.Command.ValidarUsuario;
+using AgroSistema.Application.Usuario.Query.CambiarClaveRecuperacionCuenta;
 using AgroSistema.Application.Usuario.Query.ObtenerDatosUsuario;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -112,5 +113,19 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
+
+        [HttpGet]
+        [Route("cambiarClaveRecuperacionCuenta")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> CambiarClaveRecuperacionCuentaAsync([FromBody] CambiarClaveRecuperacionCuentaQuery query)
+        {
+            var response = await Mediator.Send(query);
+
+            return Ok(response);
+        }
+
     }
 }

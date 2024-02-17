@@ -2,6 +2,7 @@
 using AgroSistema.Application.Common.Interface.Repositories;
 using AgroSistema.Domain.Entities.ActualizarDatosUsuario;
 using AgroSistema.Domain.Entities.AgregarCultivoAsync;
+using AgroSistema.Domain.Entities.CambiarClaveRecuperacionCuentaAsync;
 using AgroSistema.Domain.Entities.CrearUsuarioAsync;
 using AgroSistema.Domain.Entities.GuardarTokenRecuperacion;
 using AgroSistema.Domain.Entities.ObtenerDatosUsuarioAsync;
@@ -51,6 +52,18 @@ namespace AgroSistema.Persistence
             parameters.Add("@pCorreo", actualizarDatosUsuarioEntity.Correo);
 
             var response = await cnn.QueryAsync<ResponseDatosUsuarioEntity>("sp_ActualizarUsuario", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+
+            return response.First();
+        }
+
+        public async Task<CambiarClaveRecuperacionCuentaEntity> CambiarClaveRecuperacionCuenta(string? clave, string? correo)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@nuevaClave", clave);
+            parameters.Add("@correo", correo);
+
+            var response = await cnn.QueryAsync<CambiarClaveRecuperacionCuentaEntity>("sp_CambioClaveUsuarioRecuperacion", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
 
             return response.First();
         }
