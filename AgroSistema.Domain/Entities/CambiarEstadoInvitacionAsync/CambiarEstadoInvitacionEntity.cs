@@ -13,3 +13,4 @@ namespace AgroSistema.Domain.Entities.CambiarEstadoInvitacionAsync
         public string? UsuarioModifica { get; set; }
     }
 }
+    
