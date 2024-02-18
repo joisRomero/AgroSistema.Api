@@ -9,7 +9,7 @@ namespace AgroSistema.Application.Usuario.Command.ValidarCodigoRecuperacionCuent
 {
     public class ValidarCodigoRecuperacionCuentaCommand : IRequest
     {
-        public string Correo { get; set; }
-        public string Token { get; set; }
+        public string? Correo { get; set; }
+        public string? Token { get; set; }
     }
 }

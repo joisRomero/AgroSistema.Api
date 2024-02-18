@@ -32,7 +32,7 @@ namespace AgroSistema.Application.Usuario.Command.ValidarCodigoRecuperacionCuent
             }
             else
             {
-                throw new BadRequestException(new MensajeUsuarioDTO() { Descripcion = "El token no es valido." });
+                throw new BadRequestException(new MensajeUsuarioDTO() { Descripcion = "El código no es válido." });
             }
             
         }

@@ -26,7 +26,9 @@ namespace AgroSistema.Application.Usuario.Query.CambiarClaveRecuperacionCuenta
         }
         public async Task<CambiarClaveRecuperacionCuentaDTO> Handle(CambiarClaveRecuperacionCuentaQuery request, CancellationToken cancellationToken)
         {
-            var result = await _usuarioRepository.CambiarClaveRecuperacionCuenta(_cryptography.Encrypt(request.Clave), request.Correo);
+            var claveBinary = System.Convert.FromBase64String(request.Clave);
+            var claveString = System.Text.Encoding.UTF8.GetString(claveBinary);
+            var result = await _usuarioRepository.CambiarClaveRecuperacionCuenta(_cryptography.Encrypt(claveString), request.Correo);
 
             return _mapper.Map<CambiarClaveRecuperacionCuentaDTO>(result);
         }
