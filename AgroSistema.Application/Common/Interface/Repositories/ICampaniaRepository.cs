@@ -1,5 +1,9 @@
 ﻿using AgroSistema.Domain.Common;
+using AgroSistema.Domain.Entities.EditarCampaniaAsync;
+using AgroSistema.Domain.Entities.EliminarCampaniaAsync;
+using AgroSistema.Domain.Entities.FinalizarCampaniaAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasUsuarioAsync;
+using AgroSistema.Domain.Entities.RegistrarCampaniaAsync;
 using AgroSistema.Domain.Entities.ValidarCampaniaAsync;
 using System;
 using System.Collections.Generic;
@@ -13,5 +17,10 @@ namespace AgroSistema.Application.Common.Interface.Repositories
     {
         Task<PaginatedEntity<IEnumerable<CampaniasUsuarioPaginadaEntity>>> GetListaPaginaCampaniasUsuarioAsync(ListaPaginadaCampaniasUsuarioEntity listaPaginadaCampaniasSociedadEntity);
         Task<int> ValidarCampania(ValidarCampaniaEntity validarCampaniaEntity);
+        Task RegistrarCampaniaAsync(RegistrarCampaniaEntity registrarCamapaniaEntity);
+        Task EditarCampaniaAsync(EditarCampaniaEntity editarCampaniaEntity);
+        Task EliminarCampaniaAsync(EliminarCampaniaEntity eliminarCampaniaEntity);
+        Task FinalizarCampaniaAsync(FinalizarCampaniaEntity finalizarCampaniaEntity);
+
     }
 }

@@ -9,6 +9,7 @@ CREATE PROCEDURE sp_eliminar_campania
 )
 AS
 BEGIN
+
 	UPDATE CAMPANIA
 	SET estado_camp				= 0
 	,usuarioElimina_camp		= @p_usuarioElimina_camp

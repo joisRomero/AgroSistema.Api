@@ -5,12 +5,12 @@ GO
 CREATE PROCEDURE sp_crear_campania
 (
 	@p_nombreTerreno_camp			varchar(100)
-	,@p_areaSembrar_camp			int
+	,@p_areaSembrar_camp			decimal(9,2)
 	,@p_unidadTerrenoDatoComun_camp	int
 	,@p_nombre_camp					varchar(100)
 	,@p_descripcion_camp			varchar(250)
-	,@p_fechaInicio_camp			datetime
-	,@p_fechaFin_camp				datetime = NULL
+	,@p_fechaInicio_camp			varchar(20)
+	--,@p_fechaFin_camp				datetime = NULL
 	,@p_id_culti					int
 	,@p_id_soc						int = NULL
 	,@p_id_usu						int = NULL
@@ -18,6 +18,16 @@ CREATE PROCEDURE sp_crear_campania
 )
 AS
 BEGIN
+	DECLARE @s_fechaInicio_camp VARCHAR(20)
+	
+	SET @s_fechaInicio_camp = CONVERT(DATETIME,@p_fechaInicio_camp,103)
+
+	IF @p_id_soc = 0
+		SET @p_id_soc = NULL
+	
+	IF @p_id_usu = 0
+		SET @p_id_usu = NULL 
+
 	INSERT INTO CAMPANIA(
 		nombreTerreno_camp
 		,areaSembrar_camp
@@ -25,7 +35,7 @@ BEGIN
 		,nombre_camp
 		,descripcion_camp
 		,fechaInicio_camp
-		,fechaFin_camp
+		--,fechaFin_camp
 		,estado_camp
 		,id_culti
 		,id_soc
@@ -39,8 +49,8 @@ BEGIN
 		,@p_unidadTerrenoDatoComun_camp
 		,@p_nombre_camp
 		,@p_descripcion_camp
-		,@p_fechaInicio_camp
-		,@p_fechaFin_camp
+		,@s_fechaInicio_camp
+		--,@p_fechaFin_camp
 		,1
 		,@p_id_culti
 		,@p_id_soc
