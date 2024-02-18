@@ -27,18 +27,25 @@ namespace AgroSistema.Application.Login
         {
             LoginDTO login = new();
             string? sClave = string.Empty;
-            if (!string.IsNullOrEmpty(request.Clave))
+
+            var claveBinary = System.Convert.FromBase64String(request.Clave);
+            var claveString = System.Text.Encoding.UTF8.GetString(claveBinary);
+
+            var usuarioBinary = System.Convert.FromBase64String(request.Usuario);
+            var usuarioString = System.Text.Encoding.UTF8.GetString(usuarioBinary);
+
+            if (!string.IsNullOrEmpty(claveString))
             {
-                sClave = _cryptography.Encrypt(request.Clave);
+                sClave = _cryptography.Encrypt(claveString);
             }
 
-            int respuesta = await _loginRepository.ValidarUsuarioAsync(request.Usuario, sClave);
+            int respuesta = await _loginRepository.ValidarUsuarioAsync(usuarioString, sClave);
             if (respuesta == 0)
             {
                 throw new BadRequestException(_mensajesUsuario.FirstOrDefault(m => m.Codigo == "000007"));                
             }
 
-            var result = await _loginRepository.ObtenerUsuarioAsync(request.Usuario, sClave);
+            var result = await _loginRepository.ObtenerUsuarioAsync(usuarioString, sClave);
 
             return _mapper.Map<LoginDTO>(result);
 

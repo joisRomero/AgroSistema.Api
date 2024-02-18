@@ -115,7 +115,7 @@ namespace AgroSistema.Api.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("cambiarClaveRecuperacionCuenta")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
