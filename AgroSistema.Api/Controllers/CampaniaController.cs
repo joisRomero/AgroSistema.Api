@@ -2,6 +2,7 @@
 using AgroSistema.Application.Campania.EliminarCampaniaAsync;
 using AgroSistema.Application.Campania.FinalizarCampaniaAsync;
 using AgroSistema.Application.Campania.GetListaPaginadaCampanias;
+using AgroSistema.Application.Campania.ObtenerCampania;
 using AgroSistema.Application.Campania.RegistrarCamapaniaAsync;
 using AgroSistema.Application.Campania.ValidarCampania;
 using Microsoft.AspNetCore.Http;
@@ -59,6 +60,7 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
         [Route("eliminarCampania")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -70,6 +72,7 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
         [Route("finalizarCampania")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -81,5 +84,18 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
+        [HttpPost]
+        [Route("obtenerCampania")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> ObtenerCampaniaAsync([FromBody] ObtenerCampaniaCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+
     }
 }

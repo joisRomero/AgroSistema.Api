@@ -14,10 +14,10 @@ namespace AgroSistema.Application.Campania.RegistrarCamapaniaAsync
         public int UnidadTerreno { get; set; }
         public string? NombreCampania { get; set; }
         public string? DescripcionCampania { get; set; }
-        public string? FechaInicio { get; set; }
+        public DateTime FechaInicio { get; set; }
         public int IdCultivo { get; set; }
-        public int IdSociedad { get; set; }
-        public int IdUsuario { get; set; }
+        public int? IdSociedad { get; set; }
+        public int? IdUsuario { get; set; }
         public string? UsuarioInserta { get; set; }
     }
 }

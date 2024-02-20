@@ -115,6 +115,7 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
         [Route("busquedaIntegrante")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -126,6 +127,7 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
         [Route("asignarAdministrador")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -137,6 +139,7 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
         [Route("retirarseUsuarioSociedad")]
         [ProducesResponseType(StatusCodes.Status200OK)]

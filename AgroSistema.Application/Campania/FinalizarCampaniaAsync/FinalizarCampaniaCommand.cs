@@ -10,7 +10,7 @@ namespace AgroSistema.Application.Campania.FinalizarCampaniaAsync
     public class FinalizarCampaniaCommand : IRequest
     {
         public int IdCampania { get; set; }
-        public string? FechaFinaliza { get; set; }
+        public DateTime FechaFinaliza { get; set; }
         public string? UsuarioModifica { get; set; }
     }
 }

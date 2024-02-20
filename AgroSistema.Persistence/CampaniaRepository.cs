@@ -7,6 +7,7 @@ using AgroSistema.Domain.Entities.EliminarCampaniaAsync;
 using AgroSistema.Domain.Entities.FinalizarCampaniaAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasUsuarioAsync;
+using AgroSistema.Domain.Entities.ObtenerCampaniaEntity;
 using AgroSistema.Domain.Entities.RegistrarCampaniaAsync;
 using AgroSistema.Domain.Entities.ValidarCampaniaAsync;
 using AgroSistema.Persistence.DataBase;
@@ -136,5 +137,15 @@ namespace AgroSistema.Persistence
                 commandType: CommandType.StoredProcedure);
         }
 
+        public async Task<ObtenerCampaniaEntity> ObtenerCampaniaAsync(int idCampania)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@pIdCampania", idCampania);
+
+            var response = await cnn.QueryAsync<ObtenerCampaniaEntity>("sp_ObtenerCampaniaPorId", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+            response.First();
+            return response.First();
+        }
     }
 }

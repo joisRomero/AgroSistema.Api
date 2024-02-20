@@ -14,6 +14,8 @@ namespace AgroSistema.Application.Sociedad.GetListaPaginadaCampaniasSocidad
         public string? Inicio { get; set; }
         public string? Fin { get; set; }
         public bool Estado { get; set; }
+        public decimal AreaSembrar { get; set; }
+        public string? Unidad { get; set; }
 
         public void Mapping(Profile profile)
         {

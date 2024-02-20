@@ -9,7 +9,7 @@ namespace AgroSistema.Domain.Entities.FinalizarCampaniaAsync
     public class FinalizarCampaniaEntity
     {
         public int IdCampania { get; set; }
-        public string? FechaFinaliza { get; set; }
+        public DateTime FechaFinaliza { get; set; }
         public string? UsuarioModifica { get; set; }
     }
 }
