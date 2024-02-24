@@ -45,10 +45,10 @@ BEGIN
 		AND tt.estado_tipoTrab = 1
 	)
 	SELECT TOP(@p_PageSize) Correlativo
-	,id_tipoTrab AS IdTipoTrabajador
-	,nombre_tipoTrab AS NombreTipoTrabajador
-	,descripcion_tipoTrab AS DescripcionTipoTrabajador
-	,@s_CantidadReg AS TotalRows 
+		,id_tipoTrab AS IdTipoTrabajador
+		,nombre_tipoTrab AS NombreTipoTrabajador
+		,descripcion_tipoTrab AS DescripcionTipoTrabajador
+		,@s_CantidadReg AS TotalRows 
 	FROM tablaFiltrada WHERE Correlativo > @offset 
 	ORDER BY id_tipoTrab
 END

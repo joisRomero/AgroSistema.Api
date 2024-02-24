@@ -1,9 +1,6 @@
 IF EXISTS (SELECT * FROM sys.objects WHERE TYPE = 'P' AND name = 'sp_obtener_tipo_trabajador')
 	DROP PROCEDURE sp_obtener_tipo_trabajador
 GO
-IF EXISTS (SELECT * FROM sys.objects WHERE TYPE = 'P' AND name = 'sp_obtener_tipo_trabajador')
-	DROP PROCEDURE sp_obtener_tipo_trabajador
-GO
 
 CREATE PROCEDURE sp_obtener_tipo_trabajador (
 	@p_id_tipoTrab	INT
