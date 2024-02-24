@@ -1,6 +1,11 @@
-﻿using AgroSistema.Application.Gasto.AgregarTipoGasto;
+﻿using AgroSistema.Application.Gasto.AgregarGastoDetalle;
+using AgroSistema.Application.Gasto.AgregarTipoGasto;
+using AgroSistema.Application.Gasto.EditarGastoDetalle;
 using AgroSistema.Application.Gasto.EditarTipoGasto;
+using AgroSistema.Application.Gasto.EliminarGastoDetalle;
 using AgroSistema.Application.Gasto.EliminarTipoGasto;
+using AgroSistema.Application.Gasto.GetGastoDetallePorId;
+using AgroSistema.Application.Gasto.GetListaPaginadaGastoDetalle;
 using AgroSistema.Application.Gasto.GetListaPaginadaTipoGasto;
 using AgroSistema.Application.Gasto.GetTipoGasto;
 using AgroSistema.Application.Sociedad.AgregarSociedad;
@@ -18,6 +23,8 @@ namespace AgroSistema.Api.Controllers
     [AllowAnonymous]
     public class GastoController : AbstractController
     {
+        // TIPO GASTO
+
         [HttpPost]
         [Route("obtenerListaPaginadaTipoGasto")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -77,5 +84,69 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
+        // DETALLE GASTO
+
+        [HttpPost]
+        [Route("obtenerListaPaginadaGastoDetalle")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetListaPaginadaGastoDetalleAsync([FromBody] ListaPaginadaGastoDetalleCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("agregarGastoDetalle")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> AgregarGastoDetalleAsync([FromBody] AgregarGastoDetalleCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("editarGastoDetalle")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> EditarGastoDetalleAsync([FromBody] EditarGastoDetalleCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("eliminarGastoDetalle")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> EliminarGastoDetalleAsync([FromBody] EliminarGastoDetalleCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("obtenerGastoDetallePorId")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetGastoDetallePorIdAsync([FromBody] ObtenerGastoDetalleCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+
+
     }
 }
