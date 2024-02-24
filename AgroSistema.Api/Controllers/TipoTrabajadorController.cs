@@ -1,77 +1,67 @@
-﻿using AgroSistema.Application.Gasto.AgregarTipoGasto;
-using AgroSistema.Application.Gasto.EditarTipoGasto;
-using AgroSistema.Application.Gasto.EliminarTipoGasto;
-using AgroSistema.Application.Gasto.GetListaPaginadaTipoGasto;
-using AgroSistema.Application.Gasto.GetTipoGasto;
-using AgroSistema.Application.Sociedad.AgregarSociedad;
-using AgroSistema.Application.Sociedad.EditarSociedad;
-using AgroSistema.Application.Sociedad.EliminarSociedad;
-using AgroSistema.Application.Sociedad.GetListaPaginadaSociedades;
-using Microsoft.AspNetCore.Authorization;
+﻿using AgroSistema.Application.Cosecha.GetListaPaginadaCosechas;
+using AgroSistema.Application.TipoTrabajador.EliminarTipoTrabajador;
+using AgroSistema.Application.TipoTrabajador.ListaPaginadaTipoTrabajador;
+using AgroSistema.Application.TipoTrabajador.ModificarTipoTrabajador;
+using AgroSistema.Application.TipoTrabajador.ObtenerTipoTrabajador;
+using AgroSistema.Application.TipoTrabajador.RegistrarTipoTrabajador;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgroSistema.Api.Controllers
 {
-    [Route("api/v1/[controller]")]
-    [ApiController]
-    [AllowAnonymous]
-    public class GastoController : AbstractController
+    public class TipoTrabajadorController : AbstractController
     {
         [HttpPost]
-        [Route("obtenerListaPaginadaTipoGasto")]
+        [Route("obtenerListaTipoTrabajador")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetListaPaginadaTipoGastoAsync([FromBody] ListaPaginadaTipoGastoCommand command)
+        public async Task<IActionResult> GetListaPaginadaTipoTrabajadorAsync([FromBody] ListaPaginadaTipoTrabajadorCommand command)
         {
             var response = await Mediator.Send(command);
 
             return Ok(response);
         }
-
         [HttpPost]
-        [Route("agregarTipoGasto")]
+        [Route("registrarTipoTrabajador")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> AgregarTipoGastoAsync([FromBody] AgregarTipoGastoCommand command)
+        public async Task<IActionResult> RegistrarTipoTrabajadorAsync([FromBody] RegistrarTipoTrabajadorCommand command)
         {
             var response = await Mediator.Send(command);
 
             return Ok(response);
         }
-
         [HttpPost]
-        [Route("editarTipoGasto")]
+        [Route("modificarTipoTrabajador")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> EditarTipoGastoAsync([FromBody] EditarTipoGastoCommand command)
+        public async Task<IActionResult> ModificarTipoTrabajadorAsync([FromBody] ModificarTipoTrabajadorCommand command)
         {
             var response = await Mediator.Send(command);
 
             return Ok(response);
         }
-
         [HttpPost]
-        [Route("eliminarTipoGasto")]
+        [Route("eliminarTipoTrabajador")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> EliminarTipoGastoAsync([FromBody] EliminarTipoGastoCommand command)
+        public async Task<IActionResult> EliminarTipoTrabajadorAsync([FromBody] EliminarTipoTrabajadorCommand command)
         {
             var response = await Mediator.Send(command);
 
             return Ok(response);
         }
-
         [HttpPost]
-        [Route("obtenerTipoGastoPorId")]
+        [Route("obtenerTipoTrabajador")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetTipoGastoPorIdAsync([FromBody] ObtenerTipoGastoCommand command)
+        public async Task<IActionResult> GetObtenerTipoTrabajadorAsync([FromBody] ObtenerTipoTrabajadorCommand command)
         {
             var response = await Mediator.Send(command);
 
