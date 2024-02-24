@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace AgroSistema.Application.Campania.ValidarCampania
 {
-    public class ValidarCampaniaCommandHandler : IRequestHandler<ValidarCampaniaCommand>
+    public class ValidarCampaniaCommandHandler : IRequestHandler<ValidarCampaniaCommand, ValidarCampaniaDTO>
     {
         private readonly ICampaniaRepository _campaniaRepository;
         private readonly ILogger<ValidarCampaniaCommandHandler> _logger;
@@ -27,7 +27,7 @@ namespace AgroSistema.Application.Campania.ValidarCampania
             _mensajesUsuario = memoryCache.Get<IEnumerable<MensajeUsuarioDTO>>(ApplicationConstants.UserMessageMemoryCacheKey);
         }
 
-        public async Task<Unit> Handle(ValidarCampaniaCommand request, CancellationToken cancellationToken)
+        public async Task<ValidarCampaniaDTO> Handle(ValidarCampaniaCommand request, CancellationToken cancellationToken)
         {
             ValidarCampaniaEntity validarCampaniaEntity = new()
             {
@@ -37,12 +37,12 @@ namespace AgroSistema.Application.Campania.ValidarCampania
 
             var respuesta = await _campaniaRepository.ValidarCampania(validarCampaniaEntity);
 
-            if (respuesta == 1)
+            if (respuesta.Respuesta == 1)
             {
                 throw new BadRequestException(_mensajesUsuario.FirstOrDefault(m => m.Codigo == "000009"));
             }
 
-            return Unit.Value;
+            return new ValidarCampaniaDTO() { NombreCampania = respuesta.NombreCampania};
         }
     }
 }

@@ -10,7 +10,6 @@ namespace AgroSistema.Application.Sociedad.ValidarPertenenciaSociendad
     {
         public bool Respuesta { get; set; }
         public bool EsAdministrador { get; set; }
-
         public string? NombreSociedad { get; set; }
     }
 }

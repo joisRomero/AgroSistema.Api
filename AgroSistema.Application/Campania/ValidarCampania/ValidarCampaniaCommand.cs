@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AgroSistema.Application.Campania.ValidarCampania
 {
-    public class ValidarCampaniaCommand : IRequest
+    public class ValidarCampaniaCommand : IRequest<ValidarCampaniaDTO>
     {
         public int IdUsuario { get; set; }
         public int IdCampania { get; set; }

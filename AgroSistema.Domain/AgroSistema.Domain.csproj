@@ -15,4 +15,8 @@
     <None Remove="Entities\ObtenerCultivoAsync\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\NewFolder\" />
+  </ItemGroup>
+
 </Project>

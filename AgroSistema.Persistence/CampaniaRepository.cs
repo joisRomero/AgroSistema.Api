@@ -51,17 +51,15 @@ namespace AgroSistema.Persistence
                                                                                     response);
         }
 
-        public async Task<int> ValidarCampania(ValidarCampaniaEntity validarCampaniaEntity)
+        public async Task<ValidarCampaniaResponse> ValidarCampania(ValidarCampaniaEntity validarCampaniaEntity)
         {
             using var cnn = _database.GetConnection();
             DynamicParameters parameters = new();
             parameters.Add("@pIdUsuario", validarCampaniaEntity.IdUsuario);
             parameters.Add("@pIdCampania", validarCampaniaEntity.IdCampania);
 
-            int result = 0;
-            var response = await cnn.QueryAsync<int>("sp_ValidarPertenenciaCampania", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
-            result = response.First();
-            return result;
+            var response = await cnn.QueryAsync<ValidarCampaniaResponse>("sp_ValidarPertenenciaCampania", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+            return response.First();
         }
 
         public async Task RegistrarCampaniaAsync(RegistrarCampaniaEntity registrarCamapaniaEntity)

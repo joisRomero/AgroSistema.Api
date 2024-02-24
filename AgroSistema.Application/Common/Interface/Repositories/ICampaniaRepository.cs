@@ -17,7 +17,7 @@ namespace AgroSistema.Application.Common.Interface.Repositories
     public interface ICampaniaRepository
     {
         Task<PaginatedEntity<IEnumerable<CampaniasUsuarioPaginadaEntity>>> GetListaPaginaCampaniasUsuarioAsync(ListaPaginadaCampaniasUsuarioEntity listaPaginadaCampaniasSociedadEntity);
-        Task<int> ValidarCampania(ValidarCampaniaEntity validarCampaniaEntity);
+        Task<ValidarCampaniaResponse> ValidarCampania(ValidarCampaniaEntity validarCampaniaEntity);
         Task RegistrarCampaniaAsync(RegistrarCampaniaEntity registrarCamapaniaEntity);
         Task EditarCampaniaAsync(EditarCampaniaEntity editarCampaniaEntity);
         Task EliminarCampaniaAsync(EliminarCampaniaEntity eliminarCampaniaEntity);
