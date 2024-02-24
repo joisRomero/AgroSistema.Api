@@ -10,6 +10,7 @@ namespace AgroSistema.Domain.Entities.RegistrarTipoTrabajadorAsync
     {
         public string? NombreTipoTrabajador { get; set; }
         public string? DescripcionTipoTrabajador { get; set; }
+        public int IdUsuario { get; set; }
         public string? UsuarioInserta { get; set; }
     }
 }

@@ -5,6 +5,7 @@ GO
 CREATE PROCEDURE sp_listar_tipo_actividad(
 	@p_nombre_tipoActi			VARCHAR(100) =''
 	,@p_realizadaPor_tipoActi	CHAR(1)	= ''
+	,@p_id_usu					INT
 	,@p_PageSize	INT = 5		--Tamaño de la Página
 	,@p_PageNumber	INT = 1		--Número de Página
 )
@@ -25,6 +26,7 @@ BEGIN
 	WHERE
 	(nombre_tipoActi LIKE '%'+@s_nombre_tipoActi +'%' or @s_nombre_tipoActi = '')
 	AND (realizadaPor_tipoActi = @p_realizadaPor_tipoActi OR @p_realizadaPor_tipoActi = '')
+	AND id_usu = @p_id_usu
 	AND estado_tipoActi = 1
 
 	SET @s_CantidadReg = @RecordCont
@@ -42,6 +44,7 @@ BEGIN
 		WHERE
 		(nombre_tipoActi LIKE '%'+@s_nombre_tipoActi +'%' or @s_nombre_tipoActi = '')
 		AND (realizadaPor_tipoActi = @p_realizadaPor_tipoActi OR @p_realizadaPor_tipoActi = '')
+		AND id_usu = @p_id_usu
 		AND estado_tipoActi = 1
 	)
 	SELECT TOP(@p_PageSize) Correlativo
@@ -49,6 +52,7 @@ BEGIN
 			,nombre_tipoActi	AS NombreTipoActividad
 			,realizadaPor_tipoActi	AS RealizadaPorTipoActividad
 			,descripcion_tipoActi	AS DescripcionTipoActividad
+			,@s_CantidadReg AS TotalRows
 	FROM tablaFiltrada WHERE Correlativo > @offset 
 	ORDER BY id_tipoActi
 

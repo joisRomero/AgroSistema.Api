@@ -25,6 +25,7 @@ namespace AgroSistema.Application.TipoTrabajador.ListaPaginadaTipoTrabajador
             RequestListaPaginadaTipoTrabajadorEntity entity = new()
             {
                 NombreTipoTrabajador = request.NombreTipoTrabajador,
+                IdUsuario = request.IdUsuario,
                 PageNumber = request.PageNumber,
                 PageSize = request.PageSize,
             };

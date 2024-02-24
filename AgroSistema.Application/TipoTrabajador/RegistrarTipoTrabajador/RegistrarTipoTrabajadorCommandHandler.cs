@@ -22,6 +22,7 @@ namespace AgroSistema.Application.TipoTrabajador.RegistrarTipoTrabajador
             {
                 NombreTipoTrabajador = request.NombreTipoTrabajador,
                 DescripcionTipoTrabajador = request.DescripcionTipoTrabajador,
+                IdUsuario = request.IdUsuario,
                 UsuarioInserta = request.UsuarioInserta
             };
 

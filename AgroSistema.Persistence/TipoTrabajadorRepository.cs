@@ -37,6 +37,7 @@ namespace AgroSistema.Persistence
             DynamicParameters parameters = new();
             parameters.Add("@p_nombre_tipoTrab", entity.NombreTipoTrabajador);
             parameters.Add("@p_descripcion_tipoTrab", entity.DescripcionTipoTrabajador);
+            parameters.Add("@p_id_usu", entity.IdUsuario);
             parameters.Add("@p_usuarioInserta_tipoTrab", entity.UsuarioInserta);
 
             await cnn.ExecuteAsync(
@@ -80,6 +81,7 @@ namespace AgroSistema.Persistence
 
             DynamicParameters parameters = new();
             parameters.Add("@p_nombre_tipoTrab", entity.NombreTipoTrabajador ?? string.Empty, dbType: DbType.String, direction: ParameterDirection.Input);
+            parameters.Add("@p_id_usu", entity.IdUsuario, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameters.Add("@p_PageSize", entity.PageSize, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameters.Add("@p_PageNumber", entity.PageNumber, dbType: DbType.Int32, direction: ParameterDirection.Input);
 

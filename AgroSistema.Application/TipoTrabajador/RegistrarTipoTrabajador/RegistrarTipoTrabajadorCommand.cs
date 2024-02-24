@@ -11,6 +11,7 @@ namespace AgroSistema.Application.TipoTrabajador.RegistrarTipoTrabajador
     {
         public string? NombreTipoTrabajador { get; set; }
         public string? DescripcionTipoTrabajador { get; set; }
+        public int IdUsuario { get; set; }
         public string? UsuarioInserta { get; set; }
     }
 }

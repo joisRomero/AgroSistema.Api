@@ -4,6 +4,7 @@ GO
 
 CREATE PROCEDURE sp_listar_tipo_trabajador(
 	@p_nombre_tipoTrab varchar(100) = ''
+	,@p_id_usu		INT
 	,@p_PageSize	INT = 5		--Tamaño de la Página
 	,@p_PageNumber	INT = 1		--Número de Página
 )
@@ -24,6 +25,7 @@ BEGIN
 	FROM TIPO_TRABAJADOR
 	WHERE
 	(nombre_tipoTrab LIKE '%'+@s_nombre_tipoTrab +'%' or @s_nombre_tipoTrab = '')
+	AND id_usu = @p_id_usu
 	AND estado_tipoTrab = 1
 
 	SET @s_CantidadReg = @RecordCont
@@ -42,6 +44,7 @@ BEGIN
 		FROM TIPO_TRABAJADOR tt with(nolock)
 		WHERE 
 		(tt.nombre_tipoTrab LIKE '%'+@s_nombre_tipoTrab +'%' or @s_nombre_tipoTrab = '')
+		AND id_usu = @p_id_usu
 		AND tt.estado_tipoTrab = 1
 	)
 	SELECT TOP(@p_PageSize) Correlativo

@@ -12,4 +12,5 @@ BEGIN
 		SET estado_tipoTrab				= 0
 			,usuarioElimina_tipoTrab	= @p_usuarioElimina_tipoTrab
 			,fechaElimina_tipoTrab		= GETDATE() 
+	WHERE id_tipoTrab = @p_id_tipoTrab
 END
