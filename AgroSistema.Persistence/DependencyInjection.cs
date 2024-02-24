@@ -22,6 +22,7 @@ namespace AgroSistema.Persistence
             services.AddTransient<IInvitacionRepository, InvitacionRepository>();
             services.AddTransient<ITipoTrabajador, TipoTrabajadorRepository>();
             services.AddTransient<ITipoActividad, TipoActividadRepository>();
+            services.AddTransient<IActividadRepository, ActividadRepository>();
             return services;
         }
     }
