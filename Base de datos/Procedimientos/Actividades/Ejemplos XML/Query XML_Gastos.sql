@@ -22,8 +22,6 @@ SET @p_XML_Gastos = '
 DECLARE @s_XML_Gastos XML = NULL
 SET @s_XML_Gastos = @p_XML_Gastos
 
-IF OBJECT_ID('tempdb..#temp_TablaGastos') IS NOT NULL
-	DROP TABLE #temp_TablaGastos
 
 SELECT
 	TD.value('(Descripcion/text())[1]','varchar(250)') AS DescripcionTrabajador
@@ -31,7 +29,7 @@ SELECT
 	,TD.value('(CostoUnitario/text())[1]','money') AS CostoUnitario
 	,TD.value('(CostoTotal/text())[1]','money') AS CostoTotal
 	--,TD.value('(FechaGasto/text())[1]','datetime') AS FechaGasto
-	,TD.value('(IdTipoGasto/text())[1]','int') AS IdTipoTrabajador
+	,TD.value('(IdTipoGasto/text())[1]','int') AS IdTipoGasto
 INTO #temp_TablaGastos
 FROM @s_XML_Gastos.nodes('/DocumentElement/Gastos') AS TEMPTABLE(TD)
 
