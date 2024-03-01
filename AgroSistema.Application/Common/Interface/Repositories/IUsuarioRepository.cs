@@ -26,5 +26,6 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task GuardarTokenRecuperacionAsync(GuardarTokenRecuperacionEntity guardarTokenRecuperacionEntity);
         Task<bool> ValidarCodigoRecuperacionCuenta(ValidarTokenRecoveryAcountEntity validarTokenRecoveryAcountEntity);
         Task<CambiarClaveRecuperacionCuentaEntity> CambiarClaveRecuperacionCuenta(string? clave, string? correo);
+        Task<bool> ValidarCorreoUnicoAsync(string correo);
     }
 }

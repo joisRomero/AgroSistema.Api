@@ -4,6 +4,7 @@ using AgroSistema.Application.Usuario.Command.CrearUsuario;
 using AgroSistema.Application.Usuario.Command.EliminarCuentaUsuario;
 using AgroSistema.Application.Usuario.Command.GenerarCodigoRecuperacionCuenta;
 using AgroSistema.Application.Usuario.Command.ValidarCodigoRecuperacionCuenta;
+using AgroSistema.Application.Usuario.Command.ValidarCorreoUnico;
 using AgroSistema.Application.Usuario.Command.ValidarUsuario;
 using AgroSistema.Application.Usuario.Query.CambiarClaveRecuperacionCuenta;
 using AgroSistema.Application.Usuario.Query.ObtenerDatosUsuario;
@@ -126,6 +127,16 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+        [HttpPost]
+        [Route("validarCorreoUnico")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> ValidarCorreoUnicoAsync([FromBody] ValidarCorreoUnicoCommand command)
+        {
+            var response = await Mediator.Send(command);
 
+            return Ok(response);
+        }
     }
 }
