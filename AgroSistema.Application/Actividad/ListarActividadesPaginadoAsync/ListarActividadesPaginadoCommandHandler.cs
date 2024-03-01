@@ -33,7 +33,7 @@ namespace AgroSistema.Application.Actividad.ListarActividadesPaginadoAsync
 
             var response = await _actividadRepository.ListaPaginadoActividadesAsync(requestListaPaginadoActividadesEntity);
 
-            return _mapper.Map<PaginatedDTO<IEnumerable<ActividadesPaginadoDTO>>>(response);
+            return new PaginatedDTO<IEnumerable<ActividadesPaginadoDTO>>(response.PageNumber, response.PageSize, response.TotalRows, _mapper.Map<IEnumerable<ActividadesPaginadoDTO>>(response.Data));
         }
     }
 }

@@ -11,10 +11,10 @@ namespace AgroSistema.Application.Actividad.ListarDetalleActividadAsync
     {
         public int IdActividad { get; set; }
         public DateTime FechaActividad { get; set; }
-        public string DescripcionActividad { get; set; }
+        public string? DescripcionActividad { get; set; }
         public int IdTipoActividad { get; set; }
-        public string DescripcionTipoActividad { get; set; }
-        public IEnumerable<DetalleTrabajadoresDTO> ListaDetalleTrabajadores { get; set; }
-        public IEnumerable<DetalleGastosDTO> LsitaDetalleGastos { get; set; }
+        public string? DescripcionTipoActividad { get; set; }
+        public IEnumerable<DetalleTrabajadoresDTO>? ListaDetalleTrabajadores { get; set; }
+        public IEnumerable<DetalleGastosDTO>? LsitaDetalleGastos { get; set; }
     }
 }
