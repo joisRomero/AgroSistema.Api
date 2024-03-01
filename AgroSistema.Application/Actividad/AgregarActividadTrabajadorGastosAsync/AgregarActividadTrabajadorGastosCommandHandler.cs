@@ -57,8 +57,8 @@ namespace AgroSistema.Application.Actividad.AgregarActividadTrabajadorGastosAsyn
             {
                 FechaActividad = request.FechaActividad,
                 DescripcionActividad = request.DescripcionActividad,
-                CantidadSemillaActividad = request.CantidadSemillaActividad,
-                UnidadSemilla = request.UnidadSemilla,
+                //CantidadSemillaActividad = request.CantidadSemillaActividad,
+                //UnidadSemilla = request.UnidadSemilla,
                 IdCampania = request.IdCampania,
                 IdTipoActividad = request.IdTipoActividad,
                 UsuarioInserta = request.UsuarioInserta,

@@ -171,5 +171,16 @@ namespace AgroSistema.Persistence
 
             return response.First();
         }
+
+        public async Task<bool> ValidarCorreoUnicoAsync(string correo)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@p_correo_usu", correo);
+
+            var response = await cnn.QueryAsync<bool>("sp_ValidarCorreoUnicoUsuario", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+
+            return response.First();
+        }
     }
 }
