@@ -8,6 +8,7 @@ namespace AgroSistema.Domain.Entities.GetListaPaginadaTipoGastoAsync
 {
     public class ListaPaginadaTipoGastoEntity
     {
+        public int IdUsuario { get; set; }
         public string? Nombre { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }

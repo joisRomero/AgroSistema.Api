@@ -1,6 +1,7 @@
 ﻿using AgroSistema.Domain.Entities.GetCalidadesCosechaAsync;
 using AgroSistema.Domain.Entities.GetCultivosUsuarioaAsync;
 using AgroSistema.Domain.Entities.GetTipoActividadXUsuarioAsync;
+using AgroSistema.Domain.Entities.GetTipoGastoXUsuarioAsync;
 using AgroSistema.Domain.Entities.GetTipoTrabajadorXUsuarioAsync;
 using AgroSistema.Domain.Entities.GetUnidadesCampaniaAsync;
 using AgroSistema.Domain.Entities.GetUnidadesCosechaAsync;
@@ -20,5 +21,6 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task<IEnumerable<UnidadesCampaniaEntity>> GetUnidadesCampaniaAsync();
         Task<IEnumerable<TipoTrabajadorXUsuarioEntity>> GetTipoTrabajadorXUsuarioAsync(int idUsuario);
         Task<IEnumerable<TipoActividadXUsuarioEntity>> GetTipoActividadXUsuarioAsync(int idUsuario);
+        Task<IEnumerable<TipoGastoXUsuarioEntity>> GetTipoGastoXUsuarioAsync(int idUsuario);
     }
 }

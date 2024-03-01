@@ -20,73 +20,8 @@ namespace AgroSistema.Api.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [AllowAnonymous]
-    public class GastoController : AbstractController
+    public class GastoDetalleController : AbstractController
     {
-        // TIPO GASTO
-
-        [HttpPost]
-        [Route("obtenerListaPaginadaTipoGasto")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetListaPaginadaTipoGastoAsync([FromBody] ListaPaginadaTipoGastoCommand command)
-        {
-            var response = await Mediator.Send(command);
-
-            return Ok(response);
-        }
-
-        [HttpPost]
-        [Route("agregarTipoGasto")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> AgregarTipoGastoAsync([FromBody] AgregarTipoGastoCommand command)
-        {
-            var response = await Mediator.Send(command);
-
-            return Ok(response);
-        }
-
-        [HttpPost]
-        [Route("editarTipoGasto")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> EditarTipoGastoAsync([FromBody] EditarTipoGastoCommand command)
-        {
-            var response = await Mediator.Send(command);
-
-            return Ok(response);
-        }
-
-        [HttpPost]
-        [Route("eliminarTipoGasto")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> EliminarTipoGastoAsync([FromBody] EliminarTipoGastoCommand command)
-        {
-            var response = await Mediator.Send(command);
-
-            return Ok(response);
-        }
-
-        [HttpPost]
-        [Route("obtenerTipoGastoPorId")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetTipoGastoPorIdAsync([FromBody] ObtenerTipoGastoCommand command)
-        {
-            var response = await Mediator.Send(command);
-
-            return Ok(response);
-        }
-
-        // DETALLE GASTO
-
         [HttpPost]
         [Route("obtenerListaPaginadaGastoDetalle")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -136,7 +71,7 @@ namespace AgroSistema.Api.Controllers
         }
 
         [HttpPost]
-        [Route("obtenerGastoDetallePorId")]
+        [Route("obtenerGastoDetalle")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

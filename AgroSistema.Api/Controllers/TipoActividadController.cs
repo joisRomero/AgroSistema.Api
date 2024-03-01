@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AgroSistema.Api.Controllers
 {
+    [Route("api/v1/[controller]")]
+    [ApiController]
     public class TipoActividadController : AbstractController
     {
         [HttpPost]
@@ -22,6 +24,7 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
         [Route("registrarTipoActividad")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -33,6 +36,7 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
         [Route("modificarTipoActividad")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -44,6 +48,7 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
         [Route("eliminarTipoActividad")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -55,6 +60,7 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpPost]
         [Route("obtenerTipoActividad")]
         [ProducesResponseType(StatusCodes.Status200OK)]

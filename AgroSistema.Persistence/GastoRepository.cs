@@ -66,6 +66,7 @@ namespace AgroSistema.Persistence
             parameters.Add("@nombreTipoGasto", agregarTipoGastoEntity.NombreTipoGasto);
             parameters.Add("@descripcion", agregarTipoGastoEntity.Descripcion);
             parameters.Add("@usuarioInserta", agregarTipoGastoEntity.UsuarioInserta);
+            parameters.Add("@idUsuario", agregarTipoGastoEntity.IdUsuario);
 
             await cnn.ExecuteAsync(
                 "sp_AgregarTipoGasto",
@@ -170,6 +171,7 @@ namespace AgroSistema.Persistence
             using var cnn = _dataBase.GetConnection();
             DynamicParameters parameters = new();
             parameters.Add("@pNombre", listaPaginadaTipoGastoEntity.Nombre);
+            parameters.Add("@pIdUsuario", listaPaginadaTipoGastoEntity.IdUsuario);
             parameters.Add("@pPageNumber", listaPaginadaTipoGastoEntity.PageNumber);
             parameters.Add("@pPageSize", listaPaginadaTipoGastoEntity.PageSize);
 

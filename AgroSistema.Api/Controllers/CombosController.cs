@@ -1,6 +1,7 @@
 ﻿using AgroSistema.Application.Combos.GetCalidadesCosecha;
 using AgroSistema.Application.Combos.GetCultivosUsuario;
 using AgroSistema.Application.Combos.GetTipoActividadXUsuario;
+using AgroSistema.Application.Combos.GetTipoGastoXUsuario;
 using AgroSistema.Application.Combos.GetTipoTrabajadorXUsuario;
 using AgroSistema.Application.Combos.GetUnidadesCampania;
 using AgroSistema.Application.Combos.GetUnidadesCosecha;
@@ -60,8 +61,9 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpGet]
-        [Route("obtenerTipoTrabajadorXUsuario")]
+        [Route("obtenerTipoTrabajadorPorUsuario")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -71,12 +73,25 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
         [HttpGet]
-        [Route("obtenerTipoActividadXUsuario")]
+        [Route("obtenerTipoActividadPorUsuario")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetTipoActividadXUsuarioAsync([FromQuery] TipoActividadXUsuarioQuery query)
+        {
+            var response = await Mediator.Send(query);
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("obtenerTipGastoPorUsuario")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetTipoGastoXUsuarioAsync([FromQuery] TipoGastoXUsuarioQuery query)
         {
             var response = await Mediator.Send(query);
 
