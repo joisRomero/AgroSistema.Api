@@ -9,6 +9,6 @@ namespace AgroSistema.Domain.Entities.ListarNotificacionesAsync
     public class ListarNotificacionesRequestEntity
     {
         public int IdUsuario { get; set; }
-        public int IdCaso { get; set; }
+        public string? IdCaso { get; set; }
     }
 }

@@ -1,18 +1,15 @@
-USE [agro_sistema_bd]
-GO
-
 IF EXISTS (SELECT * FROM sys.objects WHERE TYPE = 'P' AND name = 'sp_ListarNotificaciones')
 	DROP PROCEDURE sp_ListarNotificaciones
 GO
 
 CREATE PROCEDURE sp_ListarNotificaciones (
 	@idUsuario INT,
-	@idCaso INT
+	@idCaso CHAR(1)
 )
 AS
 BEGIN
 	
-	IF(@idCaso = 1) -- Listar Notificaciones Menú
+	IF(@idCaso = '1') -- Listar Notificaciones Menú
 	BEGIN
 
 		SELECT TOP 10
@@ -28,7 +25,7 @@ BEGIN
 			fechaCreacion_not DESC
 
 	END
-	ELSE IF (@idCaso = 2) -- Listar Notificaciones Ver Todo
+	ELSE IF (@idCaso = '2') -- Listar Notificaciones Ver Todo
 	BEGIN
 
 		SELECT
