@@ -31,7 +31,7 @@ namespace AgroSistema.Application.Invitacion.ListarInvitacionesSociedadAsync
 
             var result = await _invitacionRepository.ListarInvitacionesSociedadAsync(entity);
 
-            return _mapper.Map<IEnumerable<ListarInvitacionesSociedadDTO>>(result); ;
+            return _mapper.Map<IEnumerable<ListarInvitacionesSociedadDTO>>(result);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AgroSistema.Api.Extensions;
 using AgroSistema.Api.Utils;
+using AgroSistema.Application.Common.Hub;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -25,6 +26,7 @@ namespace AgroSistema.Api
             services.AddCustomHealthCheck();
             services.AddCustomOptions(Configuration);
             services.AddLayersDependencyInjections(Configuration);
+            services.AddSignalR();
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -58,7 +60,10 @@ namespace AgroSistema.Api
                 {
                     AllowCachingResponses = false
                 });
+                endpoints.MapHub<InvitacionHub>("/hubs/invitaciones");
             });
+
+            
 
         }
     }
