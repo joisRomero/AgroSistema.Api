@@ -25,7 +25,8 @@ namespace AgroSistema.Application.Gasto.AgregarTipoGasto
             {
                 NombreTipoGasto = request.NombreTipoGasto,
                 Descripcion = request.Descripcion,
-                UsuarioInserta = request.UsuarioInserta
+                UsuarioInserta = request.UsuarioInserta,
+                IdUsuario = request.IdUsuario
             };
 
             await _gastoRepository.AgregarTipoGasto(agregarTipoGastoEntity);
