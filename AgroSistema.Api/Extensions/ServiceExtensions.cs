@@ -97,6 +97,7 @@ namespace AgroSistema.Api.Extensions
             });
             services.AddHttpContextAccessor();
             services.AddResponseCompression();
+            services.AddSwaggerGen();
             return services;
         }
 

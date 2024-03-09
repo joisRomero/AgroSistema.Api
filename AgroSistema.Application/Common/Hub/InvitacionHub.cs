@@ -1,4 +1,5 @@
 ﻿using AgroSistema.Application.Common.Interface.Hub;
+using AgroSistema.Application.Invitacion.ListarInvitacionesSociedadAsync;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,10 @@ namespace AgroSistema.Application.Common.Hub
 {
     public class InvitacionHub : Hub<IInvitacionHub>
     {
+        public async Task AgregarAGrupo(string nombreGrupo)
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, nombreGrupo);
+        }
+       
     }
 }

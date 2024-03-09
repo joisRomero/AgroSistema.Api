@@ -11,6 +11,7 @@ namespace AgroSistema.Application.Invitacion.RegistrarInvitacionSociedadAsync
     {
         public int IdEmisor { get; set; }
         public int IdReceptor { get; set; }
+        public string? UsuarioReceptor { get; set; }
         public int IdSociedad { get; set; }
         public string? UsuarioInserta { get; set; }
     }

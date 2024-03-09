@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace AgroSistema.Application.Invitacion.RegistrarInvitacionSociedadAsync
 {
-    public class RegistrarInvitacionSociedadCommandHandler : IRequestHandler<RegistrarInvitacionSociedadCommand>
+    public class RegistrarInvitacionSociedadCommandHandler : Hub<IInvitacionHub>, IRequestHandler<RegistrarInvitacionSociedadCommand>
     {
         private readonly IInvitacionRepository _invitacionRepository;
         private readonly IMapper _mapper;
@@ -41,7 +41,6 @@ namespace AgroSistema.Application.Invitacion.RegistrarInvitacionSociedadAsync
                 IdReceptor = request.IdReceptor,
                 IdSociedad = request.IdSociedad,
                 UsuarioInserta = request.UsuarioInserta
-
             };
 
             await _invitacionRepository.RegistrarInvitacionSociedadAsync(entity);
@@ -55,7 +54,8 @@ namespace AgroSistema.Application.Invitacion.RegistrarInvitacionSociedadAsync
 
             var responseListaInvitacion = _mapper.Map<IEnumerable<ListarInvitacionesSociedadDTO>>(resultListaInvitacion);
 
-            await _hubContext.Clients.All.EnviarNotificacionInvitacion(responseListaInvitacion);
+            await _hubContext.Clients.Group($"{request.UsuarioReceptor}Invitacion").EnviarNotificacionInvitacion(responseListaInvitacion);
+
 
             return Unit.Value;
         }

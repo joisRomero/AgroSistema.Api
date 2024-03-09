@@ -10,5 +10,6 @@ namespace AgroSistema.Application.Common.Interface.Hub
     public interface IInvitacionHub
     {
         Task EnviarNotificacionInvitacion(IEnumerable<ListarInvitacionesSociedadDTO> listaInvitaciones);
+        Task AgregarAGrupo(string nombreGrupo);
     }
 }

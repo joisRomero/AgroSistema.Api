@@ -63,7 +63,15 @@ namespace AgroSistema.Api
                 endpoints.MapHub<InvitacionHub>("/hubs/invitaciones");
             });
 
-            
+            if (env.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("../swagger/v1/swagger.json", "AgroSistema API");
+                });
+            }
+
 
         }
     }
