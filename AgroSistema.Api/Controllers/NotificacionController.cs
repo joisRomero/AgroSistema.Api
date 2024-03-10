@@ -9,7 +9,6 @@ namespace AgroSistema.Api.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [AllowAnonymous]
     public class NotificacionController : AbstractController
     {
         [HttpPost]

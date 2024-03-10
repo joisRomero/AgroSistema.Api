@@ -25,6 +25,8 @@ namespace AgroSistema.Persistence
             services.AddTransient<IGastoRepository, GastoRepository>();
             services.AddTransient<IActividadRepository, ActividadRepository>();
             services.AddTransient<INotificacionRepository, NotificacionRepository>();
+            services.AddTransient<IAbonoRepository, AbonoRepository>();
+            services.AddTransient<IAgroquimicoRepository, AgroquimicoRepository>();
             return services;
         }
     }
