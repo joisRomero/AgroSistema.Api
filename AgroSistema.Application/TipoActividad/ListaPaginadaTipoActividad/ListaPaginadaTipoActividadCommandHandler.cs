@@ -1,4 +1,5 @@
-﻿using AgroSistema.Application.Common.Interface.Repositories;
+﻿using AgroSistema.Application.Common.Dtos;
+using AgroSistema.Application.Common.Interface.Repositories;
 using AgroSistema.Domain.Entities.ListaPaginadaTipoActividadAsync;
 using AutoMapper;
 using MediatR;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AgroSistema.Application.TipoActividad.ListaPaginadaTipoActividad
 {
-    public class ListaPaginadaTipoActividadCommandHandler :IRequestHandler<ListaPaginadaTipoActividadCommand, IEnumerable<TipoActividadPaginadaDTO>>
+    public class ListaPaginadaTipoActividadCommandHandler :IRequestHandler<ListaPaginadaTipoActividadCommand, PaginatedDTO<IEnumerable<TipoActividadPaginadaDTO>>>
     {
         private readonly ITipoActividad _tipoActividad;
         private readonly IMapper _mapper;
@@ -20,7 +21,7 @@ namespace AgroSistema.Application.TipoActividad.ListaPaginadaTipoActividad
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<TipoActividadPaginadaDTO>> Handle(ListaPaginadaTipoActividadCommand request, CancellationToken cancellationToken)
+        public async Task<PaginatedDTO<IEnumerable<TipoActividadPaginadaDTO>>> Handle(ListaPaginadaTipoActividadCommand request, CancellationToken cancellationToken)
         {
             RequestListaPaginadaTipoActividadEntity requestListaPaginadaTipoActividadEntity = new()
             {
@@ -32,8 +33,11 @@ namespace AgroSistema.Application.TipoActividad.ListaPaginadaTipoActividad
             };
 
             var response = await _tipoActividad.ListaPaginadaTipoActividadAsync(requestListaPaginadaTipoActividadEntity);
+            return new PaginatedDTO<IEnumerable<TipoActividadPaginadaDTO>>(response.PageNumber,
+                response.PageSize,
+                response.TotalRows,
+                _mapper.Map<IEnumerable<TipoActividadPaginadaDTO>>(response.Data));
 
-            return _mapper.Map<IEnumerable<TipoActividadPaginadaDTO>>(response);
         }
     }
 }
