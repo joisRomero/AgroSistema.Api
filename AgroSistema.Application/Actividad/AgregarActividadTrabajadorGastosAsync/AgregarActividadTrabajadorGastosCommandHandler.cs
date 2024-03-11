@@ -23,6 +23,8 @@ namespace AgroSistema.Application.Actividad.AgregarActividadTrabajadorGastosAsyn
         {
             var listaTrabajador = request.ListaTrabajadores;
             var listaGastos = request.ListaGastos;
+            var listaAbonacion = request.ListaAbonacion;
+            var listaFumigacionDetalle = request.ListaFumigacionDetalle;
 
             XElement xmlTrabajador = new XElement("DocumentElement");
             foreach (var item in listaTrabajador)
@@ -49,21 +51,51 @@ namespace AgroSistema.Application.Actividad.AgregarActividadTrabajadorGastosAsyn
                 );
                 xmlGastos.Add(xmlDetalleGatos);
             }
+            XElement xmlAbonacion = new XElement("DocumentElement");
+            foreach (var itemabonacion in listaAbonacion)
+            {
+                XElement xmlDetalleAbonacion = new XElement("Abonacion",
+                    new XElement("Cantidad", itemabonacion.CantidadAbonacion),
+                    new XElement("UnidadDatoComunAbonacion", itemabonacion.UnidadAbonacion),
+                    new XElement("IdAbono", itemabonacion.IdAbono)
+                );
+                xmlAbonacion.Add(xmlDetalleAbonacion);
+            }
+            XElement xmlFumigacionDetalle = null;
+            if (request.CantidadFumigacion != 0 && request.UnidadFumigacion !=0)
+            {
+                xmlFumigacionDetalle = new XElement("DocumentElement");
+                foreach (var itemFumigacionDetalle in listaFumigacionDetalle)
+                {
+                    XElement xmlDetalle_FumigacionDetalle = new XElement("FumigacionDetalle",
+                        new XElement("Cantidad", itemFumigacionDetalle.CantidadFumigacionDetalle),
+                        new XElement("UnidadDatoComunFumigacionDetalle", itemFumigacionDetalle.UnidadFumigacionDetalle),
+                        new XElement("IdAgroquimico", itemFumigacionDetalle.IdAgroquimico)
+                    );
+                    xmlFumigacionDetalle.Add(xmlDetalle_FumigacionDetalle);
+                }
+            }
 
             var xml_Trabajador = xmlTrabajador.ToString();
             var xml_Gastos = xmlGastos.ToString();
+            var xml_Abonacion = xmlAbonacion.ToString();
+            var xml_FumigacionDetalle = xmlFumigacionDetalle.ToString();
 
             AgregarActividadTrabajadorGastosEntity entity = new()
             {
                 FechaActividad = request.FechaActividad,
                 DescripcionActividad = request.DescripcionActividad,
-                //CantidadSemillaActividad = request.CantidadSemillaActividad,
-                //UnidadSemilla = request.UnidadSemilla,
+                CantidadSemillaActividad = request.CantidadSemillaActividad,
+                UnidadSemilla = request.UnidadSemilla,
                 IdCampania = request.IdCampania,
                 IdTipoActividad = request.IdTipoActividad,
                 UsuarioInserta = request.UsuarioInserta,
                 XML_ListaTrabajadores = xml_Trabajador,
-                XML_ListaGastos = xml_Gastos
+                XML_ListaGastos = xml_Gastos,
+                XML_Abonacion = xml_Abonacion,
+                CantidadFumigacion = request.CantidadFumigacion,
+                UnidadFumigacion = request.UnidadFumigacion,
+                XML_FumigacionDetalle = xml_FumigacionDetalle,
             };
 
             await _actividadRepository.AgregarActividadTrabajadorGastosAsync(entity);

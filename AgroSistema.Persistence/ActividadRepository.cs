@@ -4,6 +4,7 @@ using AgroSistema.Domain.Common;
 using AgroSistema.Domain.Entities.AgregarActividadTrabajadorGastosAsync;
 using AgroSistema.Domain.Entities.AgregarGastoActividadAsync;
 using AgroSistema.Domain.Entities.AgregarTrabajadorActividadAsync;
+using AgroSistema.Domain.Entities.EliminarActividadAsync;
 using AgroSistema.Domain.Entities.ListaPaginadoActividadesAsync;
 using AgroSistema.Domain.Entities.ListarDetalleActividadAsync;
 using AgroSistema.Domain.Entities.ModificarActividadAsync;
@@ -38,13 +39,17 @@ namespace AgroSistema.Persistence
             DynamicParameters parameters = new();
             parameters.Add("@p_fecha_acti", agregarActividadTrabajadorGastosEntity.FechaActividad);
             parameters.Add("@p_descripcion_acti", agregarActividadTrabajadorGastosEntity.DescripcionActividad);
-            //parameters.Add("@p_cantidadSemilla_acti", agregarActividadTrabajadorGastosEntity.CantidadSemillaActividad);
-            //parameters.Add("@p_unidadSemillaDatoComun_acti", agregarActividadTrabajadorGastosEntity.UnidadSemilla);
+            parameters.Add("@p_cantidadSemilla_acti", agregarActividadTrabajadorGastosEntity.CantidadSemillaActividad);
+            parameters.Add("@p_unidadSemillaDatoComun_acti", agregarActividadTrabajadorGastosEntity.UnidadSemilla);
             parameters.Add("@p_id_camp", agregarActividadTrabajadorGastosEntity.IdCampania);
             parameters.Add("@p_id_tipoActi", agregarActividadTrabajadorGastosEntity.IdTipoActividad);
             parameters.Add("@p_usuarioInserta_acti", agregarActividadTrabajadorGastosEntity.UsuarioInserta);
             parameters.Add("@p_XML_Trabajadores", agregarActividadTrabajadorGastosEntity.XML_ListaTrabajadores);
             parameters.Add("@p_XML_Gastos", agregarActividadTrabajadorGastosEntity.XML_ListaGastos);
+            parameters.Add("@p_XML_Abonacion", agregarActividadTrabajadorGastosEntity.XML_Abonacion);
+            parameters.Add("@p_cantidad_fumi", agregarActividadTrabajadorGastosEntity.CantidadFumigacion);
+            parameters.Add("@p_unidadDatoComun_fumi", agregarActividadTrabajadorGastosEntity.UnidadFumigacion);
+            parameters.Add("@p_XML_Fumigacion_Detalle", agregarActividadTrabajadorGastosEntity.XML_FumigacionDetalle);
 
             await cnn.ExecuteAsync(
                 "sp_agregar_actividad_trabajador_gastos",
@@ -251,6 +256,20 @@ namespace AgroSistema.Persistence
                                                                                   commandType: CommandType.StoredProcedure);
 
             return response;
+        }
+
+        public async Task EliminarActividadAsync(EliminarActividadEntity eliminarActividadEntity)
+        {
+            using var cnn = _database.GetConnection();
+
+            DynamicParameters parameters = new();
+            parameters.Add("@p_id_acti", eliminarActividadEntity.IdActividad);
+            parameters.Add("@p_usuarioElimina_acti", eliminarActividadEntity.UsuarioElimina);
+
+            await cnn.ExecuteAsync(
+                "sp_eliminar_actividad",
+                param: parameters,
+                commandType: CommandType.StoredProcedure);
         }
     }
 }

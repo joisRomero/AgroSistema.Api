@@ -2,6 +2,7 @@
 using AgroSistema.Domain.Entities.AgregarActividadTrabajadorGastosAsync;
 using AgroSistema.Domain.Entities.AgregarGastoActividadAsync;
 using AgroSistema.Domain.Entities.AgregarTrabajadorActividadAsync;
+using AgroSistema.Domain.Entities.EliminarActividadAsync;
 using AgroSistema.Domain.Entities.ListaPaginadoActividadesAsync;
 using AgroSistema.Domain.Entities.ListarDetalleActividadAsync;
 using AgroSistema.Domain.Entities.ModificarActividadAsync;
@@ -27,5 +28,6 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task<ListarDetalleActividadEntity> ObtenerDetalleActividadAsync(int idActividad);
         Task<IEnumerable<TrabajadorActividadEntity>> ObtenerTrabajadoresActividadAsync(int idActividad);
         Task<IEnumerable<GastoActividadEntity>> ObtenerGatosActividadAsync(int idActividad);
+        Task EliminarActividadAsync(EliminarActividadEntity eliminarActividadEntity);
     }
 }
