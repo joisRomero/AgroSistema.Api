@@ -24,7 +24,7 @@ namespace AgroSistema.Application.Actividad.EliminarActividadAsync
                 IdActividad = request.IdActividad,
                 UsuarioElimina = request.UsuarioElimina,
             };
-
+            await _actividadRepository.EliminarActividadAsync(eliminarActividadEntity);
 
             return Unit.Value;
         }

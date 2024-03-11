@@ -29,5 +29,7 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task<IEnumerable<TrabajadorActividadEntity>> ObtenerTrabajadoresActividadAsync(int idActividad);
         Task<IEnumerable<GastoActividadEntity>> ObtenerGatosActividadAsync(int idActividad);
         Task EliminarActividadAsync(EliminarActividadEntity eliminarActividadEntity);
+        Task<IEnumerable<AbonacionActividadEntity>> ObtenerAbonacionActividadAsyn(int idActividad);
+        Task<IEnumerable<FumigacionDetalleActividadEntity>> ObtenerFumigacionDetalleActividadAsync(int idFumigacion);
     }
 }

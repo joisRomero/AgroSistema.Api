@@ -98,7 +98,7 @@ BEGIN TRY
 			,@p_id_tipoActi
 			,1
 			,@p_usuarioInserta_acti
-			,GETDATE()
+			,dbo.GETDATENEW()
 		)
 		SET @s_id_acti = (SELECT @@IDENTITY);
 
@@ -122,7 +122,7 @@ BEGIN TRY
 			,IdTipoTrabajador
 			,1
 			,@p_usuarioInserta_acti
-			,GETDATE()
+			,dbo.GETDATENEW()
 		FROM #temp_TablaTrabajadores
 
 		INSERT INTO GASTO_DETALLE(
@@ -147,7 +147,7 @@ BEGIN TRY
 			,@s_id_acti
 			,NULL
 			,@p_usuarioInserta_acti
-			,GETDATE()
+			,dbo.GETDATENEW()
 		FROM #temp_TablaGastos
 
 	COMMIT TRANSACTION

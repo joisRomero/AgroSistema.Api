@@ -271,5 +271,33 @@ namespace AgroSistema.Persistence
                 param: parameters,
                 commandType: CommandType.StoredProcedure);
         }
+
+        public async Task<IEnumerable<AbonacionActividadEntity>> ObtenerAbonacionActividadAsyn(int idActividad)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@p_id_acti", idActividad);
+
+            var response = await cnn.QueryAsync<AbonacionActividadEntity>("sp_obtener_abonacion_actividad",
+                                                                                    parameters,
+                                                                                    commandTimeout: 0,
+                                                                                  commandType: CommandType.StoredProcedure);
+
+            return response;
+        }
+
+        public async Task<IEnumerable<FumigacionDetalleActividadEntity>> ObtenerFumigacionDetalleActividadAsync(int idFumigacion)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@p_id_fumi", idFumigacion);
+
+            var response = await cnn.QueryAsync<FumigacionDetalleActividadEntity>("sp_obtener_fumigacion_actividad",
+                                                                                    parameters,
+                                                                                    commandTimeout: 0,
+                                                                                  commandType: CommandType.StoredProcedure);
+
+            return response;
+        }
     }
 }
