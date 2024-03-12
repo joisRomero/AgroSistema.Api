@@ -26,7 +26,7 @@ namespace AgroSistema.Application.Actividad.ListarActividadesPaginadoAsync
             {
                 IdCampania = request.IdCampania,
                 FechaActividad = request.FechaActividad,
-                IdTipoActividad = request.IdTipoActividad,
+                NombreTipoActividad = request.NombreTipoActividad,
                 PageNumber = request.PageNumber,
                 PageSize = request.PageSize,
             };

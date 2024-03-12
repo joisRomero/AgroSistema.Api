@@ -12,7 +12,7 @@ namespace AgroSistema.Application.Gasto.GetListaPaginadaGastoDetalle
     public class ListaPaginadaGastoDetalleCommand : IRequest<PaginatedDTO<IEnumerable<GastoDetallePaginadoDTO>>>
     {
         public int IdCampania { get; set; }
-        public int? IdTipoGasto { get; set; }
+        public string? NombreTipoGasto { get; set; }
         public DateTime? FechaGasto { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }

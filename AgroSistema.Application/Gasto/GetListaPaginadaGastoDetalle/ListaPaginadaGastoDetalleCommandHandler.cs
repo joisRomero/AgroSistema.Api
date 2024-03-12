@@ -27,7 +27,7 @@ namespace AgroSistema.Application.Gasto.GetListaPaginadaGastoDetalle
             ListaPaginadaGastoDetalleEntity entity = new()
             {
                 IdCampania = request.IdCampania,
-                IdTipoGasto = request.IdTipoGasto,
+                NombreTipoGasto = request.NombreTipoGasto,
                 FechaGasto = request.FechaGasto,
                 PageNumber = request.PageNumber,
                 PageSize = request.PageSize

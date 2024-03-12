@@ -205,7 +205,7 @@ namespace AgroSistema.Persistence
             DynamicParameters parameters = new();
             parameters.Add("@p_id_camp", entity.IdCampania);
             parameters.Add("@p_fecha_acti", entity.FechaActividad);
-            parameters.Add("@p_id_tipoActi", entity.IdTipoActividad);
+            parameters.Add("@p_nombre_tipoActi", entity.NombreTipoActividad);
             parameters.Add("@pageSize", entity.PageSize);
             parameters.Add("@pageNumber", entity.PageNumber);
 

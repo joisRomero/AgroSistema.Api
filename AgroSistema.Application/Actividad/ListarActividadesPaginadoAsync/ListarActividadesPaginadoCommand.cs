@@ -12,7 +12,7 @@ namespace AgroSistema.Application.Actividad.ListarActividadesPaginadoAsync
     {
         public int? IdCampania { get; set; }
         public DateTime? FechaActividad { get; set; }
-        public int? IdTipoActividad { get; set; }
+        public string? NombreTipoActividad { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
     }

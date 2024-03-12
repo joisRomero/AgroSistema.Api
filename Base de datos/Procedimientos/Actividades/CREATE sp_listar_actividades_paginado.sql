@@ -5,7 +5,7 @@ GO
 CREATE PROCEDURE sp_listar_actividades_paginado(
 	@p_id_camp		INT
 	,@p_fecha_acti	DATETIME	= NULL
-	,@p_id_tipoActi	INT			= NULL
+	,@p_nombre_tipoActi	VARCHAR(100)
 	,@pageSize		INT = 5		--Tamaño de la Página
 	,@pageNumber	INT = 1		--Número de Página
 )
@@ -13,18 +13,15 @@ AS
 BEGIN
 	DECLARE @offset INT
 	DECLARE @RecordCont INT
-	DECLARE @s_CantidadReg INT
-
-	IF (@p_id_tipoActi = 0)
-		SET @p_id_tipoActi = NULL
-	
+	DECLARE @s_CantidadReg INT	
 
 	SELECT 
 		@RecordCont = COUNT(*)
-	FROM ACTIVIDAD
-	WHERE (id_camp = @p_id_camp)
-	AND (fecha_acti = @p_fecha_acti OR @p_fecha_acti = NULL)
-	AND	(id_tipoActi = @p_id_tipoActi OR @p_id_tipoActi = NULL)
+	FROM ACTIVIDAD a
+	LEFT JOIN TIPO_ACTIVIDAD ta on a.id_tipoActi = ta.id_tipoActi
+	WHERE (a.id_camp = @p_id_camp)
+	AND (a.fecha_acti = @p_fecha_acti OR ISNULL(@p_fecha_acti,'') = '')
+	AND	(ta.nombre_tipoActi = @p_nombre_tipoActi OR ISNULL(@p_nombre_tipoActi,'') = '')
 	AND estado_acti = 1
 
 	SET @s_CantidadReg = @RecordCont
@@ -41,8 +38,8 @@ BEGIN
 		FROM ACTIVIDAD a
 		INNER JOIN TIPO_ACTIVIDAD ta on ta.id_tipoActi = a.id_tipoActi
 		WHERE (a.id_camp = @p_id_camp)
-		AND (a.fecha_acti = @p_fecha_acti OR @p_fecha_acti = NULL)
-		AND	(a.id_tipoActi = @p_id_tipoActi OR @p_id_tipoActi = NULL)
+		AND (a.fecha_acti = @p_fecha_acti OR ISNULL(@p_fecha_acti,'') = '')
+		AND	(ta.nombre_tipoActi = @p_nombre_tipoActi OR ISNULL(@p_nombre_tipoActi,'') = '')
 		AND a.estado_acti = 1
 	)
 	SELECT TOP(@pageSize)
