@@ -19,7 +19,7 @@ BEGIN
 		,dc.descripcionCorta AS UnidadDescripcionFumigacion
 	FROM ACTIVIDAD a
 	INNER JOIN TIPO_ACTIVIDAD ta on ta.id_tipoActi = a.id_tipoActi
-	INNER JOIN FUMIGACION f on f.id_acti = a.id_acti 
+	LEFT JOIN FUMIGACION f on f.id_acti = a.id_acti 
 	LEFT JOIN DATO_COMUN dc on dc.codigoTabla = 5 AND dc.id_datoComun = f.unidadDatoComun_fumi
 	WHERE a.id_acti = @p_id_acti 
 END

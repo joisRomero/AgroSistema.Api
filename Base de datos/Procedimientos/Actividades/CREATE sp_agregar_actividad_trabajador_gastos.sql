@@ -5,8 +5,8 @@ GO
 CREATE PROCEDURE sp_agregar_actividad_trabajador_gastos(
 	@p_fecha_acti datetime
 	,@p_descripcion_acti VARCHAR(250)
-	,@p_cantidadSemilla_acti INT
-	,@p_unidadSemillaDatoComun_acti INT
+	,@p_cantidadSemilla_acti INT NULL
+	,@p_unidadSemillaDatoComun_acti INT NULL
 	,@p_id_camp	INT	NULL
 	,@p_id_tipoActi	INT NULL
 	,@p_usuarioInserta_acti VARCHAR(50)

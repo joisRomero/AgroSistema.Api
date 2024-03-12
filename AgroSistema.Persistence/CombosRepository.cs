@@ -7,8 +7,10 @@ using AgroSistema.Domain.Entities.GetTipoActividadXUsuarioAsync;
 using AgroSistema.Domain.Entities.GetTipoAgroquimicoAsync;
 using AgroSistema.Domain.Entities.GetTipoGastoXUsuarioAsync;
 using AgroSistema.Domain.Entities.GetTipoTrabajadorXUsuarioAsync;
+using AgroSistema.Domain.Entities.GetUnidadAbonacionAsync;
 using AgroSistema.Domain.Entities.GetUnidadesCampaniaAsync;
 using AgroSistema.Domain.Entities.GetUnidadesCosechaAsync;
+using AgroSistema.Domain.Entities.GetUnidadFumigacionAsync;
 using AgroSistema.Persistence.DataBase;
 using Dapper;
 using Microsoft.Extensions.DependencyInjection;
@@ -101,6 +103,22 @@ namespace AgroSistema.Persistence
         {
             using var cnn = _database.GetConnection();
             var response = await cnn.QueryAsync<GetTipoAgroquimicoEntity>("sp_listar_tipo_agroquimico",
+                                    commandTimeout: 0, commandType: CommandType.StoredProcedure);
+            return response;
+        }
+
+        public async Task<IEnumerable<UnidadAbonacionEntity>> GetUnidadAbonacionAsync()
+        {
+            using var cnn = _database.GetConnection();
+            var response = await cnn.QueryAsync<UnidadAbonacionEntity>("sp_combo_unidad_abonacion",
+                                    commandTimeout: 0, commandType: CommandType.StoredProcedure);
+            return response;
+        }
+
+        public async Task<IEnumerable<UnidadFumigacionEntity>> GetUnidadFumigacionAsync()
+        {
+            using var cnn = _database.GetConnection();
+            var response = await cnn.QueryAsync<UnidadFumigacionEntity>("sp_combo_unidad_fumigacion",
                                     commandTimeout: 0, commandType: CommandType.StoredProcedure);
             return response;
         }

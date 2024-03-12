@@ -110,5 +110,53 @@ namespace AgroSistema.Api.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("obtenerUnidadAbonacion")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetUnidadAbonacionAsync([FromQuery] TipoAgroquimicoQuery query)
+        {
+            var response = await Mediator.Send(query);
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("obtenerUnidadFumigacion")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetUnidadFumigacionAsync([FromQuery] TipoAgroquimicoQuery query)
+        {
+            var response = await Mediator.Send(query);
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("obtenerUnidadFumigacionDetalle")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetUnidadFumigacionDetalleAsync([FromQuery] TipoAgroquimicoQuery query)
+        {
+            var response = await Mediator.Send(query);
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("obtenerUnidadSemilla")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetUnidadSemillaAsync([FromQuery] TipoAgroquimicoQuery query)
+        {
+            var response = await Mediator.Send(query);
+
+            return Ok(response);
+        }
     }
 }

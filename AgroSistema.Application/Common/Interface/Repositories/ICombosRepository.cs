@@ -4,8 +4,10 @@ using AgroSistema.Domain.Entities.GetTipoActividadXUsuarioAsync;
 using AgroSistema.Domain.Entities.GetTipoAgroquimicoAsync;
 using AgroSistema.Domain.Entities.GetTipoGastoXUsuarioAsync;
 using AgroSistema.Domain.Entities.GetTipoTrabajadorXUsuarioAsync;
+using AgroSistema.Domain.Entities.GetUnidadAbonacionAsync;
 using AgroSistema.Domain.Entities.GetUnidadesCampaniaAsync;
 using AgroSistema.Domain.Entities.GetUnidadesCosechaAsync;
+using AgroSistema.Domain.Entities.GetUnidadFumigacionAsync;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +26,7 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task<IEnumerable<TipoActividadXUsuarioEntity>> GetTipoActividadXUsuarioAsync(int idUsuario);
         Task<IEnumerable<TipoGastoXUsuarioEntity>> GetTipoGastoXUsuarioAsync(int idUsuario);
         Task<IEnumerable<GetTipoAgroquimicoEntity>> GetTipoAgroquimicoAsync();
+        Task<IEnumerable<UnidadAbonacionEntity>> GetUnidadAbonacionAsync();
+        Task<IEnumerable<UnidadFumigacionEntity>> GetUnidadFumigacionAsync();
     }
 }
