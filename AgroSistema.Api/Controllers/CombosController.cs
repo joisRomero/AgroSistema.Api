@@ -1,6 +1,7 @@
 ﻿using AgroSistema.Application.Combos.GetCalidadesCosecha;
 using AgroSistema.Application.Combos.GetCultivosUsuario;
 using AgroSistema.Application.Combos.GetTipoActividadXUsuario;
+using AgroSistema.Application.Combos.GetTipoAgroquimico;
 using AgroSistema.Application.Combos.GetTipoGastoXUsuario;
 using AgroSistema.Application.Combos.GetTipoTrabajadorXUsuario;
 using AgroSistema.Application.Combos.GetUnidadesCampania;
@@ -92,6 +93,18 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetTipoGastoXUsuarioAsync([FromQuery] TipoGastoXUsuarioQuery query)
+        {
+            var response = await Mediator.Send(query);
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("obtenerTipoAgroquimico")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetTipoAgroquimicoAsync([FromQuery] TipoAgroquimicoQuery query)
         {
             var response = await Mediator.Send(query);
 
