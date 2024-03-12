@@ -30,12 +30,12 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task AgregarGastoActividadAsync(AgregarGastoActividadEntity agregarGastoActividadEntity);
         Task ModificarGastoActividadAsync(ModificarGastosEntity modificarGastosEntity);
         Task<PaginatedEntity<IEnumerable<ListaPaginadoActividadesEntity>>> ListaPaginadoActividadesAsync (RequestListaPaginadoActividadesEntity entity);
-        Task<ListarDetalleActividadEntity> ObtenerDetalleActividadAsync(int idActividad);
-        Task<IEnumerable<TrabajadorActividadEntity>> ObtenerTrabajadoresActividadAsync(int idActividad);
-        Task<IEnumerable<GastoActividadEntity>> ObtenerGatosActividadAsync(int idActividad);
+        Task<ListarDetalleActividadEntity> ObtenerDetalleActividadAsync(int? idActividad);
+        Task<IEnumerable<TrabajadorActividadEntity>> ObtenerTrabajadoresActividadAsync(int? idActividad);
+        Task<IEnumerable<GastoActividadEntity>> ObtenerGatosActividadAsync(int? idActividad);
         Task EliminarActividadAsync(EliminarActividadEntity eliminarActividadEntity);
-        Task<IEnumerable<AbonacionActividadEntity>> ObtenerAbonacionActividadAsyn(int idActividad);
-        Task<IEnumerable<FumigacionDetalleActividadEntity>> ObtenerFumigacionDetalleActividadAsync(int idFumigacion);
+        Task<IEnumerable<AbonacionActividadEntity>> ObtenerAbonacionActividadAsyn(int? idActividad);
+        Task<IEnumerable<FumigacionDetalleActividadEntity>> ObtenerFumigacionDetalleActividadAsync(int? idFumigacion);
         Task AgregarAbonacionAsync(AgregarAbonacionEntity agregarAbonacionEntity);
         Task ModificarAbonacionAsync(ModificarAbonacionEntity modificarAbonacionEntity);
         Task ModificarFumigacionAsync(ModificarFumigacionEntity modificarFumigacionEntity);
