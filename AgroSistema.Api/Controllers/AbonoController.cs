@@ -3,12 +3,6 @@ using AgroSistema.Application.Abono.EditarAbono;
 using AgroSistema.Application.Abono.EliminarAbono;
 using AgroSistema.Application.Abono.GetAbono;
 using AgroSistema.Application.Abono.GetListaPaginadaAbono;
-using AgroSistema.Application.Gasto.AgregarTipoGasto;
-using AgroSistema.Application.Gasto.EditarTipoGasto;
-using AgroSistema.Application.Gasto.EliminarTipoGasto;
-using AgroSistema.Application.Gasto.GetListaPaginadaTipoGasto;
-using AgroSistema.Application.Gasto.GetTipoGasto;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgroSistema.Api.Controllers

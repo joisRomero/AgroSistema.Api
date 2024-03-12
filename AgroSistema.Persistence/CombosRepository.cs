@@ -4,6 +4,7 @@ using AgroSistema.Domain.Entities.GetCalidadesCosechaAsync;
 using AgroSistema.Domain.Entities.GetCultivosUsuarioaAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCosechasAsync;
 using AgroSistema.Domain.Entities.GetTipoActividadXUsuarioAsync;
+using AgroSistema.Domain.Entities.GetTipoAgroquimicoAsync;
 using AgroSistema.Domain.Entities.GetTipoGastoXUsuarioAsync;
 using AgroSistema.Domain.Entities.GetTipoTrabajadorXUsuarioAsync;
 using AgroSistema.Domain.Entities.GetUnidadesCampaniaAsync;
@@ -93,6 +94,14 @@ namespace AgroSistema.Persistence
 
             var response = await cnn.QueryAsync<TipoGastoXUsuarioEntity>("sp_obtener_x_usuario_tipo_gasto",
                                     parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+            return response;
+        }
+
+        public async Task<IEnumerable<GetTipoAgroquimicoEntity>> GetTipoAgroquimicoAsync()
+        {
+            using var cnn = _database.GetConnection();
+            var response = await cnn.QueryAsync<GetTipoAgroquimicoEntity>("sp_listar_tipo_agroquimico",
+                                    commandTimeout: 0, commandType: CommandType.StoredProcedure);
             return response;
         }
     }

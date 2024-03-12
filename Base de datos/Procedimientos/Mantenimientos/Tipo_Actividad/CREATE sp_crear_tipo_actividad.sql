@@ -24,7 +24,7 @@ BEGIN
 		@p_nombre_tipoActi
 		,@p_realizadaPor_tipoActi
 		,@p_descripcion_tipoActi
-		,0
+		,1
 		,@p_id_usu
 		,@p_usuarioInserta_tipoActi
 		,GETDATE()

@@ -19,5 +19,6 @@ namespace AgroSistema.Application.Actividad.AgregarActividadTrabajadorGastosAsyn
         public string? UsuarioInserta { get; set; }
         public IEnumerable<TrabajadorDTO>? ListaTrabajadores { get; set; }
         public IEnumerable<GastoDTO>? ListaGastos{ get; set; }
+
     }
 }

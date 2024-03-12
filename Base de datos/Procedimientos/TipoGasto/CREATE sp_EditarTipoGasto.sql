@@ -1,5 +1,3 @@
-USE [agro_sistema_bd]
-GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE TYPE = 'P' AND name = 'sp_EditarTipoGasto')
 	DROP PROCEDURE sp_EditarTipoGasto

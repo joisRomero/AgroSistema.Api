@@ -1,19 +1,8 @@
 ﻿using AgroSistema.Application.Gasto.AgregarGastoDetalle;
-using AgroSistema.Application.Gasto.AgregarTipoGasto;
 using AgroSistema.Application.Gasto.EditarGastoDetalle;
-using AgroSistema.Application.Gasto.EditarTipoGasto;
 using AgroSistema.Application.Gasto.EliminarGastoDetalle;
-using AgroSistema.Application.Gasto.EliminarTipoGasto;
 using AgroSistema.Application.Gasto.GetGastoDetallePorId;
 using AgroSistema.Application.Gasto.GetListaPaginadaGastoDetalle;
-using AgroSistema.Application.Gasto.GetListaPaginadaTipoGasto;
-using AgroSistema.Application.Gasto.GetTipoGasto;
-using AgroSistema.Application.Sociedad.AgregarSociedad;
-using AgroSistema.Application.Sociedad.EditarSociedad;
-using AgroSistema.Application.Sociedad.EliminarSociedad;
-using AgroSistema.Application.Sociedad.GetListaPaginadaSociedades;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgroSistema.Api.Controllers
