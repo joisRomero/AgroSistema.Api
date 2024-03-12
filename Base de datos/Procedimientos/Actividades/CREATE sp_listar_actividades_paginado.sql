@@ -11,6 +11,10 @@ CREATE PROCEDURE sp_listar_actividades_paginado(
 )
 AS
 BEGIN
+	
+	IF OBJECT_ID('tempdb..#temp_TablaListaActividadPaginado') IS NOT NULL
+		DROP TABLE #temp_TablaListaActividadPaginado
+
 	DECLARE @offset INT
 	DECLARE @RecordCont INT
 	DECLARE @s_CantidadReg INT	
@@ -26,21 +30,31 @@ BEGIN
 
 	SET @s_CantidadReg = @RecordCont
 	SET @offset = (@pageSize * (@pageNumber -1))
+
+	SELECT 
+		a.id_acti 
+		,a.fecha_acti
+		,a.descripcion_acti
+		,ta.nombre_tipoActi
+	INTO #temp_TablaListaActividadPaginado
+	FROM ACTIVIDAD a
+	INNER JOIN TIPO_ACTIVIDAD ta on ta.id_tipoActi = a.id_tipoActi
+	WHERE (a.id_camp = @p_id_camp)
+	AND (a.fecha_acti = @p_fecha_acti OR ISNULL(@p_fecha_acti,'') = '')
+	AND	((ta.nombre_tipoActi LIKE '%'+ @p_nombre_tipoActi +'%') OR ISNULL(@p_nombre_tipoActi,'') = '')
+	AND a.estado_acti = 1
+	ORDER BY a.fecha_acti desc
+
 	;WITH
 	tablaFiltrada
 	AS(
 		SELECT 
-			ROW_NUMBER() OVER( ORDER BY a.id_acti DESC) AS Correlativo
-			,a.id_acti 
-			,a.fecha_acti
-			,a.descripcion_acti
-			,ta.nombre_tipoActi
-		FROM ACTIVIDAD a
-		INNER JOIN TIPO_ACTIVIDAD ta on ta.id_tipoActi = a.id_tipoActi
-		WHERE (a.id_camp = @p_id_camp)
-		AND (a.fecha_acti = @p_fecha_acti OR ISNULL(@p_fecha_acti,'') = '')
-		AND	(ta.nombre_tipoActi = @p_nombre_tipoActi OR ISNULL(@p_nombre_tipoActi,'') = '')
-		AND a.estado_acti = 1
+			ROW_NUMBER() OVER( ORDER BY id_acti DESC) AS Correlativo
+			,id_acti 
+			,fecha_acti
+			,descripcion_acti
+			,nombre_tipoActi
+		FROM #temp_TablaListaActividadPaginado
 	)
 	SELECT TOP(@pageSize)
 		Correlativo
