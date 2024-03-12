@@ -11,10 +11,10 @@ namespace AgroSistema.Domain.Entities.ModificarActividadAsync
         public int IdActividad { get; set; }
         public DateTime FechaActividad { get; set; }
         public string? DescripcionActividad { get; set; }
-        //public int CantidadSemillaActividad { get; set; }
-        //public int UnidadSemilla { get; set; }
-        public int IdCampania { get; set; }
-        public int IdTipoActividad { get; set; }
+        public int? CantidadSemillaActividad { get; set; }
+        public int? UnidadSemilla { get; set; }
+        public int? IdCampania { get; set; }
+        public int? IdTipoActividad { get; set; }
         public string? UsuarioModifica { get; set; }
     }
 }
