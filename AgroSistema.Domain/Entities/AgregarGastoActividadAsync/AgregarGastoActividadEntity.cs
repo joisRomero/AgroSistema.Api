@@ -14,7 +14,7 @@ namespace AgroSistema.Domain.Entities.AgregarGastoActividadAsync
         public decimal CostoTotal { get; set; }
         public DateTime FechaGasto { get; set; }
         public int IdTipoGasto { get; set; }
-        public int IdActividad { get; set; }
+        public int? IdActividad { get; set; }
         public string? UsuarioInserta { get; set; }
     }
 }

@@ -8,9 +8,9 @@ namespace AgroSistema.Domain.Entities.AgregarAbonacionEntity
 {
     public class AgregarAbonacionEntity
     {
-        public int IdActividad { get; set; }
-        public int CantidadAbonacion { get; set; }
-        public int UnidadAbonacion { get; set; }
+        public int? IdActividad { get; set; }
+        public int? CantidadAbonacion { get; set; }
+        public int? UnidadAbonacion { get; set; }
         public int? IdAbono { get; set; }
         public string? UsuarioInserta { get; set; }
     }

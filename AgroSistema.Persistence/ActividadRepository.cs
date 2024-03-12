@@ -220,7 +220,7 @@ namespace AgroSistema.Persistence
                                                                                     response);
         }
 
-        public async Task<ListarDetalleActividadEntity> ObtenerDetalleActividadAsync(int idActividad)
+        public async Task<ListarDetalleActividadEntity> ObtenerDetalleActividadAsync(int? idActividad)
         {
             using var cnn = _database.GetConnection();
             DynamicParameters parameters = new();
@@ -235,7 +235,7 @@ namespace AgroSistema.Persistence
             return result;
         }
 
-        public async Task<IEnumerable<TrabajadorActividadEntity>> ObtenerTrabajadoresActividadAsync(int idActividad)
+        public async Task<IEnumerable<TrabajadorActividadEntity>> ObtenerTrabajadoresActividadAsync(int? idActividad)
         {
             using var cnn = _database.GetConnection();
             DynamicParameters parameters = new();
@@ -249,7 +249,7 @@ namespace AgroSistema.Persistence
             return response;
         }
 
-        public async Task<IEnumerable<GastoActividadEntity>> ObtenerGatosActividadAsync(int idActividad)
+        public async Task<IEnumerable<GastoActividadEntity>> ObtenerGatosActividadAsync(int? idActividad)
         {
             using var cnn = _database.GetConnection();
             DynamicParameters parameters = new();
@@ -277,7 +277,7 @@ namespace AgroSistema.Persistence
                 commandType: CommandType.StoredProcedure);
         }
 
-        public async Task<IEnumerable<AbonacionActividadEntity>> ObtenerAbonacionActividadAsyn(int idActividad)
+        public async Task<IEnumerable<AbonacionActividadEntity>> ObtenerAbonacionActividadAsyn(int? idActividad)
         {
             using var cnn = _database.GetConnection();
             DynamicParameters parameters = new();
@@ -291,7 +291,7 @@ namespace AgroSistema.Persistence
             return response;
         }
 
-        public async Task<IEnumerable<FumigacionDetalleActividadEntity>> ObtenerFumigacionDetalleActividadAsync(int idFumigacion)
+        public async Task<IEnumerable<FumigacionDetalleActividadEntity>> ObtenerFumigacionDetalleActividadAsync(int? idFumigacion)
         {
             using var cnn = _database.GetConnection();
             DynamicParameters parameters = new();
