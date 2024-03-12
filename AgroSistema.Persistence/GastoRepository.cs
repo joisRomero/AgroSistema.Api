@@ -156,7 +156,7 @@ namespace AgroSistema.Persistence
             using var cnn = _dataBase.GetConnection();
             DynamicParameters parameters = new();
             parameters.Add("@pIdCampania", listaPaginadaGastoDetalleEntity.IdCampania);
-            parameters.Add("@pIdTipoGasto", listaPaginadaGastoDetalleEntity.IdTipoGasto);
+            parameters.Add("@pNombreTipoGasto", listaPaginadaGastoDetalleEntity.NombreTipoGasto);
             parameters.Add("@pFechaGasto", listaPaginadaGastoDetalleEntity.FechaGasto);
             parameters.Add("@pPageNumber", listaPaginadaGastoDetalleEntity.PageNumber);
             parameters.Add("@pPageSize", listaPaginadaGastoDetalleEntity.PageSize);

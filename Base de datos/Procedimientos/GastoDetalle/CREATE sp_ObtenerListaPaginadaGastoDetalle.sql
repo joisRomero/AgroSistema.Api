@@ -1,13 +1,10 @@
-USE agro_sistema_bd
-GO
-
 IF EXISTS (SELECT * FROM sys.objects WHERE TYPE = 'P' AND name = 'sp_ObtenerListaPaginadaGastoDetalle')
 	DROP PROCEDURE sp_ObtenerListaPaginadaGastoDetalle
 GO
 
 CREATE PROCEDURE sp_ObtenerListaPaginadaGastoDetalle(
 	@pIdCampania int,
-	@pIdTipoGasto int = null,
+	@pNombreTipoGasto VARCHAR(100) = NULL,
 	@pFechaGasto datetime = null,
 	@pPageNumber int,
 	@pPageSize int
@@ -15,7 +12,7 @@ CREATE PROCEDURE sp_ObtenerListaPaginadaGastoDetalle(
 as
 begin
 	declare @nIdCampania int = @pIdCampania 
-	declare @nIdTipoGasto int = @pIdTipoGasto 
+	declare @nNombreTipoGasto VARCHAR(100) = @pNombreTipoGasto
 	declare @nFechaGasto datetime = @pFechaGasto 	
 	declare @nPageNumber int = @pPageNumber
 	declare @nPageSize int = @pPageSize
@@ -36,7 +33,7 @@ begin
 				gd.descripcion_gastoDet as Descripcion
 			from GASTO_DETALLE gd
 				INNER JOIN TIPO_GASTO tg ON gd.id_tipoGasto = tg.id_tipoGasto
-			where (tg.id_tipoGasto = @nIdTipoGasto OR @nIdTipoGasto IS NULL)
+			where (tg.nombre_tipoGasto = @nNombreTipoGasto OR ISNULL(@nNombreTipoGasto,'') = '')
 				AND (gd.fecha_gastoDet = @nFechaGasto OR @nFechaGasto IS NULL)
 				AND gd.id_camp = @nIdCampania
 				AND gd.estado_gastoDet = 1

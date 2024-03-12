@@ -1,4 +1,5 @@
 ﻿using AgroSistema.Application.Actividad.AgregarActividadTrabajadorGastosAsync;
+using AgroSistema.Application.Actividad.EliminarActividadAsync;
 using AgroSistema.Application.Actividad.ListarActividadesPaginadoAsync;
 using AgroSistema.Application.Actividad.ListarDetalleActividadAsync;
 using AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAsync;
@@ -51,6 +52,17 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> ListarDetalleActividadAsync([FromBody] ListarDetalleActividadCommand command)
+        {
+            var response = await Mediator.Send(command);
+
+            return Ok(response);
+        }
+        [HttpPost]
+        [Route("eliminarActividad")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> EliminarActividadAsync([FromBody] EliminarActividadCommand command)
         {
             var response = await Mediator.Send(command);
 
