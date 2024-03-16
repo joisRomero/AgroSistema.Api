@@ -18,9 +18,11 @@ namespace AgroSistema.Application.Combos.GetUnidadAbonacion
             _combosRepository = combosRepository;
             _mapper = mapper;
         }
-        public Task<IEnumerable<UnidadAbonacionDTO>> Handle(UnidadAbonacionQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<UnidadAbonacionDTO>> Handle(UnidadAbonacionQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var response = await _combosRepository.GetUnidadAbonacionAsync();
+
+            return _mapper.Map<IEnumerable<UnidadAbonacionDTO>>(response);
         }
     }
 }
