@@ -21,10 +21,4 @@
     <ProjectReference Include="..\AgroSistema.Domain\AgroSistema.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Combos\GetUnidadFumigacion\" />
-    <Folder Include="Combos\GetUnidadFumigacionDetalle\" />
-    <Folder Include="Combos\GetUnidadSemilla\" />
-  </ItemGroup>
-
 </Project>

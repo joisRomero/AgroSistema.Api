@@ -159,6 +159,7 @@ BEGIN TRY
 			,unidadDatoComun
 			,id_abono
 			,id_acti
+			,estado_abonaci
 			,usuarioInserta_abonaci
 			,fechaInserta_abonaci
 		)
@@ -167,6 +168,7 @@ BEGIN TRY
 			,UnidadDcAbonacion
 			,IdAbono
 			,@s_id_acti
+			,1
 			,@p_usuarioInserta_acti
 			,dbo.GETDATENEW()
 		FROM #temp_TablaAbonacion
@@ -194,6 +196,7 @@ BEGIN TRY
 			,unidadDatoComun_fumiDet
 			,id_fumi
 			,id_agroqui
+			,estado_fumiDet
 			,usuarioInserta_fumiDet
 			,fechaInserta_fumiDet
 		)
@@ -202,6 +205,7 @@ BEGIN TRY
 			,UnidadDcFumigacionDetalle
 			,@s_id_fumi
 			,IdAgroquimico
+			,1
 			,@p_usuarioInserta_acti
 			,dbo.GETDATENEW()
 		FROM #temp_TablaFumigacionDetalle

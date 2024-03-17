@@ -3,6 +3,11 @@ using AgroSistema.Domain.Entities.AgregarAbonacionEntity;
 using AgroSistema.Domain.Entities.AgregarFumigacionDetalleAsync;
 using AgroSistema.Domain.Entities.AgregarGastoActividadAsync;
 using AgroSistema.Domain.Entities.AgregarTrabajadorActividadAsync;
+using AgroSistema.Domain.Entities.EliminarAbonacionListaAsync;
+using AgroSistema.Domain.Entities.EliminarFumigacionDetalleListaAsync;
+using AgroSistema.Domain.Entities.EliminarGastoDetalleAsync;
+using AgroSistema.Domain.Entities.EliminarGastoDetalleListaAsync;
+using AgroSistema.Domain.Entities.EliminarTrabajadorListaAsync;
 using AgroSistema.Domain.Entities.ModificarAbonacionAsync;
 using AgroSistema.Domain.Entities.ModificarActividadAsync;
 using AgroSistema.Domain.Entities.ModificarFumigacionAsync;
@@ -15,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAsync
 {
@@ -41,10 +47,33 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
             };
 
             await _actividadRepository.ModificarActividadAsync(entity);
-
+            
             var listaTrabajador = request.ListaTrabajador;
             if (listaTrabajador != null)
             {
+
+                XElement xmlTrabajador = new XElement("DocumentElement");
+                foreach (var item in listaTrabajador)
+                {
+                    if (!(item.IdTrabajador == 0 || item.IdTrabajador == null))
+                    {
+                        XElement xmlDetalleTrabajador = new XElement("Trabajador",
+                        new XElement("IdTrabajador", item.IdTrabajador)
+                        );
+                        xmlTrabajador.Add(xmlDetalleTrabajador);
+                    }            
+                }
+
+                var xml_Trabajador = xmlTrabajador.ToString();
+                EliminarTrabajadorListaEntity eliminarTrabajadorListaEntity = new ()
+                {
+                    XML_TrabajadorLista = xml_Trabajador,
+                    UsuarioElimina = request.UsuarioModifica
+                };
+
+                await _actividadRepository.EliminarTrabajadorListaAsync(eliminarTrabajadorListaEntity);
+
+
                 foreach (var item in listaTrabajador)
                 {
                     if (item.IdTrabajador == 0 || item.IdTrabajador == null)
@@ -82,6 +111,27 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
 
             if (listaGasto != null)
             {
+                XElement xmlGastos = new XElement("DocumentElement");
+                foreach (var item in listaGasto)
+                {
+                    if (!(item.IdGasto == 0 || item.IdGasto == null))
+                    {
+                        XElement xmlDetalleGatos = new XElement("Gastos",
+                            new XElement("IdGasto", item.IdGasto)
+                        );
+                        xmlGastos.Add(xmlDetalleGatos);
+                    }                        
+                }
+
+                var xml_GastosDetalle = xmlGastos.ToString();
+                EliminarGastoDetalleListaEntity eliminarGastoDetalleListaEntity = new()
+                {
+                    XML_GastoDetalleLista = xml_GastosDetalle,
+                    UsuarioElimina = request.UsuarioModifica
+                };
+                await _actividadRepository.EliminarGastoDetalleListaAsync(eliminarGastoDetalleListaEntity);
+
+
                 foreach (var item in listaGasto)
                 {
                     if (item.IdGasto == 0 || item.IdGasto == null)
@@ -121,6 +171,26 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
             var listaAbonacion = request.ListaAbonacion;
             if (listaAbonacion != null)
             {
+                XElement xmlAbonacion = new XElement("DocumentElement");
+                foreach (var itemabonacion in listaAbonacion)
+                {
+                    if (!(itemabonacion.IdAbono == 0 || itemabonacion.IdAbono == null))
+                    {
+                        XElement xmlDetalleAbonacion = new XElement("Abonacion",
+                        new XElement("IdAbonacion", itemabonacion.IdAbonacion)
+                        );
+                        xmlAbonacion.Add(xmlDetalleAbonacion);
+                    }                    
+                }
+
+                var xml_Abonacion = xmlAbonacion.ToString();
+                EliminarAbonacionListaEntity eliminarAbonacionListaEntity = new()
+                {
+                    XML_AbonacionLista = xml_Abonacion,
+                    UsuarioElimina = request.UsuarioModifica
+                };
+                await _actividadRepository.EliminarAbonacionListaAsync(eliminarAbonacionListaEntity);
+
                 foreach (var item in listaAbonacion)
                 {
                     if (item.IdAbono == 0 || item.IdAbono == null)
@@ -167,6 +237,25 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
             var listaFumigacionDetalle = request.ListaFumigacionDetalle;
             if (listaFumigacionDetalle != null)
             {
+                XElement xmlFumigacionDetalle = new XElement("DocumentElement");
+                foreach (var itemFumigacionDetalle in listaFumigacionDetalle)
+                {
+                    if (!(itemFumigacionDetalle.IdFumigacionDetalle == 0 || itemFumigacionDetalle.IdFumigacionDetalle == null))
+                    {
+                        XElement xmlDetalle_FumigacionDetalle = new XElement("FumigacionDetalle",
+                        new XElement("IdFumigacionDetalle", itemFumigacionDetalle.IdFumigacionDetalle)
+                        );
+                        xmlFumigacionDetalle.Add(xmlDetalle_FumigacionDetalle);
+                    }                    
+                }
+                var xml_FumigacionDetalle = xmlFumigacionDetalle.ToString();
+                EliminarFumigacionDetalleListaEntity eliminarFumigacionDetalleListaEntity = new()
+                {
+                    XML_FumigacionDetalleLista = xml_FumigacionDetalle,
+                    UsuarioElimina = request.UsuarioModifica
+                };
+                await _actividadRepository.EliminarFumigacionDetalleListaAsync(eliminarFumigacionDetalleListaEntity);
+
                 foreach (var item in listaFumigacionDetalle)
                 {
                     if (item.IdFumigacionDetalle == 0 || item.IdFumigacionDetalle == null)

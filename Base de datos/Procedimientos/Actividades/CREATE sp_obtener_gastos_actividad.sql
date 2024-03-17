@@ -18,5 +18,5 @@ BEGIN
 		,tg.nombre_tipoGasto		AS NombreTipoGasto
 	FROM GASTO_DETALLE gd
 	INNER JOIN TIPO_GASTO tg on tg.id_tipoGasto = gd.id_tipoGasto
-	WHERE gd.id_acti = @p_id_acti
+	WHERE gd.id_acti = @p_id_acti and gd.estado_gastoDet = 1
 END

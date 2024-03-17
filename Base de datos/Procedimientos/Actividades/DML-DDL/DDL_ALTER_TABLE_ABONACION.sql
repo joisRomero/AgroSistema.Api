@@ -1,0 +1,2 @@
+ALTER TABLE ABONACION
+ADD estado_abonaci INT NULL

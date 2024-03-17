@@ -4,8 +4,12 @@ using AgroSistema.Application.Combos.GetTipoActividadXUsuario;
 using AgroSistema.Application.Combos.GetTipoAgroquimico;
 using AgroSistema.Application.Combos.GetTipoGastoXUsuario;
 using AgroSistema.Application.Combos.GetTipoTrabajadorXUsuario;
+using AgroSistema.Application.Combos.GetUnidadAbonacion;
 using AgroSistema.Application.Combos.GetUnidadesCampania;
 using AgroSistema.Application.Combos.GetUnidadesCosecha;
+using AgroSistema.Application.Combos.GetUnidadFumigacion;
+using AgroSistema.Application.Combos.GetUnidadFumigacionDetalle;
+using AgroSistema.Application.Combos.GetUnidadSemilla;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -116,7 +120,7 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetUnidadAbonacionAsync([FromQuery] TipoAgroquimicoQuery query)
+        public async Task<IActionResult> GetUnidadAbonacionAsync([FromQuery] UnidadAbonacionQuery query)
         {
             var response = await Mediator.Send(query);
 
@@ -128,7 +132,7 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetUnidadFumigacionAsync([FromQuery] TipoAgroquimicoQuery query)
+        public async Task<IActionResult> GetUnidadFumigacionAsync([FromQuery] UnidadFumigacionQuery query)
         {
             var response = await Mediator.Send(query);
 
@@ -140,7 +144,7 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetUnidadFumigacionDetalleAsync([FromQuery] TipoAgroquimicoQuery query)
+        public async Task<IActionResult> GetUnidadFumigacionDetalleAsync([FromQuery] UnidadFumigacionDetalleQuery query)
         {
             var response = await Mediator.Send(query);
 
@@ -152,7 +156,7 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetUnidadSemillaAsync([FromQuery] TipoAgroquimicoQuery query)
+        public async Task<IActionResult> GetUnidadSemillaAsync([FromQuery] UnidadSemillaQuery query)
         {
             var response = await Mediator.Send(query);
 

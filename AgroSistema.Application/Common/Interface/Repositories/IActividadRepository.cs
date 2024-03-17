@@ -4,7 +4,12 @@ using AgroSistema.Domain.Entities.AgregarActividadTrabajadorGastosAsync;
 using AgroSistema.Domain.Entities.AgregarFumigacionDetalleAsync;
 using AgroSistema.Domain.Entities.AgregarGastoActividadAsync;
 using AgroSistema.Domain.Entities.AgregarTrabajadorActividadAsync;
+using AgroSistema.Domain.Entities.EliminarAbonacionListaAsync;
 using AgroSistema.Domain.Entities.EliminarActividadAsync;
+using AgroSistema.Domain.Entities.EliminarFumigacionDetalleListaAsync;
+using AgroSistema.Domain.Entities.EliminarGastoDetalleAsync;
+using AgroSistema.Domain.Entities.EliminarGastoDetalleListaAsync;
+using AgroSistema.Domain.Entities.EliminarTrabajadorListaAsync;
 using AgroSistema.Domain.Entities.ListaPaginadoActividadesAsync;
 using AgroSistema.Domain.Entities.ListarDetalleActividadAsync;
 using AgroSistema.Domain.Entities.ModificarAbonacionAsync;
@@ -41,5 +46,11 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task ModificarFumigacionAsync(ModificarFumigacionEntity modificarFumigacionEntity);
         Task AgregarFumigacionDetalleAsync(AgregarFumigacionDetalleEntity agregarFumigacionDetalleEntity);
         Task ModificarFumigacionDetalleAsync(ModificarFumigacionDetalleEntity modificarFumigacionDetalleEntity);
+        Task EliminarTrabajadorListaAsync(EliminarTrabajadorListaEntity eliminarTrabajadorListaEntity);
+        Task EliminarGastoDetalleListaAsync(EliminarGastoDetalleListaEntity eliminarGastoDetalleListaEntity);
+        Task EliminarAbonacionListaAsync(EliminarAbonacionListaEntity eliminarAbonacionListaEntity);
+        Task EliminarFumigacionDetalleListaAsync(EliminarFumigacionDetalleListaEntity eliminarFumigacionDetalleListaEntity);
+
+        
     }
 }

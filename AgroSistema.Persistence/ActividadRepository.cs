@@ -6,7 +6,12 @@ using AgroSistema.Domain.Entities.AgregarActividadTrabajadorGastosAsync;
 using AgroSistema.Domain.Entities.AgregarFumigacionDetalleAsync;
 using AgroSistema.Domain.Entities.AgregarGastoActividadAsync;
 using AgroSistema.Domain.Entities.AgregarTrabajadorActividadAsync;
+using AgroSistema.Domain.Entities.EliminarAbonacionListaAsync;
 using AgroSistema.Domain.Entities.EliminarActividadAsync;
+using AgroSistema.Domain.Entities.EliminarFumigacionDetalleListaAsync;
+using AgroSistema.Domain.Entities.EliminarGastoDetalleAsync;
+using AgroSistema.Domain.Entities.EliminarGastoDetalleListaAsync;
+using AgroSistema.Domain.Entities.EliminarTrabajadorListaAsync;
 using AgroSistema.Domain.Entities.ListaPaginadoActividadesAsync;
 using AgroSistema.Domain.Entities.ListarDetalleActividadAsync;
 using AgroSistema.Domain.Entities.ModificarAbonacionAsync;
@@ -413,6 +418,90 @@ namespace AgroSistema.Persistence
 
                 await cnn.ExecuteAsync(
                     "sp_modificar_fumigacion_detalle",
+                    param: parameters,
+                    commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task EliminarTrabajadorListaAsync(EliminarTrabajadorListaEntity eliminarTrabajadorListaEntity)
+        {
+            try
+            {
+                using var cnn = _database.GetConnection();
+
+                DynamicParameters parameters = new();
+                parameters.Add("@p_XML_ListaTrabajador", eliminarTrabajadorListaEntity.XML_TrabajadorLista);
+                parameters.Add("@p_usuarioElimina_trab", eliminarTrabajadorListaEntity.UsuarioElimina);
+
+                await cnn.ExecuteAsync(
+                    "sp_eliminar_listaTrabajador",
+                    param: parameters,
+                    commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task EliminarGastoDetalleListaAsync(EliminarGastoDetalleListaEntity eliminarGastoDetalleListaEntity)
+        {
+            try
+            {
+                using var cnn = _database.GetConnection();
+
+                DynamicParameters parameters = new();
+                parameters.Add("@p_XML_Gastos", eliminarGastoDetalleListaEntity.XML_GastoDetalleLista);
+                parameters.Add("@p_usuarioElimina_gastoDet", eliminarGastoDetalleListaEntity.UsuarioElimina);
+
+                await cnn.ExecuteAsync(
+                    "sp_eliminar_listaGastos",
+                    param: parameters,
+                    commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task EliminarAbonacionListaAsync(EliminarAbonacionListaEntity eliminarAbonacionListaEntity)
+        {
+            try
+            {
+                using var cnn = _database.GetConnection();
+
+                DynamicParameters parameters = new();
+                parameters.Add("@p_XML_Abonacion", eliminarAbonacionListaEntity.XML_AbonacionLista);
+                parameters.Add("@p_usuarioElimina_abonaci", eliminarAbonacionListaEntity.UsuarioElimina);
+
+                await cnn.ExecuteAsync(
+                    "sp_eliminar_listaAbonacion",
+                    param: parameters,
+                    commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task EliminarFumigacionDetalleListaAsync(EliminarFumigacionDetalleListaEntity eliminarFumigacionDetalleListaEntity)
+        {
+            try
+            {
+                using var cnn = _database.GetConnection();
+
+                DynamicParameters parameters = new();
+                parameters.Add("@p_XML_Fumigacion_Detalle", eliminarFumigacionDetalleListaEntity.XML_FumigacionDetalleLista);
+                parameters.Add("@p_usuarioElimina_fumiDet", eliminarFumigacionDetalleListaEntity.UsuarioElimina);
+
+                await cnn.ExecuteAsync(
+                    "sp_eliminar_listaFumigacionDetalle",
                     param: parameters,
                     commandType: CommandType.StoredProcedure);
             }
