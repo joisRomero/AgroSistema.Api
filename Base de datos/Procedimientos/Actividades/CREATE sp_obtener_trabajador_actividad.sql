@@ -17,5 +17,5 @@ BEGIN
 		,tt.descripcion_tipoTrab AS DescripcionTipoTrabajador
 	FROM TRABAJADOR t
 	INNER JOIN TIPO_TRABAJADOR tt on tt.id_tipoTrab = t.id_tipoTrab
-	WHERE t.id_acti = @p_id_acti
+	WHERE t.id_acti = @p_id_acti and t.estado_trab = 1
 END

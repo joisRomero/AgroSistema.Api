@@ -15,6 +15,6 @@ BEGIN
 		,a.id_abono AS IdAbono
 	FROM ABONACION a
 	LEFT JOIN DATO_COMUN dc on dc.codigoTabla = 4 AND dc.id_datoComun = a.unidadDatoComun
-	WHERE a.id_acti = @p_id_acti
+	WHERE a.id_acti = @p_id_acti AND a.estado_abonaci = 1
 END
 
