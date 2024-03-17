@@ -9,6 +9,7 @@ namespace AgroSistema.Domain.Entities.GetListaPaginadaCosechasAsync
     public class ListaPaginadaCosechasEntity
     {
         public int IdCampania { get; set; }
+        public DateTime? FechaCosecha { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
     }

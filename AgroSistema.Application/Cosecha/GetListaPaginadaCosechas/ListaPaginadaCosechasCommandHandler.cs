@@ -27,6 +27,7 @@ namespace AgroSistema.Application.Cosecha.GetListaPaginadaCosechas
             ListaPaginadaCosechasEntity entity = new()
             {
                 IdCampania = request.IdCampania,
+                FechaCosecha = request.FechaCosecha,
                 PageNumber = request.PageNumber,
                 PageSize = request.PageSize
             };
