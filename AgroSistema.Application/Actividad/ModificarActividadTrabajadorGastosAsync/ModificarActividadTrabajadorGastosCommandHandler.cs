@@ -67,7 +67,7 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
                 var xml_Trabajador = xmlTrabajador.ToString();
                 EliminarTrabajadorListaEntity eliminarTrabajadorListaEntity = new ()
                 {
-                    IdActividad = request.IdTipoActividad,
+                    IdActividad = request.IdActividad,
                     XML_TrabajadorLista = xml_Trabajador,
                     UsuarioElimina = request.UsuarioModifica
                 };
@@ -127,7 +127,7 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
                 var xml_GastosDetalle = xmlGastos.ToString();
                 EliminarGastoDetalleListaEntity eliminarGastoDetalleListaEntity = new()
                 {
-                    IdActividad = request.IdTipoActividad,
+                    IdActividad = request.IdActividad,
                     XML_GastoDetalleLista = xml_GastosDetalle,
                     UsuarioElimina = request.UsuarioModifica
                 };
@@ -188,7 +188,7 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
                 var xml_Abonacion = xmlAbonacion.ToString();
                 EliminarAbonacionListaEntity eliminarAbonacionListaEntity = new()
                 {
-                    IdActividad = request.IdTipoActividad,
+                    IdActividad = request.IdActividad,
                     XML_AbonacionLista = xml_Abonacion,
                     UsuarioElimina = request.UsuarioModifica
                 };
@@ -254,7 +254,7 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
                 var xml_FumigacionDetalle = xmlFumigacionDetalle.ToString();
                 EliminarFumigacionDetalleListaEntity eliminarFumigacionDetalleListaEntity = new()
                 {
-                    IdActividad = request.IdTipoActividad,
+                    IdActividad = request.IdActividad,
                     XML_FumigacionDetalleLista = xml_FumigacionDetalle,
                     UsuarioElimina = request.UsuarioModifica
                 };
