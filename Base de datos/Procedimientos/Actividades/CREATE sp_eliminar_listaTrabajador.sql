@@ -27,6 +27,6 @@ BEGIN
 		,t.usuarioElimina_trab = @p_usuarioElimina_trab
 		,t.fechaElimina_trab = dbo.GETDATENEW()
 	FROM TRABAJADOR t
-	WHERE t.id_acti NOT IN (SELECT IdTrabajador FROM #temp_TablaTrabajadores)
+	WHERE t.id_trab NOT IN (SELECT IdTrabajador FROM #temp_TablaTrabajadores)
 	
 END
