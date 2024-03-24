@@ -434,6 +434,7 @@ namespace AgroSistema.Persistence
                 using var cnn = _database.GetConnection();
 
                 DynamicParameters parameters = new();
+                parameters.Add("@p_id_acti", eliminarTrabajadorListaEntity.IdActividad);
                 parameters.Add("@p_XML_ListaTrabajador", eliminarTrabajadorListaEntity.XML_TrabajadorLista);
                 parameters.Add("@p_usuarioElimina_trab", eliminarTrabajadorListaEntity.UsuarioElimina);
 
@@ -455,6 +456,7 @@ namespace AgroSistema.Persistence
                 using var cnn = _database.GetConnection();
 
                 DynamicParameters parameters = new();
+                parameters.Add("@p_id_acti", eliminarGastoDetalleListaEntity.IdActividad);
                 parameters.Add("@p_XML_Gastos", eliminarGastoDetalleListaEntity.XML_GastoDetalleLista);
                 parameters.Add("@p_usuarioElimina_gastoDet", eliminarGastoDetalleListaEntity.UsuarioElimina);
 
@@ -476,6 +478,7 @@ namespace AgroSistema.Persistence
                 using var cnn = _database.GetConnection();
 
                 DynamicParameters parameters = new();
+                parameters.Add("@p_id_acti", eliminarAbonacionListaEntity.IdActividad);
                 parameters.Add("@p_XML_Abonacion", eliminarAbonacionListaEntity.XML_AbonacionLista);
                 parameters.Add("@p_usuarioElimina_abonaci", eliminarAbonacionListaEntity.UsuarioElimina);
 
@@ -497,6 +500,7 @@ namespace AgroSistema.Persistence
                 using var cnn = _database.GetConnection();
 
                 DynamicParameters parameters = new();
+                parameters.Add("@p_id_acti", eliminarFumigacionDetalleListaEntity.IdActividad);
                 parameters.Add("@p_XML_Fumigacion_Detalle", eliminarFumigacionDetalleListaEntity.XML_FumigacionDetalleLista);
                 parameters.Add("@p_usuarioElimina_fumiDet", eliminarFumigacionDetalleListaEntity.UsuarioElimina);
 

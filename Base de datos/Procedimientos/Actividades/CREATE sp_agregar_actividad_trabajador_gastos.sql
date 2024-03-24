@@ -134,6 +134,7 @@ BEGIN TRY
 			,id_tipoGasto
 			,id_acti
 			,id_camp
+			,estado_gastoDet
 			,usuarioInserta_gastoDet
 			,fechaInserta_gastoDet
 		)
@@ -146,6 +147,7 @@ BEGIN TRY
 			,IdTipoGasto
 			,@s_id_acti
 			,NULL
+			,1
 			,@p_usuarioInserta_acti
 			,dbo.GETDATENEW()
 		FROM #temp_TablaGastos

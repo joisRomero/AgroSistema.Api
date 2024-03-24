@@ -8,6 +8,7 @@ namespace AgroSistema.Domain.Entities.EliminarTrabajadorListaAsync
 {
     public class EliminarTrabajadorListaEntity
     {
+        public int? IdActividad { get; set; }
         public string? XML_TrabajadorLista { get; set; }
         public string? UsuarioElimina { get; set; }     
     }
