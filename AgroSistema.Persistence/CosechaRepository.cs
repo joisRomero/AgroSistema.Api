@@ -77,6 +77,20 @@ namespace AgroSistema.Persistence
                 commandType: CommandType.StoredProcedure);
         }
 
+        public async Task EliminarCosechaDetalle(int idCosechaDetalle, string usuarioElimina)
+        {
+            using var cnn = _database.GetConnection();
+
+            DynamicParameters parameters = new();
+            parameters.Add("@idCosechaDetalle", idCosechaDetalle);
+            parameters.Add("@usuarioElimina", usuarioElimina);
+
+            await cnn.ExecuteAsync(
+                "sp_EliminarCosechaDetalle",
+                param: parameters,
+                commandType: CommandType.StoredProcedure);
+        }
+
         public async Task<IEnumerable<DetalleCosechaDetalleEntity>> GetCosechaDetallePorIdAsync(int idCosecha)
         {
             using var cnn = _database.GetConnection();

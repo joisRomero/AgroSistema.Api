@@ -19,5 +19,6 @@ BEGIN
 		COSECHA_DETALLE
 	WHERE 
 		id_cose = @idCosecha
+		AND estado_coseDet = 1
 
 END

@@ -21,6 +21,6 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task EliminarCosecha(EliminarCosechaEntity eliminarCosechaEntity);
         Task<ObtenerCosechaEntity> GetCosechaPorIdAsync(int idCosecha);
         Task<IEnumerable<DetalleCosechaDetalleEntity>> GetCosechaDetallePorIdAsync(int idCosecha);
-
+        Task EliminarCosechaDetalle(int idCosechaDetalle, string usuarioElimina);
     }
 }
