@@ -8,6 +8,7 @@ namespace AgroSistema.Domain.Entities.EliminarGastoDetalleListaAsync
 {
     public class EliminarGastoDetalleListaEntity
     {
+        public int? IdActividad { get; set; }
         public string? XML_GastoDetalleLista { get; set; }
         public string? UsuarioElimina { get; set; }
     }

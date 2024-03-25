@@ -24,6 +24,7 @@ BEGIN TRY
 			,id_tipoGasto
 			,id_acti
 			,id_camp
+			,estado_gastoDet
 			,usuarioInserta_gastoDet
 			,fechaInserta_gastoDet
 		)
@@ -36,6 +37,7 @@ BEGIN TRY
 			,@p_id_tipoGasto
 			,@p_id_acti
 			,NULL
+			,1
 			,@p_usuarioInserta_gastoDet
 			,GETDATE()
 		)

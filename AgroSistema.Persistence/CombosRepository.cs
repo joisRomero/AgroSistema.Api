@@ -1,5 +1,7 @@
 ﻿using AgroSistema.Application.Common.Interface;
 using AgroSistema.Application.Common.Interface.Repositories;
+using AgroSistema.Domain.Entities.GetAbonoUsuarioAsync;
+using AgroSistema.Domain.Entities.GetAgroquimicoUsuarioAsync;
 using AgroSistema.Domain.Entities.GetCalidadesCosechaAsync;
 using AgroSistema.Domain.Entities.GetCultivosUsuarioaAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCosechasAsync;
@@ -139,6 +141,28 @@ namespace AgroSistema.Persistence
             using var cnn = _database.GetConnection();
             var response = await cnn.QueryAsync<UnidadSemillaEntity>("sp_combo_unidad_semilla",
                                     commandTimeout: 0, commandType: CommandType.StoredProcedure);
+            return response;
+        }
+
+        public async Task<IEnumerable<AbonoUsuarioEntity>> GetAbonoUsuarioAsync(int idUsuario)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@p_id_usu", idUsuario);
+
+            var response = await cnn.QueryAsync<AbonoUsuarioEntity>("sp_combo_abono_x_usuario",
+                                    parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
+            return response;
+        }
+
+        public async Task<IEnumerable<AgroquimicoUsuarioEntity>> GetAgroquimicoUsuarioAsync(int idUsuario)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@p_id_usu", idUsuario);
+
+            var response = await cnn.QueryAsync<AgroquimicoUsuarioEntity>("sp_combo_agroquimico_x_usuario",
+                                    parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
             return response;
         }
     }

@@ -8,6 +8,7 @@ namespace AgroSistema.Domain.Entities.EliminarAbonacionListaAsync
 {
     public class EliminarAbonacionListaEntity
     {
+        public int? IdActividad { get; set; }
         public string? XML_AbonacionLista { get; set; }
         public string? UsuarioElimina { get; set; }
     }

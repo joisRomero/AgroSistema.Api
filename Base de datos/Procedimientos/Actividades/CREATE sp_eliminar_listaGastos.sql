@@ -3,7 +3,8 @@ IF EXISTS (SELECT * FROM sys.objects WHERE TYPE = 'P' AND name = 'sp_eliminar_li
 GO
 
 CREATE PROCEDURE sp_eliminar_listaGastos(
-	@p_XML_Gastos XML
+	@p_id_acti INT
+	,@p_XML_Gastos XML
 	,@p_usuarioElimina_gastoDet VARCHAR(50)
 )
 AS
@@ -26,5 +27,5 @@ BEGIN
 			,gd.fechaElimina_gastoDet = dbo.GETDATENEW()
 	FROM GASTO_DETALLE gd
 	WHERE gd.id_gastoDet NOT IN (SELECT IdGasto FROM #temp_TablaGastos)
-
+	AND gd.id_acti = @p_id_acti
 END

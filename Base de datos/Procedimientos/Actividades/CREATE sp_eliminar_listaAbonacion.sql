@@ -3,7 +3,8 @@ IF EXISTS (SELECT * FROM sys.objects WHERE TYPE = 'P' AND name = 'sp_eliminar_li
 GO
 
 CREATE PROCEDURE sp_eliminar_listaAbonacion(
-	@p_XML_Abonacion XML NULL
+	@p_id_acti INT
+	,@p_XML_Abonacion XML NULL
 	,@p_usuarioElimina_abonaci VARCHAR(50)
 )
 AS
@@ -26,4 +27,5 @@ BEGIN
 			,a.fechaElimina_abonaci = dbo.GETDATENEW()
 	FROM ABONACION a 
 	WHERE a.id_abonaci NOT IN (SELECT IdAbonacion FROM #temp_TablaAbonacion)
+	AND a.id_acti = @p_id_acti
 END

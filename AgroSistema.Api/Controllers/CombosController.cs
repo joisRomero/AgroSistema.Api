@@ -1,4 +1,6 @@
-﻿using AgroSistema.Application.Combos.GetCalidadesCosecha;
+﻿using AgroSistema.Application.Combos.GetAbonoUsuarioAsync;
+using AgroSistema.Application.Combos.GetAgroquimicoUsuarioAsync;
+using AgroSistema.Application.Combos.GetCalidadesCosecha;
 using AgroSistema.Application.Combos.GetCultivosUsuario;
 using AgroSistema.Application.Combos.GetTipoActividadXUsuario;
 using AgroSistema.Application.Combos.GetTipoAgroquimico;
@@ -157,6 +159,28 @@ namespace AgroSistema.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetUnidadSemillaAsync([FromQuery] UnidadSemillaQuery query)
+        {
+            var response = await Mediator.Send(query);
+
+            return Ok(response);
+        }
+        [HttpGet]
+        [Route("obtenerAbonoUsuario")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetAbonoUsuarioAsync([FromQuery] GetAbonoUsuarioQuery query)
+        {
+            var response = await Mediator.Send(query);
+
+            return Ok(response);
+        }
+        [HttpGet]
+        [Route("obtenerAgroquimicoUsuario")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetAgroquimicoUsuarioAsync([FromQuery] GetAgroquimicoUsuarioQuery query)
         {
             var response = await Mediator.Send(query);
 

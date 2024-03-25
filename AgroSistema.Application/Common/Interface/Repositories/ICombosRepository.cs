@@ -1,4 +1,6 @@
-﻿using AgroSistema.Domain.Entities.GetCalidadesCosechaAsync;
+﻿using AgroSistema.Domain.Entities.GetAbonoUsuarioAsync;
+using AgroSistema.Domain.Entities.GetAgroquimicoUsuarioAsync;
+using AgroSistema.Domain.Entities.GetCalidadesCosechaAsync;
 using AgroSistema.Domain.Entities.GetCultivosUsuarioaAsync;
 using AgroSistema.Domain.Entities.GetTipoActividadXUsuarioAsync;
 using AgroSistema.Domain.Entities.GetTipoAgroquimicoAsync;
@@ -32,6 +34,8 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task<IEnumerable<UnidadFumigacionEntity>> GetUnidadFumigacionAsync();
         Task<IEnumerable<UnidadFumigacionDetalleEntity>> GetUnidadFumigacionDetalleAsync();
         Task<IEnumerable<UnidadSemillaEntity>> GetUnidadSemillaAsync();
+        Task<IEnumerable<AbonoUsuarioEntity>> GetAbonoUsuarioAsync(int idUsuario);
+        Task<IEnumerable<AgroquimicoUsuarioEntity>> GetAgroquimicoUsuarioAsync(int idUsuario);
 
     }
 }

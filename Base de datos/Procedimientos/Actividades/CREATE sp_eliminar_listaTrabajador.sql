@@ -3,7 +3,8 @@ IF EXISTS (SELECT * FROM sys.objects WHERE TYPE = 'P' AND name = 'sp_eliminar_li
 GO
 
 CREATE PROCEDURE sp_eliminar_listaTrabajador(
-	@p_XML_ListaTrabajador	XML	NULL
+	@p_id_acti INT
+	,@p_XML_ListaTrabajador	XML	NULL
 	,@p_usuarioElimina_trab VARCHAR(50)
 )
 AS
@@ -27,6 +28,6 @@ BEGIN
 		,t.usuarioElimina_trab = @p_usuarioElimina_trab
 		,t.fechaElimina_trab = dbo.GETDATENEW()
 	FROM TRABAJADOR t
-	WHERE t.id_acti NOT IN (SELECT IdTrabajador FROM #temp_TablaTrabajadores)
-	
+	WHERE t.id_trab NOT IN (SELECT IdTrabajador FROM #temp_TablaTrabajadores)
+	AND t.id_acti = @p_id_acti
 END
