@@ -12,5 +12,6 @@ namespace AgroSistema.Domain.Entities.AgregarFumigacionDetalleAsync
         public int? CantidadFumigacionDetalle { get; set; }
         public int? UnidadFumigacionDetalle { get; set; }
         public string? UsuarioInserta { get; set; }
+        public int? IdAgroquimico { get; set; }
     }
 }

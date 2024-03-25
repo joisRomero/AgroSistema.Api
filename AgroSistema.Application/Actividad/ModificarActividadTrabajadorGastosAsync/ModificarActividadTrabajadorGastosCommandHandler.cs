@@ -226,6 +226,7 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
 
             var cantidadFumigacion = request.CantidadFumigacion;
             var unidadFumigacion = request.UnidadFumigacion;
+            var idFumigacion = 0;
             if ((cantidadFumigacion != 0 || cantidadFumigacion != null) && (unidadFumigacion != 0 || unidadFumigacion != null))
             {
                 ModificarFumigacionEntity modificarFumigacionEntity = new()
@@ -236,10 +237,12 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
                     UsuarioModifica = request.UsuarioModifica
                 };
                 await _actividadRepository.ModificarFumigacionAsync(modificarFumigacionEntity);
+                
             }
             var listaFumigacionDetalle = request.ListaFumigacionDetalle;
             if (listaFumigacionDetalle != null)
             {
+                idFumigacion = await _actividadRepository.ObtenerIdFumigacionXActividad(request.IdActividad);
                 XElement xmlFumigacionDetalle = new XElement("DocumentElement");
                 foreach (var itemFumigacionDetalle in listaFumigacionDetalle)
                 {
@@ -266,8 +269,9 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
                     {
                         AgregarFumigacionDetalleEntity agregarFumigacionDetalleEntity = new()
                         {
-                            IdFumigacion = item.IdFumigacionDetalle,
+                            IdFumigacion = idFumigacion,
                             CantidadFumigacionDetalle = item.CantidadFumigacionDetalle,
+                            IdAgroquimico = item.IdAgroquimico,
                             UnidadFumigacionDetalle = item.UnidadFumigacionDetalle,
                             UsuarioInserta = request.UsuarioModifica
                         };
@@ -279,6 +283,7 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
                         {
                             IdFumigacionDetalle = item.IdFumigacionDetalle,
                             CantidadFumigacionDetalle = item.CantidadFumigacionDetalle,
+                            IdAgroquimico = item.IdAgroquimico,
                             UnidadFumigacionDetalle = item.UnidadFumigacionDetalle,
                             UsuarioModifica = request.UsuarioModifica
                         };
@@ -286,10 +291,6 @@ namespace AgroSistema.Application.Actividad.ModificarActividadTrabajadorGastosAs
                     }
                 }
             }
-
-
-
-
 
             return Unit.Value;
         }

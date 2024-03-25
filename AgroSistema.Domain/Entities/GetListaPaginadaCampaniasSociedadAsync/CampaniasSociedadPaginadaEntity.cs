@@ -19,5 +19,7 @@ namespace AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync
         public bool Estado { get; set; }
         public decimal AreaSembrar { get; set; }
         public string? Unidad { get; set; }
+        public string? EstadoProceso { get; set; }
+        public string? EstadoDescripcionProceso { get; set; }
     }
 }

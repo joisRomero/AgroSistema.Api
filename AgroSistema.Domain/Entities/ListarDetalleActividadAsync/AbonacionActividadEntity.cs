@@ -13,5 +13,6 @@ namespace AgroSistema.Domain.Entities.ListarDetalleActividadAsync
         public int UnidadDatoComunAbonacion { get; set; }
         public string? UnidadDescripcionAbonacion { get; set; }
         public int IdAbono { get; set; }
+        public string? DescripcionAbono { get; set; }
     }
 }

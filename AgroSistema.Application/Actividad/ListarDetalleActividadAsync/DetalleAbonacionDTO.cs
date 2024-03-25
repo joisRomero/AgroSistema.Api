@@ -16,6 +16,7 @@ namespace AgroSistema.Application.Actividad.ListarDetalleActividadAsync
         public int UnidadDatoComunAbonacion { get; set; }
         public string? UnidadDescripcionAbonacion { get; set; }
         public int IdAbono { get; set; }
+        public string? DescripcionAbono { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<AbonacionActividadEntity, DetalleAbonacionDTO>();
