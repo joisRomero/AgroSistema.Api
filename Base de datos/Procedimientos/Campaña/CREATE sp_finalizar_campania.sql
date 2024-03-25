@@ -5,7 +5,7 @@ GO
 CREATE PROCEDURE sp_finalizar_campania
 (
 	@p_id_camp						int
-	,@p_fechaFin_camp				varchar(20)
+	,@p_fechaFin_camp				datetime
 	,@p_usuarioModifica_camp		varchar(50)
 )
 AS
@@ -20,7 +20,7 @@ BEGIN
 		UPDATE CAMPANIA
 		SET 
 		fechaFin_camp				= @s_fechaFin_camp
-		,estado_camp				= 'T'
+		,estado_proceso_camp				= 'T'
 		,usuarioModifica_camp		= @p_usuarioModifica_camp
 		,fechaModifica_camp			= GETDATE()
 		WHERE id_camp = @p_id_camp
