@@ -13,5 +13,7 @@ namespace AgroSistema.Domain.Entities.ListarCosechaDetalleAsync
         public int Unidad { get; set; }
         public int Calidad { get; set; }
         public string? Descripcion { get; set; }
+        public string? UnidadDescripcion { get; set; }
+        public string? CalidadDescripcion { get; set; }
     }
 }
