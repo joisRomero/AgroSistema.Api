@@ -50,6 +50,7 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task EliminarGastoDetalleListaAsync(EliminarGastoDetalleListaEntity eliminarGastoDetalleListaEntity);
         Task EliminarAbonacionListaAsync(EliminarAbonacionListaEntity eliminarAbonacionListaEntity);
         Task EliminarFumigacionDetalleListaAsync(EliminarFumigacionDetalleListaEntity eliminarFumigacionDetalleListaEntity);
+        Task<int> ObtenerIdFumigacionXActividad(int? idActividad);
 
         
     }

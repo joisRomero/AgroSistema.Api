@@ -390,6 +390,7 @@ namespace AgroSistema.Persistence
                 DynamicParameters parameters = new();
                 parameters.Add("@p_id_fum", agregarFumigacionDetalleEntity.IdFumigacion);
                 parameters.Add("@p_cantidad_fumiDet", agregarFumigacionDetalleEntity.CantidadFumigacionDetalle);
+                parameters.Add("@p_id_agroqui", agregarFumigacionDetalleEntity.IdAgroquimico);
                 parameters.Add("@p_unidadDatoComun_fumiDet", agregarFumigacionDetalleEntity.UnidadFumigacionDetalle);
                 parameters.Add("@p_usuarioInserta_fumiDet", agregarFumigacionDetalleEntity.UsuarioInserta);
 
@@ -413,6 +414,7 @@ namespace AgroSistema.Persistence
                 DynamicParameters parameters = new();
                 parameters.Add("@p_id_fumiDet", modificarFumigacionDetalleEntity.IdFumigacionDetalle);
                 parameters.Add("@p_cantidad_fumiDet", modificarFumigacionDetalleEntity.CantidadFumigacionDetalle);
+                parameters.Add("@p_id_agroqui", modificarFumigacionDetalleEntity.IdAgroquimico);
                 parameters.Add("@p_unidadDatoComun_fumiDet", modificarFumigacionDetalleEntity.UnidadFumigacionDetalle);
                 parameters.Add("@p_usuarioModifica_fumiDet", modificarFumigacionDetalleEntity.UsuarioModifica);
 
@@ -513,6 +515,22 @@ namespace AgroSistema.Persistence
             {
                 throw;
             }
+        }
+
+        public async Task<int> ObtenerIdFumigacionXActividad(int? idActividad)
+        {
+            using var cnn = _database.GetConnection();
+            DynamicParameters parameters = new();
+            parameters.Add("@p_id_acti", idActividad);
+
+            var response = await cnn.QueryAsync<int>("sp_obtener_id_fumigacion",
+                                                        parameters,
+                                                        commandTimeout: 0,
+
+                                                        commandType: CommandType.StoredProcedure);
+
+            var result = response.First();
+            return result;
         }
     }
 }

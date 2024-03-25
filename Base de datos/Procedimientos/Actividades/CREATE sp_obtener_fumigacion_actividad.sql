@@ -13,8 +13,9 @@ BEGIN
 		,fd.unidadDatoComun_fumiDet AS UnidadDatoComunFumigacionDetalle
 		,dc.descripcionCorta AS UnidadDescripcionFumigacionDetalle
 		,fd.id_agroqui AS IdAgroQuimico
-		
+		,ag.descripcion_agroqui AS DescripcionAgroquimico
 	FROM FUMIGACION_DETALLE fd
+	LEFT JOIN AGROQUIMICO ag on ag.id_agroqui = fd.id_agroqui
 	LEFT JOIN DATO_COMUN dc on dc.codigoTabla = 6 AND dc.id_datoComun = fd.unidadDatoComun_fumiDet
 	WHERE fd.id_fumi = @p_id_fumi
 END

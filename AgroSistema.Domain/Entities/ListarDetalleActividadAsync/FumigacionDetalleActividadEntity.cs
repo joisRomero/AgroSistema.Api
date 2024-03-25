@@ -13,5 +13,6 @@ namespace AgroSistema.Domain.Entities.ListarDetalleActividadAsync
         public int UnidadDatoComunFumigacionDetalle { get; set; }
         public string? UnidadDescripcionFumigacionDetalle { get; set; }
         public int IdAgroQuimico { get; set; }
+        public string? DescripcionAgroquimico { get; set; }
     }
 }
