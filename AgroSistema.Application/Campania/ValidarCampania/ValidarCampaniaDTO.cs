@@ -9,5 +9,6 @@ namespace AgroSistema.Application.Campania.ValidarCampania
     public class ValidarCampaniaDTO
     {
         public string? NombreCampania { get; set; }
+        public string? EstadoProceso { get; set; }
     }
 }

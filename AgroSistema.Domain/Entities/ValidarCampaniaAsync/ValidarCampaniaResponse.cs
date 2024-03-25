@@ -10,5 +10,6 @@ namespace AgroSistema.Domain.Entities.ValidarCampaniaAsync
     {
         public int Respuesta { get; set; }
         public string? NombreCampania { get; set; }
+        public string? EstadoProceso { get; set; }
     }
 }

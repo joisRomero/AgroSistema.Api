@@ -42,7 +42,7 @@ namespace AgroSistema.Application.Campania.ValidarCampania
                 throw new BadRequestException(_mensajesUsuario.FirstOrDefault(m => m.Codigo == "000009"));
             }
 
-            return new ValidarCampaniaDTO() { NombreCampania = respuesta.NombreCampania};
+            return new ValidarCampaniaDTO() { NombreCampania = respuesta.NombreCampania, EstadoProceso = respuesta.EstadoProceso};
         }
     }
 }
