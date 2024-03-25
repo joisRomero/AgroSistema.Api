@@ -20,6 +20,7 @@ BEGIN
 		UPDATE CAMPANIA
 		SET 
 		fechaFin_camp				= @s_fechaFin_camp
+		,estado_camp				= 'T'
 		,usuarioModifica_camp		= @p_usuarioModifica_camp
 		,fechaModifica_camp			= GETDATE()
 		WHERE id_camp = @p_id_camp

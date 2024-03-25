@@ -8,6 +8,7 @@ namespace AgroSistema.Domain.Entities.ListarDetalleActividadAsync
 {
     public class FumigacionDetalleActividadEntity
     {
+        public int IdFumigacionDetalle { get; set; }
         public int CantidadFumigacionDetalle { get; set; }
         public int UnidadDatoComunFumigacionDetalle { get; set; }
         public string? UnidadDescripcionFumigacionDetalle { get; set; }

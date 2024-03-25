@@ -8,7 +8,8 @@ CREATE PROCEDURE sp_obtener_fumigacion_actividad(
 AS
 BEGIN
 	SELECT
-		fd.cantidad_fumiDet as CantidadFumigacionDetalle
+		fd.id_fumiDet AS IdFumigacionDetalle
+		,fd.cantidad_fumiDet as CantidadFumigacionDetalle
 		,fd.unidadDatoComun_fumiDet AS UnidadDatoComunFumigacionDetalle
 		,dc.descripcionCorta AS UnidadDescripcionFumigacionDetalle
 		,fd.id_agroqui AS IdAgroQuimico

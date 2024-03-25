@@ -13,6 +13,7 @@ namespace AgroSistema.Domain.Entities.ListaPaginadoActividadesAsync
         public DateTime FechaActividad { get; set; }
         public string? DescripcionActividad { get; set; }
         public string? NombreTipoActividad { get; set; }
+        public decimal TotalGasto { get; set; }
         public int TotalRows { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using AgroSistema.Domain.Entities.EliminarCampaniaAsync;
 using AgroSistema.Domain.Entities.FinalizarCampaniaAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasUsuarioAsync;
 using AgroSistema.Domain.Entities.ObtenerCampaniaEntity;
+using AgroSistema.Domain.Entities.ReabrirCampaniaAsync;
 using AgroSistema.Domain.Entities.RegistrarCampaniaAsync;
 using AgroSistema.Domain.Entities.ValidarCampaniaAsync;
 using System;
@@ -23,6 +24,7 @@ namespace AgroSistema.Application.Common.Interface.Repositories
         Task EliminarCampaniaAsync(EliminarCampaniaEntity eliminarCampaniaEntity);
         Task FinalizarCampaniaAsync(FinalizarCampaniaEntity finalizarCampaniaEntity);
         Task<ObtenerCampaniaEntity> ObtenerCampaniaAsync(int idCampania);
+        Task ReabrirCampaniaAsync(ReabrirCampaniaEntity reabrirCampaniaEntity);
 
     }
 }

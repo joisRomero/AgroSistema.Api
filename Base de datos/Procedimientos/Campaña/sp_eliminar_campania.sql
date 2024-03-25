@@ -12,6 +12,7 @@ BEGIN
 
 	UPDATE CAMPANIA
 	SET estado_camp				= 0
+	,estado_proceso_camp		= 'E'
 	,usuarioElimina_camp		= @p_usuarioElimina_camp
 	,fechaElimina_camp			= GETDATE()
 	WHERE id_camp = @p_id_camp

@@ -43,18 +43,48 @@ BEGIN
 	AND (a.fecha_acti = @p_fecha_acti OR ISNULL(@p_fecha_acti,'') = '')
 	AND	((ta.nombre_tipoActi LIKE '%'+ @p_nombre_tipoActi +'%') OR ISNULL(@p_nombre_tipoActi,'') = '')
 	AND a.estado_acti = 1
-	ORDER BY a.fecha_acti desc
+	ORDER BY a.fecha_acti asc
 
-	;WITH
+	;WITH TotalCostoTrabajador 
+	AS (
+		SELECT 
+			a.id_acti,
+			CONVERT(DECIMAL(18,2),SUM(t.costoTotal_trab)) AS totalCosto_GastoTrabajador
+		FROM TRABAJADOR t
+		LEFT JOIN #temp_TablaListaActividadPaginado a ON a.id_acti = t.id_acti 
+		WHERE t.estado_trab = 1
+		GROUP BY a.id_acti
+	),
+	TotalCostoGastoDetalle 
+	AS (
+		SELECT 
+			a.id_acti,
+			CONVERT(DECIMAL(18,2),SUM(gd.costoTotal_gastoDet)) AS total_costo_GastoDetalle
+		FROM GASTO_DETALLE gd
+		LEFT JOIN #temp_TablaListaActividadPaginado a ON a.id_acti = gd.id_acti
+		WHERE gd.estado_gastoDet = 1
+		GROUP BY a.id_acti
+	),
+	TotalesGastos AS 
+	(
+		SELECT 
+			tct.id_acti
+			,tct.totalCosto_GastoTrabajador
+			,cgd.total_costo_GastoDetalle
+		FROM TotalCostoTrabajador tct
+		LEFT JOIN TotalCostoGastoDetalle cgd on cgd.id_acti = tct.id_acti
+	),
 	tablaFiltrada
 	AS(
 		SELECT 
-			ROW_NUMBER() OVER( ORDER BY id_acti DESC) AS Correlativo
-			,id_acti 
-			,fecha_acti
-			,descripcion_acti
-			,nombre_tipoActi
-		FROM #temp_TablaListaActividadPaginado
+			ROW_NUMBER() OVER( ORDER BY tap.id_acti DESC) AS Correlativo
+			,tap.id_acti 
+			,tap.fecha_acti
+			,tap.descripcion_acti
+			,tap.nombre_tipoActi
+			,CONVERT(DECIMAL(18,2),(tg.total_costo_GastoDetalle+tg.totalCosto_GastoTrabajador)) AS TotalGasto
+		FROM #temp_TablaListaActividadPaginado tap
+		LEFT JOIN TotalesGastos tg on tg.id_acti = tap.id_acti
 	)
 	SELECT TOP(@pageSize)
 		Correlativo
@@ -62,8 +92,8 @@ BEGIN
 		,fecha_acti as FechaActividad
 		,descripcion_acti AS DescripcionActividad
 		,nombre_tipoActi AS NombreTipoActividad
+		,ISNULL(TotalGasto,0) AS TotalGasto
 		,@s_CantidadReg AS TotalRows
 	FROM tablaFiltrada
 	WHERE Correlativo > @offset
-
 END

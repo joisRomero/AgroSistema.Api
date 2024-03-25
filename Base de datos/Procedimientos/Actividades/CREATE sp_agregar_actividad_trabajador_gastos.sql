@@ -76,7 +76,7 @@ BEGIN TRY
 	INTO #temp_TablaFumigacionDetalle
 	FROM @s_XML_Fumigacion_Detalle.nodes('/DocumentElement/FumigacionDetalle') AS TEMPTABLE(TD)
 
-	BEGIN TRANSACTION
+	
 		INSERT INTO ACTIVIDAD(
 			fecha_acti
 			,descripcion_acti
@@ -100,9 +100,11 @@ BEGIN TRY
 			,@p_usuarioInserta_acti
 			,dbo.GETDATENEW()
 		)
-		SET @s_id_acti = (SELECT @@IDENTITY);
+		SET @s_id_acti = SCOPE_IDENTITY();
 
-		INSERT INTO TRABAJADOR(
+		IF EXISTS(SELECT COUNT(*) FROM #temp_TablaTrabajadores)
+		BEGIN
+			INSERT INTO TRABAJADOR(
 			descripcion_trab
 			,cantidad_trab
 			,costoUnitario_trab
@@ -112,20 +114,23 @@ BEGIN TRY
 			,estado_trab
 			,usuarioInserta_trab
 			,fechaInserta_trab
-		)
-		SELECT
-			DescripcionTrabajador
-			,CantidadTrabajador
-			,CostoUnitario
-			,CostoTotal
-			,@s_id_acti
-			,IdTipoTrabajador
-			,1
-			,@p_usuarioInserta_acti
-			,dbo.GETDATENEW()
-		FROM #temp_TablaTrabajadores
-
-		INSERT INTO GASTO_DETALLE(
+			)
+			SELECT
+				DescripcionTrabajador
+				,CantidadTrabajador
+				,CostoUnitario
+				,CostoTotal
+				,@s_id_acti
+				,IdTipoTrabajador
+				,1
+				,@p_usuarioInserta_acti
+				,dbo.GETDATENEW()
+			FROM #temp_TablaTrabajadores
+		END
+		
+		IF EXISTS(SELECT COUNT(*) FROM #temp_TablaGastos)
+		BEGIN
+			INSERT INTO GASTO_DETALLE(
 			descripcion_gastoDet
 			,cantidad_gastoDet
 			,costoUnitario_gastoDet
@@ -137,26 +142,25 @@ BEGIN TRY
 			,estado_gastoDet
 			,usuarioInserta_gastoDet
 			,fechaInserta_gastoDet
-		)
-		SELECT
-			DescripcionGasto
-			,CantidadGasto
-			,CostoUnitario
-			,CostoTotal
-			,@p_fecha_acti
-			,IdTipoGasto
-			,@s_id_acti
-			,NULL
-			,1
-			,@p_usuarioInserta_acti
-			,dbo.GETDATENEW()
-		FROM #temp_TablaGastos
-
-	COMMIT TRANSACTION
-
-	BEGIN TRANSACTION
-
-		INSERT INTO ABONACION(
+			)
+			SELECT
+				DescripcionGasto
+				,CantidadGasto
+				,CostoUnitario
+				,CostoTotal
+				,@p_fecha_acti
+				,IdTipoGasto
+				,@s_id_acti
+				,NULL
+				,1
+				,@p_usuarioInserta_acti
+				,dbo.GETDATENEW()
+			FROM #temp_TablaGastos
+		END
+		
+		IF EXISTS(SELECT COUNT(*) FROM #temp_TablaAbonacion)
+		BEGIN
+			INSERT INTO ABONACION(
 			cantidad_abonaci
 			,unidadDatoComun
 			,id_abono
@@ -164,55 +168,58 @@ BEGIN TRY
 			,estado_abonaci
 			,usuarioInserta_abonaci
 			,fechaInserta_abonaci
-		)
-		SELECT
-			CantidadAbonacion
-			,UnidadDcAbonacion
-			,IdAbono
-			,@s_id_acti
-			,1
-			,@p_usuarioInserta_acti
-			,dbo.GETDATENEW()
-		FROM #temp_TablaAbonacion
+			)
+			SELECT
+				CantidadAbonacion
+				,UnidadDcAbonacion
+				,IdAbono
+				,@s_id_acti
+				,1
+				,@p_usuarioInserta_acti
+				,dbo.GETDATENEW()
+			FROM #temp_TablaAbonacion
+		END
+		
+		IF(@p_cantidad_fumi != 0 OR @p_cantidad_fumi IS NOT NULL)
+			BEGIN
+				INSERT INTO FUMIGACION(
+				cantidad_fumi
+				,unidadDatoComun_fumi
+				,estado_fumi
+				,id_acti
+				,usuarioInserta_fumi
+				,fechaInserta_fumi
+			)
+			VALUES(
+				@p_cantidad_fumi
+				,@p_unidadDatoComun_fumi
+				,1
+				,@s_id_acti
+				,@p_usuarioInserta_acti
+				,dbo.GETDATENEW()
+			)
+			SET @s_id_fumi = SCOPE_IDENTITY();
+			PRINT @s_id_fumi
+			INSERT INTO FUMIGACION_DETALLE(
+				cantidad_fumiDet
+				,unidadDatoComun_fumiDet
+				,id_fumi
+				,id_agroqui
+				,estado_fumiDet
+				,usuarioInserta_fumiDet
+				,fechaInserta_fumiDet
+			)
+			SELECT
+				CantidadFumigacionDetalle
+				,UnidadDcFumigacionDetalle
+				,@s_id_fumi
+				,IdAgroquimico
+				,1
+				,@p_usuarioInserta_acti
+				,dbo.GETDATENEW()
+			FROM #temp_TablaFumigacionDetalle
 
-		INSERT INTO FUMIGACION(
-			cantidad_fumi
-			,unidadDatoComun_fumi
-			,estado_fumi
-			,id_acti
-			,usuarioInserta_fumi
-			,fechaInserta_fumi
-		)
-		VALUES(
-			@p_cantidad_fumi
-			,@p_unidadDatoComun_fumi
-			,1
-			,@s_id_acti
-			,@p_usuarioInserta_acti
-			,dbo.GETDATENEW()
-		)
-		SET @s_id_fumi = (SELECT @@IDENTITY);
-
-		INSERT INTO FUMIGACION_DETALLE(
-			cantidad_fumiDet
-			,unidadDatoComun_fumiDet
-			,id_fumi
-			,id_agroqui
-			,estado_fumiDet
-			,usuarioInserta_fumiDet
-			,fechaInserta_fumiDet
-		)
-		SELECT
-			CantidadFumigacionDetalle
-			,UnidadDcFumigacionDetalle
-			,@s_id_fumi
-			,IdAgroquimico
-			,1
-			,@p_usuarioInserta_acti
-			,dbo.GETDATENEW()
-		FROM #temp_TablaFumigacionDetalle
-	COMMIT TRANSACTION
-
+		END
 END TRY
 BEGIN CATCH
 	IF XACT_STATE() <> 0

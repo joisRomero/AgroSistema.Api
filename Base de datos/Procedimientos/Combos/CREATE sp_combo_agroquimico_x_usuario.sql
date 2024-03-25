@@ -8,8 +8,8 @@ CREATE PROCEDURE sp_combo_agroquimico_x_usuario(
 AS
 BEGIN
 	SELECT
-		ag.id_agroqui
-		,ag.nombre_agroqui
+		ag.id_agroqui AS IdAgroquimico
+		,ag.nombre_agroqui AS NombreAgroquimico
 	FROM AGROQUIMICO ag
 	WHERE ag.id_usu = @p_id_usu
 END	

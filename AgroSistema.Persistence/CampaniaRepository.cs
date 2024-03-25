@@ -8,6 +8,7 @@ using AgroSistema.Domain.Entities.FinalizarCampaniaAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasSociedadAsync;
 using AgroSistema.Domain.Entities.GetListaPaginadaCampaniasUsuarioAsync;
 using AgroSistema.Domain.Entities.ObtenerCampaniaEntity;
+using AgroSistema.Domain.Entities.ReabrirCampaniaAsync;
 using AgroSistema.Domain.Entities.RegistrarCampaniaAsync;
 using AgroSistema.Domain.Entities.ValidarCampaniaAsync;
 using AgroSistema.Persistence.DataBase;
@@ -144,6 +145,20 @@ namespace AgroSistema.Persistence
             var response = await cnn.QueryAsync<ObtenerCampaniaEntity>("sp_ObtenerCampaniaPorId", parameters, commandTimeout: 0, commandType: CommandType.StoredProcedure);
             response.First();
             return response.First();
+        }
+
+        public async Task ReabrirCampaniaAsync(ReabrirCampaniaEntity reabrirCampaniaEntity)
+        {
+            using var cnn = _database.GetConnection();
+
+            DynamicParameters parameters = new();
+            parameters.Add("@p_id_camp", reabrirCampaniaEntity.IdCampania);
+            parameters.Add("@p_usuarioModifica_camp", reabrirCampaniaEntity.UsuarioModifica);
+
+            await cnn.ExecuteAsync(
+                "sp_reabrir_campania",
+                param: parameters,
+                commandType: CommandType.StoredProcedure);
         }
     }
 }

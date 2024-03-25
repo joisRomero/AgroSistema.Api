@@ -14,6 +14,9 @@ namespace AgroSistema.Application.Actividad.ListarDetalleActividadAsync
         public string? DescripcionActividad { get; set; }
         public int? IdTipoActividad { get; set; }
         public string? DescripcionTipoActividad { get; set; }
+        public int CantidadSemilla { get; set; }
+        public int UnidadSemilla { get; set; }
+        public string? UnidadDescripcionSemilla { get; set; }
         public IEnumerable<DetalleTrabajadoresDTO>? ListaDetalleTrabajadores { get; set; }
         public IEnumerable<DetalleGastosDTO>? ListaDetalleGastos { get; set; }
         public IEnumerable<DetalleAbonacionDTO>? ListaDetalleAbonacion { get; set; }

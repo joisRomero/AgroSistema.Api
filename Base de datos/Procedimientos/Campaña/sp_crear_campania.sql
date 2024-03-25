@@ -40,6 +40,7 @@ BEGIN
 		,id_culti
 		,id_soc
 		,id_usu
+		,estado_proceso_camp
 		,usuarioInserta_camp
 		,fechaInserta_camp
 	)
@@ -55,6 +56,7 @@ BEGIN
 		,@p_id_culti
 		,@p_id_soc
 		,@p_id_usu
+		,'P'
 		,@p_usuarioInserta_camp
 		,GETDATE()
 	)

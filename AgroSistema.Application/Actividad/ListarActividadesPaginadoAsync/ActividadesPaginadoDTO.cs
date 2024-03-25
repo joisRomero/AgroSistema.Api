@@ -16,6 +16,7 @@ namespace AgroSistema.Application.Actividad.ListarActividadesPaginadoAsync
         public DateTime FechaActividad { get; set; }
         public string? DescripcionActividad { get; set; }
         public string? NombreTipoActividad { get; set; }
+        public decimal TotalGasto { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<ListaPaginadoActividadesEntity, ActividadesPaginadoDTO>();
