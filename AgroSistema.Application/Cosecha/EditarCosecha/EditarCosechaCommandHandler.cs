@@ -1,6 +1,8 @@
 ﻿using AgroSistema.Application.Common.Interface.Repositories;
 using AgroSistema.Application.Cosecha.AgregarCosecha;
 using AgroSistema.Domain.Entities.EditarCosechaAsync;
+using AgroSistema.Domain.Entities.ListarCosechaDetalleAsync;
+using AutoMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -14,10 +16,12 @@ namespace AgroSistema.Application.Cosecha.EditarCosecha
     public class EditarCosechaCommandHandler : IRequestHandler<EditarCosechaCommand>
     {
         private readonly ICosechaRepository _cosechaRepository;
+        private readonly IMapper _mapper;
 
-        public EditarCosechaCommandHandler(ICosechaRepository cosechaRepository)
+        public EditarCosechaCommandHandler(ICosechaRepository cosechaRepository, IMapper mapper)
         {
             _cosechaRepository = cosechaRepository;
+            _mapper = mapper;
         }
 
         public async Task<Unit> Handle(EditarCosechaCommand request, CancellationToken cancellationToken)
@@ -38,6 +42,18 @@ namespace AgroSistema.Application.Cosecha.EditarCosecha
 
                 serializer.Serialize(writer, request.ListaCosechaDetalle);
                 xmlDetalleCosecha = writer.ToString();
+            }
+
+            var listaDetalleCosechaActual = await _cosechaRepository.GetCosechaDetallePorIdAsync(request.IdCosecha);
+            var listaDetalleCosechaEditar = request.ListaCosechaDetalle;
+
+            var listaDetalleCosechaEliminar = listaDetalleCosechaActual
+                .Where(item => !listaDetalleCosechaEditar.Any(detalle => detalle.IdCosechaDetalle == item.IdCosechaDetalle))
+                .ToList();
+
+            foreach (var detalleCosecha in listaDetalleCosechaEliminar)
+            {
+                await _cosechaRepository.EliminarCosechaDetalle(detalleCosecha.IdCosechaDetalle, request.UsuarioModifica);
             }
 
             EditarCosechaEntity entity = new()
