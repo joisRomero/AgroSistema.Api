@@ -12,6 +12,6 @@ BEGIN
 		SET estado_proceso_camp = 'R'
 			,fechaReabierta_camp = dbo.GETDATENEW()
 			,usuarioModifica_camp = @p_usuarioModifica_camp
-			,fechaModifica_camp = @p_usuarioModifica_camp
+			,fechaModifica_camp = dbo.GETDATENEW()
 	WHERE id_camp = @p_id_camp
 END
