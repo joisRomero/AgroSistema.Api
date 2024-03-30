@@ -1,5 +1,5 @@
 IF EXISTS (SELECT * FROM sys.objects WHERE TYPE = 'P' AND name = 'sp_reporteInicio_sociedadesTop_x_usuario')
-	DROP PROCEDURE sp_reporteInicio_sociedadesTop_x_usuario
+	DROP PROCEDURE sp_reporteInicio_sociedadesTop_x_usuario 2
 GO
 
 CREATE PROCEDURE sp_reporteInicio_sociedadesTop_x_usuario(
